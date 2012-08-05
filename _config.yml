@@ -2,12 +2,13 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://LeandroSNunes.github.com
+title: Leandro Nunes
+subtitle: Bit a Bit disseminando conhecimento.
+author: Leandro Nunes
 simple_search: http://google.com/search
-description:
+description: "Blog mantido por Leandro Nunes com assuntos relacionados à desenvolvimento web, matemática e robótica"	
+keywords: "rails, css, javascript, desenvolvimento web, php, mysql, sqlite, java, arduino, debian, linux, mac, nginx, apache, html5, html, design pattern, assemble, matemática, robótica"
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -17,9 +18,9 @@ date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
-subscribe_email:
+subscribe_email: leandronunes.dev@gmail.com
 # RSS feeds can list your email address if you like
-email:
+email: leandronunes.dev@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -45,7 +46,7 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/programming.html, asides/twitter.html, asides/github.html, asides/links.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -58,13 +59,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.ht
 # ----------------------- #
 
 # Github repositories
-github_user:
-github_repo_count: 0
+github_user: LeandroSNunes
+github_repo_count: 3
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: LeandroSNunes
 twitter_tweet_count: 4
 twitter_show_replies: false
 twitter_follow_button: true

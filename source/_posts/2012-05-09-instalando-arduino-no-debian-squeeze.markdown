@@ -86,7 +86,7 @@ sh arduino
 {% endcodeblock %}
 
 <p>
-Caso queira adicionar o Arduino no menu de programas do Debian, leia este post <a href="http://leandronunes.com.br/?p=183">“Adicionar programa no menu do Debian”.</a>
+Caso queira adicionar o Arduino no menu de programas do Debian, leia este post <a href="http://leandronunes.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian/">“Adicionar programa no menu do Debian”.</a>
 </p>
 
 <h2>Dando permissão</h2>

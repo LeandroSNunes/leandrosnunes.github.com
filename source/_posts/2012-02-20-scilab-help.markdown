@@ -6,7 +6,7 @@ comments: true
 categories: [Matemática, Softwares]
 tags: [scilab, help, ajuda]
 description: "Vamos conhecer um dos componentes do Scilab mais utilizado"
-keywords: "scilab, help, ajuda, aprender, comando, funções, menu"
+keywords: "utilizando a ajuda do scilab, buscar comando no help do scilab, como utilizar a ajuda do scilab, aprender a criar gráficos no scilab, execitar comandos no console do scilab, pesquisar sobre funções, utilizar o menu"
 ---
 
 <p>

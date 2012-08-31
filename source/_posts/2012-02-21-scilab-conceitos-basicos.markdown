@@ -6,7 +6,7 @@ comments: true
 categories: [Matemática, Softwares]
 tags: [scilab, help, ajuda]
 description: "Para quem está iniciando na ferramenta, este post servirá para entender alguns conceitos"
-keywords: "scilab, comandos, instruções, carregar arquivos, configurar o path, iniciar outras janelas, console, pronpt"
+keywords: "tutorial do scilab, executar comando no console, instruções, carregar arquivos utilizando comandos do console, configurar o path do projeto, iniciar o scinote, comandos do console, pronpt no scilab"
 ---
 
 <p>

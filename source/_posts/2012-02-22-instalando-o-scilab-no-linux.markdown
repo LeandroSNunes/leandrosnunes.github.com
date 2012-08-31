@@ -6,7 +6,7 @@ comments: true
 categories: [Matemática, Softwares]
 tags: [Scilab, Linux, Debian, Instalação]
 description: "Baixando e instalando o Scilab no Linux usando o terminal"
-keywords: "scilab, console, pronpt, linux, OS, debian, instalação, install, download, baixar, software, apt-get, aptitude, apt-cache, 32 bits, 64 bits"
+keywords: "instalar o scilab, variáveis de console,utilizar o pronpt, instalar no linux o scilab, sistemas operacionais que rodam o scilab, instalar scilabian no debian, instalação e configuração, install scilab, download do scilab, baixar o scilab, conhecer o software, baixar pelo apt-get, baixar pelo aptitude, pesquisar scilab com apt-cache, baixar versão 32 bits, baixar versão 64 bits"
 ---
 {% img /images/scilab-linux/banner.jpg 789 %}
 Para instalar o Scilab no Linux vamos fazer uso do nosso terminal, assim fica bem simples. <br />

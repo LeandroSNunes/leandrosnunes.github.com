@@ -6,7 +6,7 @@ comments: true
 categories: [Matemática, Softwares]
 tags: [Scilab, Windows, Instalação]
 description: "Baixando e instalando o Scilab no Windows"
-keywords: "scilab, console, pronpt, Windows, OS, instalação, install, download, baixar, software, 32 bits, 64 bits"
+keywords: "instalar o scilab, variáveis de console, utilizar o pronpt, sistemas operacionais que rodam o scilab, instalar scilabian no windows, instalação e configuração, install scilab, download do scilab, baixar o scilab, conhecer o software,  baixar versão 32 bits, baixar versão 64 bits"
 ---
 {% img /images/scilab-windows/banner.jpg 789 %}
 <p>

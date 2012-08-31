@@ -6,7 +6,7 @@ comments: true
 categories: [Rails]
 tags: [capistrano, deploy, gem, Ruby on Rails]
 description: "Vamos ver como a dupla sertaneja Rails & Capistrano soam bem na hora de implantar a aplicação"
-keywords: "rails, capistrano, deploy, servidor"
+keywords: "app rubyonrails, criar sistema em rails, configurar capistrano, tutorial para dar deploy em aplicações rails, utilizar o servidor linode, configurar repositório git no capistrano, aplicações rails, configurar mysql em produção, configurar assets pipeline precompile com capistrano, utilizar gem capistrano, instalar capistrano no rubyonrails, criar tarefas rake no capistrano"
 ---
 
 {% img /images/post-capistrano.jpg 789 %}

@@ -6,7 +6,7 @@ comments: true
 categories: [Linux,Debian,Arduino]
 tags: [Debian, Arduino, Linux, Bluetooth, Blueman, CuteCom]
 description: "Neste post vamos ver como fazer a conexão do módulo de Bluetooth JY-MCU V1.02 com o Arduino no Debian 6"
-keywords: "Debian, Linux, apt-get, Bluetooth, Blueman, CuteCom, JY-MCU, gnome-bluetooth, Package, BT_BOARD"
+keywords: "Debian, Linux, instalar programas com apt-get, configurar placa de bluetooth no arduino, utilizar bluetooth com blueman, ler porta serial com CuteCom, configurar placa JY-MCU, gnome-bluetooth, Package, configurar BT_BOARD"
 ---
 
 <p>

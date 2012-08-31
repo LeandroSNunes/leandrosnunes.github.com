@@ -6,7 +6,7 @@ comments: true
 categories: [Linux,Debian]
 tags: [Debian, aptitude, apt-get, Linux, repositório]
 description: "Vamos então adicionar mais repositórios no arquivo sources.list arquivo para que nossos amigos (APT e APTITUDE) achem o que precisamos com maior facilidade."
-keywords: "Debian, Linux, apt-get, aptitude, sources.list, repositório, update, atualização"
+keywords: "programas para Debian, repositório Linux, baixar programas com apt-get, baixar programas com aptitude, atualizar o arquivo sources.list, repositório de pacotes para linux, update debian, atualização de programas com pacotes, lista de repositorios debian"
 ---
 {% img /images/source-list/banner.jpg 789 %}
 <p>

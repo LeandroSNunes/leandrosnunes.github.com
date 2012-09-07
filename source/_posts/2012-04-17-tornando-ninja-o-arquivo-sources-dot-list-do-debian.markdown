@@ -84,7 +84,7 @@ sudo apt-get upgrade
 sudo aptitude update
 {% endcodeblock %}
 
-<h2>Então...</h2>
+
 <p>
 Espero que estas informações sejam úteis, principalmente para os que como eu, estão começando.
 Dêem uma navegada em <a href="http://goo.gl/L0H76" title="Ir para o site">Debian Sources List</a> , temos a possibilidade de adicionar repositórios também e contribuir para a comunidade open source.

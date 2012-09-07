@@ -14,7 +14,7 @@ keywords: "app rubyonrails, criar sistema em rails, configurar capistrano, tutor
 
 <p>
 Chegou a hora de implantar a aplicação para os primeiros testes do cliente?<br />
-Vamos ver como a dupla sertaneja Rails & Capistrano soam bem nesta tarefa.
+Vamos ver como a dupla sertaneja <a href="http://rubyonrails.org/" title="Framework em Ruby para desenvolvimento de aplicações web">Rails</a> & <a href="http://capistranorb.com/">Capistrano</a> soam bem nesta tarefa.
 </p>
 <!-- more -->
 <p>
@@ -25,7 +25,7 @@ Com um pouquinho de configuração o Capistrano pode ser utilizado para outros f
 </p>
 
 <p>
-Vamos adimitir que você já tenha conhecimento em Sistemas de Controle de Versão (Git, SVN, etc) e que seu 
+Vamos adimitir que você já tenha conhecimento em Sistemas de Controle de Versão (<a href="http://github.com/" title="Sistema de controle de versão distribuído">Git</a>, <a href="http://subversion.apache.org/" title="Sistema de controle de versão centralizado" >SVN</a>, etc) e que seu 
 ambiente de desenvolvimento esteja funfando com a aplicação.
 </p>
 
@@ -37,7 +37,7 @@ ambiente de desenvolvimento esteja funfando com a aplicação.
 Para executar esta tarefa temos que verificar em nossa maleta de ferramentas se está presente:
 </p>
 <ul>
-	<li>Ruby</li>
+	<li><a href="http://www.ruby-lang.org/en/">Ruby</a></li>
 	<li>Uma aplicação (no meu caso em Rails)</li>
 	<li>Servidor Web com suporte a SSH</li>
 	<li>Terminal (bash, sh, etc…)</li>

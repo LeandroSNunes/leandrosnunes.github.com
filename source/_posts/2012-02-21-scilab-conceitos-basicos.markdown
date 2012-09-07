@@ -5,25 +5,25 @@ date: 2012-02-21 23:57
 comments: true
 categories: [Matemática, Softwares]
 tags: [scilab, help, ajuda]
-description: "Para quem está iniciando na ferramenta, este post servirá para entender alguns conceitos"
+description: "Para quem está iniciando na ferramenta, este post servirá para entender alguns conceitos básicos"
 keywords: "tutorial do scilab, executar comando no console, instruções, carregar arquivos utilizando comandos do console, configurar o path do projeto, iniciar o scinote, comandos do console, pronpt no scilab"
 ---
 
 <p>
 A melhor maneira de se aprender algo é colocando a mão na massa. <br />
-Vamos conhecer neste post o Console do <a href="http://www.scilab.org/">Scilab</a> que é o pontapé inicial para entender
+Vamos conhecer neste post o Console do <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais" >Scilab</a> que é o pontapé inicial para entender
  o software. Nele encontra-se o pronpt <code> –> </code> onde podemos executar comandos, instruções, carregar arquivos, configurar o path, iniciar outras janelas, etc…
 </p>
 
 <!-- more -->
 
-{% img /images/scilab-conceitos/janela-console.png 789 %}
+{% img /images/scilab-conceitos/janela-console.png 789 "Janela do console do Scilab" %}
 
 <h2>Conhecendo o console</h2>
 <p>
 Vamos conhecer alguns itens do menu que poderão ser úteis e a execução de algumas tarefas. Percorrendo o menu temos:
 </p>
-{% img /images/scilab-conceitos/menu.png 789 %}
+{% img /images/scilab-conceitos/menu.png 789 "Imagem do menu do Scilab" %}
 
 <p>
 
@@ -84,7 +84,7 @@ Scilab está travado, na verdade, o console pode estar esperando uma interação
 informações, isso ocorre devido que o retorno de algumas funções ultrapassam a area visível do console.
 </p>
 
-{% img /images/scilab-conceitos/interacao.png 789 %}
+{% img /images/scilab-conceitos/interacao.png 789  "Janela do console esperando uma interação para continuar a exibir as informações" %}
 
 <p>
 então é sempre bom fazer uso do <code> ; </code> (ponto e virgula) no final de cada instrução.<br />
@@ -92,7 +92,7 @@ então é sempre bom fazer uso do <code> ; </code> (ponto e virgula) no final de
 Caso não lembre o nome do comando, você pode utilizar <code> Ctrl+Espaço </code> que aparece uma lista de comando similares.
 </p>
 
-{% img /images/scilab-conceitos/auto-complete.jpg 789 %}
+{% img /images/scilab-conceitos/auto-complete.jpg 789 "Pesquisando nome de funções pela funcionalidade do auto-complete" %}
 
 <h2>Conhecendo erros</h2>
 <p>
@@ -153,7 +153,7 @@ whos        #exibe os nomes, os tamanhos e os tipos de dados de todas as variáv
 <h2>É isso ai</h2>
 <p>
 Conhecemos um pouco do ambiente do Scilab, ficar atento ao “;” pode poupar tempo na execução de scripts.<br /> 
-Para saber mais sobre o console você pode acessar a documentação <a href="http://help.scilab.org/docs/5.3.2/pt_BR/console.html">clicando aqui!</a>
+Para saber mais sobre o console você pode acessar a documentação <a href="http://help.scilab.org/docs/5.3.2/pt_BR/console.html" title="Ir para página do console">clicando aqui!</a>
 </p>
 
 

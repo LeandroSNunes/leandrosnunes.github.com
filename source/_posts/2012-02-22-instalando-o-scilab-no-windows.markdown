@@ -8,9 +8,9 @@ tags: [Scilab, Windows, Instalação]
 description: "Baixando e instalando o Scilab no Windows"
 keywords: "instalar o scilab, variáveis de console, utilizar o pronpt, sistemas operacionais que rodam o scilab, instalar scilabian no windows, instalação e configuração, install scilab, download do scilab, baixar o scilab, conhecer o software,  baixar versão 32 bits, baixar versão 64 bits"
 ---
-{% img /images/scilab-windows/banner.jpg 789 %}
+{% img /images/scilab-windows/banner.jpg 789 "Banner informativo para download no site scilab.org" %}
 <p>
-Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="www.scilab.org">www.scilab.org</a> para baixar a última versão.
+Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
 </p>
 
 <!-- more -->

@@ -38,7 +38,7 @@ sudo apt-get install blueman
 <p>
 Depois da instalação o programa se encontra em <em>System -> Preferences -> Bluetooth Manager</em>
 </p>
-{% img /images/arduino_bluetooth/blueman.png 789 %}
+{% img /images/arduino_bluetooth/blueman.png 789 "Janela inicial do Blueman" %}
 
 <p>
 Antes de plugar o módulo, é preciso instalar mais um software, o <a href="http://packages.debian.org/unstable/comm/cutecom">"CuteCom"</a>, para monitoramento da porta serial, ele será útil para enviar e receber dados da porta destinada ao
@@ -59,7 +59,7 @@ a versão da IDE.
 <p>
 O módulo JY-MCU V1.02 possui 4 pinos (RX, TX, GND E VCC) e já vem com um cabo.
 </p>
-{% img /images/arduino_bluetooth/modulo.jpg 789 %}
+{% img /images/arduino_bluetooth/modulo.jpg 789 "módulo JY-MCU V1.02 por Leandro Nunes" %}
 
 <p>
 A ligação no Arduino se dá da seguinte forma:
@@ -80,7 +80,7 @@ A ligação no Arduino se dá da seguinte forma:
 Agora é só plugar o cabo USB no Arduino e no PC, pronto, tudo conectado
 </p>
 
-{% img /images/arduino_bluetooth/arduino.jpg 789 %}
+{% img /images/arduino_bluetooth/arduino.jpg 789 "módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes"%}
 
 
 <h2>Codando nosso exemplo</h2>

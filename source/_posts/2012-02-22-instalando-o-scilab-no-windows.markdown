@@ -10,7 +10,7 @@ keywords: "instalar o scilab, variáveis de console, utilizar o pronpt, sistemas
 ---
 {% img /images/scilab-windows/banner.jpg 789 "Banner informativo para download no site scilab.org" %}
 <p>
-Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
+Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="http://www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
 </p>
 
 <!-- more -->

@@ -9,7 +9,7 @@ description:
 keywords:
 ---
 
-
+![banner do post Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable](/images/bug_engine/banner.jpg)
 
 
 Ao tentar executar a suite de testes em uma [Rails Engine](http://edgeapi.rubyonrails.org/classes/Rails/Engine.html) fui surpreendido com alguns erros, então partir para campo afim de 

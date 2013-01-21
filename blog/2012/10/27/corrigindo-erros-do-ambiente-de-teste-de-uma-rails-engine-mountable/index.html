@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable - Leandro Nunes</title>
+  <meta name="author" content="Leandro Nunes">
+
+  
+  <meta name="description" content="Ao tentar executar a suite de testes em uma Rails Engine fui surpreendido com alguns erros, então partir para campo afim de
+descobrir o porquê das &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Leandro Nunes" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    // Avoid conflict with ender.js.
+    jQuery.noConflict();
+</script>
+<!-- jQuery Form Plugin -->
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<!-- jQuery Form Validation Plugin -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+<script src="/javascripts/google_form.js"></script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33903906-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+<!--  	<div id="logoLeft">{</div>-->
+<!--  	<div id="logoText">mob</div>-->
+<!--  	<div id="logoRight">}</div>-->
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Leandro Nunes</a></h1>
+  
+    <h2>Bit a Bit disseminando conhecimento.</h2>
+  
+  <div class="clear"></div>
+  
+  <div id="socialIcons">
+    <a href="https://twitter.com/LeandroSNunes" target="_blank"><img src="/images/twitter.png" alt="icon twitter" /></a>
+    <a href="http://www.facebook.com/leandronunesdeveloper" target="_blank"><img src="/images/facebook.png" alt="icon facebook" /></a> 
+    <a href="http://www.flickr.com/photos/45796698@N05/" target="_blank"><img src="/images/flickr.png" alt="icon flickr" /></a> 
+    <a href="http://br.linkedin.com/in/leandrosnunes" target="_blank"><img src="/images/linkedin.png" alt="icon linkedin" /></a> 
+    <a href="http://www.youtube.com/user/leandronunesdevelope" target="_blank"><img src="/images/youtube.png" alt="icon youtube" /></a> 
+    <a href="http://www.orkut.com.br/Main#Profile?uid=8120271981440334720" target="_blank"><img src="/images/orkut.png" alt="icon orkut" /></a> 
+    <a href="https://plus.google.com/100479053205966074229" target="_blank"><img src="/images/google.png" alt="icon google" /></a> 
+  </div>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="leandronunes.dev@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:LeandroSNunes.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Início</a></li>
+  <li><a href="/about">Sobre</a></li>
+  <li><a href="/blog/archives">Arquivos</a></li>
+<!--  <li><a href="/contact">Contato</a></li>-->
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Corrigindo Bugs Do Ambiente De Teste De Uma Rails Engine Mountable</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-27T10:12:00-02:00" pubdate data-updated="true">27 - Oct - 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a> 
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/bug_engine/banner.jpg" alt="banner do post Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable" /></p>
+
+<p>Ao tentar executar a suite de testes em uma <a href="http://edgeapi.rubyonrails.org/classes/Rails/Engine.html">Rails Engine</a> fui surpreendido com alguns erros, então partir para campo afim de
+descobrir o porquê das coisas não funcionarem convencionalmente como se esperava. Na página <a href="https://github.com/rails/rails/issues?labels=engines&amp;state=open">Issues</a>
+ do Rails no <a href="https://github.com/">GitHub</a> vi que se tratava de bugs do Rails mesmo, no meu caso a versão 3.2.8.</p>
+
+<p>Como não era somente um bug para corrigir e não achei um post relacionando todos, depois da garimpada na net, resolvi juntar
+tudo e postar aqui.</p>
+
+<p>Vou fazer um exemplo de execução de testes em uma Engine para exemplificar melhor. Nossa mega Engine vai se chamar
+Blog (nesse momento estou inspirado), vamos lá então.</p>
+
+<!-- more -->
+
+
+<blockquote><p>Não vou entrar em detalhes sobre Rails Engine, se você não tem noção nenhuma do que seria isso pode começar aqui: <a href="http://www.akitaonrails.com/2010/05/10/rails-3-introducao-a-engines#.UIqn32lUMzE">http://www.akitaonrails.com/2010/05/10/rails-3-introducao-a-engines#.UIqn32lUMzE</a>  -  (Sto. @AkitaOnRails).</p>
+
+<p>Futuramente (quando a faculdade deixar) pretendo fazer um exemplo para documentar também, ai coloco o link aqui ;)</p></blockquote>
+
+<h2>Criando uma Rails Engine</h2>
+
+<p>Vamos criar nossa app Blog.</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails plugin new Blog --mountable
+</span><span class='line'><span class="nb">cd </span>Blog
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Vimos que criamos uma Engine isolada, dessa forma nossas classes serão englobadas no namespace Blog e criadas dentro de pastas nomeadas
+pelo namespace.</em></p>
+
+<p><img src="/images/bug_engine/estrutura.png" alt="Estrutura de pastas" /></p>
+
+<p>Agora vamos gerar um Scaffold para ter o que testar ;P</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g scaffold Post title body:text
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Em uma Engine, temos tarefas rake específicas prefixadas com &#8220;app&#8221;, as que nos interessam nesse momento são as relativas ao banco de dados</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake -T db
+</span><span class='line'>
+</span><span class='line'>rake app:db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
+</span><span class='line'>rake app:db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
+</span><span class='line'>rake app:db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
+</span><span class='line'>rake app:db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
+</span><span class='line'>rake app:db:migrate:status <span class="c"># Display status of migrations</span>
+</span><span class='line'>rake app:db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
+</span><span class='line'>rake app:db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
+</span><span class='line'>rake app:db:schema:load <span class="c"># Load a schema.rb file into the database</span>
+</span><span class='line'>rake app:db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
+</span><span class='line'>rake app:db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
+</span><span class='line'>rake app:db:structure:dump <span class="c"># Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql</span>
+</span><span class='line'>rake app:db:version <span class="c"># Retrieves the current schema version number</span>
+</span><span class='line'>rake db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
+</span><span class='line'>rake db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
+</span><span class='line'>rake db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
+</span><span class='line'>rake db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
+</span><span class='line'>rake db:migrate:status <span class="c"># Display status of migrations</span>
+</span><span class='line'>rake db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
+</span><span class='line'>rake db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
+</span><span class='line'>rake db:schema:load <span class="c"># Load a schema.rb file into the database</span>
+</span><span class='line'>rake db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
+</span><span class='line'>rake db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
+</span><span class='line'>rake db:structure:dump <span class="c"># Dump the database structure to an SQL file</span>
+</span><span class='line'>rake db:version <span class="c"># Retrieves the current schema version number</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vamos criar nosso DB e executar as migrações</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake app:db:create
+</span><span class='line'>rake app:db:migrate
+</span><span class='line'>
+</span><span class='line'><span class="o">==</span> CreateBlogPosts: <span class="nv">migrating</span> <span class="o">================================================</span>
+</span><span class='line'>-- create_table<span class="o">(</span>:blog_posts<span class="o">)</span>
+</span><span class='line'>-&gt; 0.0015s
+</span><span class='line'><span class="o">==</span> CreateBlogPosts: migrated <span class="o">(</span>0.0016s<span class="o">)</span> <span class="o">=======================================</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Observe que a tabela criada é prefixada pelo nome da Engine.</p>
+
+<p>Com o scaffold criamos toda a estrutura para os testes.</p></blockquote>
+
+<p><img src="/images/bug_engine/teste.png" alt="Estrutura de pastas nos testes" /></p>
+
+<p>Enfim, vamos aos erros.</p>
+
+<h2>ERROS</h2>
+
+<p>O scaffold já cria os testes funcionais para CRUD, veja o arquivo <code>test/functional/blog/posts_controller_test.rb</code>,
+dessa forma já podemos executar os testes e ver se está tudo funfando.</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>1) NoMethodError: undefined method `posts&#8217; for #&lt;Blog::PostsControllerTest:0x007f942c045ed0></h3>
+
+<p>Esse error acontece devido nosso controller tentar carregar as fixtures do post que não foram carregadas/criadas, veja:</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Blog</span>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">PostsControllerTest</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+</span><span class='line'>        <span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>            <span class="vi">@post</span> <span class="o">=</span> <span class="n">posts</span><span class="p">(</span><span class="ss">:one</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você precisa explicitar isso para o <a href="http://api.rubyonrails.org/classes/ActiveSupport/TestCase.html">ActiveSupport::TestCase</a>,
+abra o arquivo <code>test/test_helper.rb</code> e adicione: <code>ActiveSupport::TestCase.fixtures :all</code> no contexto onde as fixtures são carregadas.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Load fixtures from the engine</span>
+</span><span class='line'><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixtures</span> <span class="ss">:all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>2) ActiveRecord::StatementInvalid: Could not find table &#8216;blog_posts&#8217;</h3>
+
+<p>Esse error é devido as convenções não funcionarem aqui, se você reparou o path das fixtures está setado para raiz da pasta fixtures, então vamos alterar.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Load fixtures from the engine</span>
+</span><span class='line'><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures/blog&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixtures</span> <span class="ss">:all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>3) ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: posts: DELETE FROM &#8220;posts&#8221;</h3>
+
+<p>Como convenção, a fixture post tenta utilizar a tabela post, mais como vimos, estamos &#8220;namespaceados&#8221; pelo nome da engine,
+então precisamos novamente explicitar para o ActiveSupport::TestCase que o objeto utilizado pela fixture post é <code>Blog::Post</code>,
+dessa forma o <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html">ActiveRecord</a> referencia a tabela correta.</p>
+
+<p>Então adicione mais uma linha no seu test_helper.rb</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Load fixtures from the engine</span>
+</span><span class='line'><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures/blog&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixtures</span> <span class="ss">:all</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">set_fixture_class</span> <span class="ss">:posts</span> <span class="o">=&gt;</span> <span class="no">Blog</span><span class="o">::</span><span class="no">Post</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>4) ActionController::RoutingError: No route matches {:id=>&#8221;980190962&#8221;, :post=>{:body=>&#8221;MyText&#8221;, :title=>&#8221;MyString&#8221;}, :controller=>&#8221;blog/posts&#8221;, :action=>&#8221;update&#8221;}</h3>
+
+<p>Vamos observar o arquivo de rotas, <code>config/routes.rb</code></p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">BlogTest</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>   <span class="n">resources</span> <span class="ss">:posts</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Realmente não temos a rota &#8216;blog/posts&#8217; criada e não devemos criar, pois quando montamos nossa Engine em uma App mãe,
+essa rota será criada devido nossa Engine ser isolada (&#8211;mountable), então a App precisa diferenciar a requisição ao
+controller post da Engine da requisição do controller post dela mesma (caso tenha).</p>
+
+<p>Não sei se expliquei bem, mais é só para justificar o porquê de não alterar esse arquivo.</p>
+
+<p>Para resolver isso, vamos disponibilizar diretamente ao controller_test as rotas.
+Em <code>test/functional/blog/posts_controller_test.rb</code> adicione:</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>setup <span class="k">do</span>
+</span><span class='line'>    @post <span class="o">=</span> posts<span class="o">(</span>:one<span class="o">)</span>
+</span><span class='line'>    @routes <span class="o">=</span> Engine.routes
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Congratulation!</strong></p></blockquote>
+
+<p>Agora nossa suite de teste esta rodando, já podemos trabalhar. :P</p>
+
+<p>Tentei explicar as correções de forma que quem esteja começando no mundo Rails possa entender o que está acontecendo e não
+simplesmente copiar e colar o código para correção. Lembrando que também sou um aspirante Rails e estou aberto para correções
+neste post caso cometi alguma gafe.</p>
+
+<h2>Referencias</h2>
+
+<ul>
+<li><a href="https://github.com/rails/rails/issues/4971">https://github.com/rails/rails/issues/4971</a></li>
+<li><a href="https://github.com/rails/rails/issues/6573">https://github.com/rails/rails/issues/6573</a></li>
+</ul>
+
+
+<h2>Mais sobre Engine</h2>
+
+<ul>
+<li><a href="http://edgeguides.rubyonrails.org/engines.html">http://edgeguides.rubyonrails.org/engines.html</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leandro Nunes</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-27T10:12:00-02:00" pubdate data-updated="true">27 - Oct - 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/" data-via="LeandroSNunes" data-counturl="http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/" title="Previous Post: Organizando as Expressões Regulares no Rails">&laquo; Organizando as Expressões Regulares no Rails</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/" title="Next Post: Habilitando Apache com Virtual Host no Mac OS X 10.8">Habilitando Apache com Virtual Host no Mac OS X 10.8 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="programming">
+  
+  <div id="personal">
+    <div class="cols">
+      <a class="workingwithrails" href="http://leandronunes.com">
+        <img alt="Leandro Nunes" src="/images/avatar.jpg" />
+      </a>
+    </div>
+    <div class="cols">
+      <em>
+        Leandro Nunes<br />
+        Web Developer<br />
+        Serra - ES
+      </em>
+      <a href="http://workingwithrails.com/recommendation/new/person/704818-leandro-souza-nunes">
+        <img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small.jpg" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="specialties">
+    <a href="http://www.ruby-lang.org/" title="Ruby"><img src="/images/ruby.png" alt="Ruby" /></a>  
+    <a href="http://php.net/" title="PHP"><img src="/images/php.png" alt="PHP" /></a> 
+    <a href="http://www.w3schools.com/js/default.asp" title="Javascript"><img src="/images/javascript.png" alt="Javascript" /></a>
+    <a href="http://www.jquery.com" title="jQuery"><img src="/images/jquery.png" alt="jQuery" /></a> 
+    <a href="http://www.oracle.com/technetwork/java/index.html" title="Java"><img src="/images/java.png" alt="Java" /></a>
+    <a href="http://rubyonrails.org/" title="RubyOnRails"><img src="/images/rails.png" alt="RubyOnRails" /></a>    
+    <a href="http://www.w3.org/TR/#tr_CSS" title="CSS3"><img src="/images/css.png" alt="CSS3" /></a>
+    <a href="http://www.html5rocks.com/en/" title="HTML5"><img src="/images/html.png" alt="HTML5" /></a>
+    <a href="http://www.debian.org" title="Debian"><img src="/images/debian.png" alt="Debian" /></a>
+    <a href="http://www.arduino.cc/" title="Arduino"><img src="/images/arduino.png" alt="Arduino" /></a>
+  </div>
+  
+</section>  
+  
+<section>
+  <h1>Categorias</h1>
+<ul>
+  <li>
+     <a class='category' href='/blog/categories/apache/'>Apache</a>, <a class='category' href='/blog/categories/arduino/'>Arduino</a>, <a class='category' href='/blog/categories/debian/'>Debian</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/matemática/'>Matemática</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/softwares/'>Softwares</a>
+  </li>
+</ul>
+</section>
+
+<section>
+  <h1>Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Atualizando...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("LeandroSNunes", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/LeandroSNunes" class="twitter-follow-button" data-show-count="false">Follow @LeandroSNunes</a>
+  
+</section>
+
+
+<section>
+  <h1>GitHub</h1>
+  <ul id="gh_repos">
+    <li class="loading">Nenhum repositório disponível</li>
+  </ul>
+  
+  <a href="https://github.com/LeandroSNunes">@LeandroSNunes</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'LeandroSNunes',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Links</h1>
+  <ul>
+    <li><a href="https://www.ruby-toolbox.com/" >The Ruby Toolbox</a></li>
+    <li><a href="http://akitaonrails.com.br/" >Ruby- AkitaOnRails</a></li>
+    <li><a href="http://www.rubygems.org/" >Ruby Gems</a></li>
+    <li><a href="http://rubyonbr.org/" >RubyOnBr</a></li>
+  </ul>
+ </section>
+ 
+ 
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-9103952879374380";
+/* Livros Programaçao */
+google_ad_slot = "6014198873";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Leandro Nunes -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'leandronunes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/';
+        var disqus_url = 'http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

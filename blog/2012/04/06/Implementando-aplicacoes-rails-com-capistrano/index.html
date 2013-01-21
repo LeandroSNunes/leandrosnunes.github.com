@@ -1,0 +1,943 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Implementando aplicações Rails com Capistrano - Leandro Nunes</title>
+  <meta name="author" content="Leandro Nunes">
+
+  
+  <meta name="description" content="Vamos ver como a dupla sertaneja Rails & Capistrano soam bem na hora de implantar a aplicação">
+  <meta name="keywords" content="app rubyonrails, criar sistema em rails, configurar capistrano, tutorial para dar deploy em aplicações rails, utilizar o servidor linode, configurar repositório git no capistrano, aplicações rails, configurar mysql em produção, configurar assets pipeline precompile com capistrano, utilizar gem capistrano, instalar capistrano no rubyonrails, criar tarefas rake no capistrano">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://LeandroSNunes.github.com/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Leandro Nunes" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    // Avoid conflict with ender.js.
+    jQuery.noConflict();
+</script>
+<!-- jQuery Form Plugin -->
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<!-- jQuery Form Validation Plugin -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+<script src="/javascripts/google_form.js"></script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33903906-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+<!--  	<div id="logoLeft">{</div>-->
+<!--  	<div id="logoText">mob</div>-->
+<!--  	<div id="logoRight">}</div>-->
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Leandro Nunes</a></h1>
+  
+    <h2>Bit a Bit disseminando conhecimento.</h2>
+  
+  <div class="clear"></div>
+  
+  <div id="socialIcons">
+    <a href="https://twitter.com/LeandroSNunes" target="_blank"><img src="/images/twitter.png" alt="icon twitter" /></a>
+    <a href="http://www.facebook.com/leandronunesdeveloper" target="_blank"><img src="/images/facebook.png" alt="icon facebook" /></a> 
+    <a href="http://www.flickr.com/photos/45796698@N05/" target="_blank"><img src="/images/flickr.png" alt="icon flickr" /></a> 
+    <a href="http://br.linkedin.com/in/leandrosnunes" target="_blank"><img src="/images/linkedin.png" alt="icon linkedin" /></a> 
+    <a href="http://www.youtube.com/user/leandronunesdevelope" target="_blank"><img src="/images/youtube.png" alt="icon youtube" /></a> 
+    <a href="http://www.orkut.com.br/Main#Profile?uid=8120271981440334720" target="_blank"><img src="/images/orkut.png" alt="icon orkut" /></a> 
+    <a href="https://plus.google.com/100479053205966074229" target="_blank"><img src="/images/google.png" alt="icon google" /></a> 
+  </div>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="leandronunes.dev@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:LeandroSNunes.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Início</a></li>
+  <li><a href="/about">Sobre</a></li>
+  <li><a href="/blog/archives">Arquivos</a></li>
+<!--  <li><a href="/contact">Contato</a></li>-->
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Implementando Aplicações Rails Com Capistrano</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-06T17:37:00-03:00" pubdate data-updated="true">06 - Apr - 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a> 
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/post-capistrano.jpg" width="789"></p>
+
+<p>
+Chegou a hora de implantar a aplicação para os primeiros testes do cliente?<br />
+Vamos ver como a dupla sertaneja <a href="http://rubyonrails.org/" title="Framework em Ruby para desenvolvimento de aplicações web">Rails</a> & <a href="http://capistranorb.com/">Capistrano</a> soam bem nesta tarefa.
+</p>
+
+
+<!-- more -->
+
+
+<p>
+O Capistrano é uma gem para implantar (deploy) aplicações web. Inicialmente desenvolvida para Rails, 
+tem a finalidade de enviar seu código fonte para um servidor web e permitir o versionamento, ou seja, 
+te dando super poderes para voltar a versão anterior do seu código caso algo dê errado na versão atual. 
+Com um pouquinho de configuração o Capistrano pode ser utilizado para outros framework/linguagem. 
+</p>
+
+
+
+
+<p>
+Vamos adimitir que você já tenha conhecimento em Sistemas de Controle de Versão (<a href="http://github.com/" title="Sistema de controle de versão distribuído">Git</a>, <a href="http://subversion.apache.org/" title="Sistema de controle de versão centralizado" >SVN</a>, etc) e que seu 
+ambiente de desenvolvimento esteja funfando com a aplicação.
+</p>
+
+
+<p><em>Hoje foi o meu primeiro contato com o Capistrano, abaixo segue minhas descobertas.</em></p>
+
+<h2>Requisitos</h2>
+
+
+
+
+<p>
+Para executar esta tarefa temos que verificar em nossa maleta de ferramentas se está presente:
+</p>
+
+
+<ul>
+    <li><a href="http://www.ruby-lang.org/en/">Ruby</a></li>
+    <li>Uma aplicação (no meu caso em Rails)</li>
+    <li>Servidor Web com suporte a SSH</li>
+    <li>Terminal (bash, sh, etc…)</li>
+    <li>Um repositório (No meu caso GIT)</li>
+</ul>
+
+
+
+
+<h2>Instalação</h2>
+
+
+<p>
+Como citado, o Capistrano é um gem e com isso você pode instalar do jeito tradicional mesmo. <br />
+É, aquele fácil! Fazemos assim:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install capistrano
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+O capistrano adiciona alguns utilitários de linha de comando, o <code>cap</code> e <code>capify</code> iremos conhecer mais abaixo.
+Também é possível adicionar esta gem no arquivo GemFile do seu projeto.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+e depois executar o <code>bundle install</code> em seu terminal.
+</p>
+
+
+
+
+<h2>Iniciando</h2>
+
+
+<p>
+Agora utilizamos o <code>capify</code> , nosso amigo de linha de comando para fazer com que o Capistrano monitore nossa work area e nos dê opções para configurá-lo. Primeiramente temos que estar na raiz do diretório do nosso projeto.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /app_rails/
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Agora é só executar!</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>capify .
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Com isso ganhamos dois arquivos em nosso projeto, são eles:</p>
+
+
+<ul>
+    <li><b>capifile</b> –> Possui referências as bibliotecas usadas pelo Capistrano e é responsável em carregá-las.</li>
+    <li><b>config/deploy.rb</b> –> Este possui todas diretrizes para configurar sua implantação, geralmente precisamos editar apenas este.</li>
+</ul>
+
+
+
+
+<h2>Confirgurações</h2>
+
+
+<p>
+O Capistrano precisa de algumas informações para que tudo funcione conforme esperamos e isso fazemos editando o arquivo config/deploy.rb. Estou usando um projeto fictício apenas para exemplo, fique atendo as informações que devem ser substituidas conforme as suas configurações.
+<br />Vamos lá então!
+</p>
+
+
+<h3>A) Informações do projeto</h3>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;app_rails&quot;</span>       <span class="c1"># O nome do projeto</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>               <span class="c1"># Isso guardar os 5 últimos deploys</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span>     <span class="s2">&quot;production&quot;</span>    <span class="c1"># O ambiente em que o Rails irá atuar</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Toda vez que adicionarmos uma nova funcionalidade ao projeto iremos implementá-la no servidor para que outros tenham acesso e nesse processo, o Capistrano faz o versionamento mantendo seu release anterior. Na linha 2 dizemos que será mantido as 5 últimas atualizações, assim caso algo saia errado neste novo release, podemos usar um comandinho salvador da pátria.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap rollback
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>com isso voltamos ao release que estava funfando.</p>
+
+
+
+
+<h3>B) SCM (source code manager)</h3>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="s1">&#39;git&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span>  <span class="s2">&quot;git@github.com:LeandroSNunes/app_rails.git&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:branch</span><span class="p">,</span> <span class="s1">&#39;master&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+No meu caso uso Git como repositório e informo na linha 1. A linha 4 é informado ao Capistrano que ele não precisa pegar todo repositório toda vez que subirmos um novo release, ele somente irá buscar as modificações.
+</p>
+
+
+<h3>C) Informações do servidor</h3>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default_run_options</span><span class="o">[</span><span class="ss">:pty</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">ssh_options</span><span class="o">[</span><span class="ss">:forward_agent</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s2">&quot;leandro&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
+</span><span class='line'><span class="n">server</span> <span class="s2">&quot;leandronunes.com.br&quot;</span><span class="p">,</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">&quot;/www/app_rails.leandronunes.com.br/</span><span class="si">#{</span><span class="n">application</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Na linha 2 permitimos que o SSH carregue nossa chave para o servidor para que de lá seja acessado o github.<br />
+O usuário informado precisa ter permissões de escrita no servidor.<br />
+Alguns comandos por default são executados com sudo, porém se tiver usando um servidor compartilhado e que não tiver acesso de superusuário, informe para não utilizar o sudo como na linha 4.<br />
+O Capistrano entende que sua aplicação irá fazer muito sucesso e que seja preciso distribuí-la em vários servidores, no meu caso estou enviando tudo para o mesmo lugar então a linha 5 é uma forma otimizada de informar isso.
+</p>
+
+
+<p>Caso precise redirecionar serviços para outros servidores, você pode substituir a linha 5 por:</p>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s1">&#39;dominio&#39;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s1">&#39;dominio&#39;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s1">&#39;dominio&#39;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Ops! Executando.</h2>
+
+
+<p>Agora é a hora! Vamos implantar nossa aplicação no servidor, começamos verificando se tudo está OK.</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap deploy:check
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Tudo correndo bem, você será informado. Seguindo, criaremos a estrutura de pastas no servidor.</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap deploy:setup
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+O que fizemos? Com isso será criado duas pastas (<em>release</em> e <em>shared</em>) e ainda um link simbólico chamado <em>current</em> apontando para o último release. Na pasta releases é criado uma pasta para o deploy efetuado. A pasta shared serve para armazenar arquivos que serão compartilhados entre os releases, como logs, imagens, arquivos de configuração, etc…
+</p>
+
+
+<blockquote><p>Quando trabalhamos com Rails, Git e mais de um desenvolvedor é de prática adicionar nosso arquivo database.yml ao .gitignore, fazendo com que este não seja monitorado e conseguentemente não enviado para o repositório, assim configuramos um único arquivo de banco de dados e colocamos na pasta shared para que todos releases compartilhem a mesma configuração. Mais abaixo vamos adicionar uma tarefa pra fazer isso.</p></blockquote>
+
+
+
+
+<h3>A) Criando tarefas para o Capistrano</h3>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class='line'><span class="c1">#   task :start do ; end</span>
+</span><span class='line'><span class="c1">#   task :stop do ; end</span>
+</span><span class='line'>   <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="n">task</span> <span class="ss">:database</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">run</span> <span class="s2">&quot;cp </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">shared_dir</span><span class="si">}</span><span class="s2">/database.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="n">task</span> <span class="ss">:permission</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:web</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:app</span><span class="o">]</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">run</span> <span class="s2">&quot;chmod 755 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public -R&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span> <span class="ss">:symlink</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">assets</span><span class="o">.</span><span class="n">create_dir</span>
+</span><span class='line'>        <span class="n">run</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span>
+</span><span class='line'><span class="sh">         rm -rf  #{release_path}/public/images/upload &amp;&amp;</span>
+</span><span class='line'><span class="sh">         ln -nfs #{shared_path}/upload #{release_path}/public/images/upload</span>
+</span><span class='line'><span class="no">       CMD</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>      <span class="n">task</span> <span class="ss">:create_dir</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">run</span> <span class="s2">&quot;mkdir -p </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/upload&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">after</span> <span class="s2">&quot;deploy:assets:symlink&quot;</span><span class="p">,</span> <span class="s1">&#39;deploy:database&#39;</span>
+</span><span class='line'><span class="n">after</span> <span class="s2">&quot;deploy:update_code&quot;</span><span class="p">,</span> <span class="s1">&#39;deploy:permission&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Ao concluir o deploy é necessário reiniciar o servidor para que as novas configurações entrem em vigor, podemos fazer isso simplesmente atualizando o arquivos <em>tmp/restart.txt</em>, percebam na tarefa restart.
+</p>
+
+
+<p>
+Acima adicionamos nosso arquivo database.yml em nossa pasta shared então precisamos adicioná-la dentro do release corrente após o deploy, a tarefa <em>database</em> faz exatamente isso.
+</p>
+
+
+<p>
+Na tarefa permissions setamos as permissões necessárias para pasta public.
+</p>
+
+
+<p>
+Depois, resolvemos o problemas de aquivos de imagens adicionados pelos usuários (podemos supor um cadastro de produtos). As tarefas dentro de <em>assets</em> criam uma pasta upload dentro de shared e um link simbólico em <em>public/imagens</em> apontando para esta pasta.
+</p>
+
+
+
+
+<p>Por fim vamos executar o tão esperado deploy.</p>
+
+
+
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap deploy:cold
+</span><span class='line'>cap deploy
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Rodamos o <code>cap deploy:cold</code> primeiro para colocar os arquivos no servido, depois efetuamos o deploy.<br />
+A partir da segunda implantação não é necessário rodar <code>cap deploy:cold</code><br />
+Se precisar migrar seu banco utilize <code>cap deploy:migrations</code><br />
+Alguma coisa fugiu do controle? volte ao release anterior com <code>cap deploy:rollback</code><br />
+Para mais informações <code>cap -T</code> para visualizar todas as tarefas do Capistrano.
+</p>
+
+
+
+
+<h2>Juntando tudo</h2>
+
+
+
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Projeto</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;app_rails&quot;</span>       <span class="c1"># O nome do projeto</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>               <span class="c1"># Isso guardar os 5 últimos deploys</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span>     <span class="s2">&quot;production&quot;</span>    <span class="c1"># O ambiente em que o Rails irá atuar</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># SCM</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="s1">&#39;git&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span>  <span class="s2">&quot;git@github.com:LeandroSNunes/app_rails.git&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:branch</span><span class="p">,</span> <span class="s1">&#39;master&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Servidor</span>
+</span><span class='line'><span class="n">default_run_options</span><span class="o">[</span><span class="ss">:pty</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">ssh_options</span><span class="o">[</span><span class="ss">:forward_agent</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s2">&quot;leandro&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
+</span><span class='line'><span class="n">server</span> <span class="s2">&quot;leandronunes.com.br&quot;</span><span class="p">,</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">&quot;/www/app_rails.leandronunes.com.br/</span><span class="si">#{</span><span class="n">application</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#Tarefas</span>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class='line'><span class="c1">#   task :start do ; end</span>
+</span><span class='line'><span class="c1">#   task :stop do ; end</span>
+</span><span class='line'>   <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="n">task</span> <span class="ss">:database</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">run</span> <span class="s2">&quot;cp </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">shared_dir</span><span class="si">}</span><span class="s2">/database.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="n">task</span> <span class="ss">:permission</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:web</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:app</span><span class="o">]</span> <span class="k">do</span>
+</span><span class='line'>     <span class="n">run</span> <span class="s2">&quot;chmod 755 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public -R&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span> <span class="ss">:symlink</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">assets</span><span class="o">.</span><span class="n">create_dir</span>
+</span><span class='line'>        <span class="n">run</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span>
+</span><span class='line'><span class="sh">         rm -rf  #{release_path}/public/images/upload &amp;&amp;</span>
+</span><span class='line'><span class="sh">         ln -nfs #{shared_path}/upload #{release_path}/public/images/upload</span>
+</span><span class='line'><span class="no">       CMD</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>      <span class="n">task</span> <span class="ss">:create_dir</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">run</span> <span class="s2">&quot;mkdir -p </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/upload&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">after</span> <span class="s2">&quot;deploy:assets:symlink&quot;</span><span class="p">,</span> <span class="s1">&#39;deploy:database&#39;</span>
+</span><span class='line'><span class="n">after</span> <span class="s2">&quot;deploy:update_code&quot;</span><span class="p">,</span> <span class="s1">&#39;deploy:permission&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Então&#8230;</h2>
+
+
+<p>
+Isso foi minha colheita em um dia de deploy aqui na empresa e basicamente quando for efetuar um deploy da sua aplicação você vai estar neste ciclo novamente:
+</p>
+
+
+<ul>
+    <li>Adicionar seu último release em um repositório</li>
+    <li>Iniciar o monitoramento do Capistrano no diretório de sua aplicação</li>
+    <li>Editar o arquivo de configuração do Capistrano</li>
+    <li>Fazer um confere das configurações no servidor</li>
+    <li>Montar a estrutura de pastas no servidor</li>
+    <li>Fazer deploy de sua aplicação</li>
+    <li>Configurar o ambiente de produção</li>
+    <li>Cruzar os dedos e atualizar seu navegador</li>
+</ul>
+
+
+<p>
+Algumas informações tive acesso dando umas googladas e dois blogs que usei de referências foram 
+<a href="http://blog.dmitrynix.com/deploy-capistrano/" >Unix and Me</a> e <a href="http://objetiva.co/blog/2008/06/25/capistrano-com-git-tutorial-bsico" >Objetiva</a>, acessem para visualizarem o conteúdo completo.
+</p>
+
+
+<p>
+Para mais informações
+<a href="https://github.com/capistrano/capistrano/wiki/_pages">https://github.com/capistrano/capistrano/wiki/_pages</a>
+</p>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leandro Nunes</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-06T17:37:00-03:00" pubdate data-updated="true">06 - Apr - 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://LeandroSNunes.github.com/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/" data-via="LeandroSNunes" data-counturl="http://LeandroSNunes.github.com/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/22/instalando-o-scilab-no-windows/" title="Previous Post: Instalando o Scilab no Windows">&laquo; Instalando o Scilab no Windows</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/" title="Next Post: Tornando ninja o arquivo sources.list do Debian">Tornando ninja o arquivo sources.list do Debian &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="programming">
+  
+  <div id="personal">
+    <div class="cols">
+      <a class="workingwithrails" href="http://leandronunes.com">
+        <img alt="Leandro Nunes" src="/images/avatar.jpg" />
+      </a>
+    </div>
+    <div class="cols">
+      <em>
+        Leandro Nunes<br />
+        Web Developer<br />
+        Serra - ES
+      </em>
+      <a href="http://workingwithrails.com/recommendation/new/person/704818-leandro-souza-nunes">
+        <img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small.jpg" />
+      </a>
+    </div>
+  </div>
+  
+  <div id="specialties">
+    <a href="http://www.ruby-lang.org/" title="Ruby"><img src="/images/ruby.png" alt="Ruby" /></a>  
+    <a href="http://php.net/" title="PHP"><img src="/images/php.png" alt="PHP" /></a> 
+    <a href="http://www.w3schools.com/js/default.asp" title="Javascript"><img src="/images/javascript.png" alt="Javascript" /></a>
+    <a href="http://www.jquery.com" title="jQuery"><img src="/images/jquery.png" alt="jQuery" /></a> 
+    <a href="http://www.oracle.com/technetwork/java/index.html" title="Java"><img src="/images/java.png" alt="Java" /></a>
+    <a href="http://rubyonrails.org/" title="RubyOnRails"><img src="/images/rails.png" alt="RubyOnRails" /></a>    
+    <a href="http://www.w3.org/TR/#tr_CSS" title="CSS3"><img src="/images/css.png" alt="CSS3" /></a>
+    <a href="http://www.html5rocks.com/en/" title="HTML5"><img src="/images/html.png" alt="HTML5" /></a>
+    <a href="http://www.debian.org" title="Debian"><img src="/images/debian.png" alt="Debian" /></a>
+    <a href="http://www.arduino.cc/" title="Arduino"><img src="/images/arduino.png" alt="Arduino" /></a>
+  </div>
+  
+</section>  
+  
+<section>
+  <h1>Categorias</h1>
+<ul>
+  <li>
+     <a class='category' href='/blog/categories/apache/'>Apache</a>, <a class='category' href='/blog/categories/arduino/'>Arduino</a>, <a class='category' href='/blog/categories/debian/'>Debian</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/matemática/'>Matemática</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/softwares/'>Softwares</a>
+  </li>
+</ul>
+</section>
+
+<section>
+  <h1>Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Atualizando...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("LeandroSNunes", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/LeandroSNunes" class="twitter-follow-button" data-show-count="false">Follow @LeandroSNunes</a>
+  
+</section>
+
+
+<section>
+  <h1>GitHub</h1>
+  <ul id="gh_repos">
+    <li class="loading">Nenhum repositório disponível</li>
+  </ul>
+  
+  <a href="https://github.com/LeandroSNunes">@LeandroSNunes</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'LeandroSNunes',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Links</h1>
+  <ul>
+    <li><a href="https://www.ruby-toolbox.com/" >The Ruby Toolbox</a></li>
+    <li><a href="http://akitaonrails.com.br/" >Ruby- AkitaOnRails</a></li>
+    <li><a href="http://www.rubygems.org/" >Ruby Gems</a></li>
+    <li><a href="http://rubyonbr.org/" >RubyOnBr</a></li>
+  </ul>
+ </section>
+ 
+ 
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-9103952879374380";
+/* Livros Programaçao */
+google_ad_slot = "6014198873";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Leandro Nunes -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'leandronunes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://LeandroSNunes.github.com/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/';
+        var disqus_url = 'http://LeandroSNunes.github.com/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

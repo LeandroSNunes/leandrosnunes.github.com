@@ -4,7 +4,7 @@
   <title><![CDATA[Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-02-12T23:15:56-02:00</updated>
+  <updated>2013-02-13T10:52:38-02:00</updated>
   <id>http://LeandroSNunes.github.com/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -72,9 +72,9 @@ Espera-se que você vai quebrá-las por razões pragmáticas &#8230; muito. Veja
 
 <ul>
 <li>Classes não podem ter mais de 100 linhas de código.</li>
-<li>Métodos não pode ser maior do que cinco linhas de código.</li>
-<li>Os métodos podem ter um máximo de 4 parâmetros.</li>
-<li>Controllers só deve instanciar um objeto.</li>
+<li>Métodos não podem ser maior do que cinco linhas de código.</li>
+<li>Os métodos podem ter no máximo 4 parâmetros.</li>
+<li>Controllers só devem instanciar um objeto.</li>
 <li>Views só devem ter acesso a uma variável de instância.</li>
 <li>Nunca diretamente referêncie uma outra classe/módulo de dentro de uma classe. Estas referências devem ser passado por parâmetros.</li>
 </ul>
@@ -155,10 +155,10 @@ Recomendamos o uso de Concerns como descrito neste <a href="http://37signals.com
 <h3>Orientações</h3>
 
 <ul>
-<li>Operações CRUD que estão limitados a um único modelo deve ser implementado no modelo. Por exemplo, um método <code>full_name</code>
+<li>Operações CRUD que estão limitados a um único modelo deve ser implementada no modelo. Por exemplo, um método <code>full_name</code>
 que concatena <code>first_name</code> e <code>last_name</code></li>
-<li>Operações CRUD que ultrapassam este modelo deve ser implementado como uma Concern. Por exemplo, um método <code>status</code> que
-precisa de olhar para vários outros modelos.</li>
+<li>Operações CRUD que ultrapassam este modelo devem ser implementadas como uma Concern. Por exemplo, um método <code>status</code> que
+precisa olhar para vários outros modelos.</li>
 <li>Operações simples não CRUD, devem ser implementadas como uma Concern.</li>
 <li>Importante! Concerns devem ser isolados e independentes. Eles não devem fazer suposições sobre como o receiver é composto
 em tempo de execução. É inaceitável que uma concern invoque métodos definidos em outras concerns, no entanto, invocando
@@ -244,7 +244,7 @@ Ou seja, nós adicionamos um diretório <code>processes</code> em <code>app</cod
 </span><span class='line'>    |-views</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Recomendamos o uso de uma ferramenta como o <a href="https://github.com/hopsoft/rails_standards/tree/rails-3-2">Hero</a> para ajudar
+<p>Recomendamos o uso de uma ferramenta como o <a href="https://github.com/hopsoft/hero">Hero</a> para ajudar
 a modelar esses processos.</p>
 
 <p><strong>Importante:</strong> Não use model ou controller callbacks para invocar um processo. Em vez disso, invocar processos diretamente

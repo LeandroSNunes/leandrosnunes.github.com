@@ -50,9 +50,9 @@ As regras são propositalmente agressiva e são projetadas para dar-lhe uma paus
 Espera-se que você vai quebrá-las por razões pragmáticas ... muito. Veja a nota na YAGNI e KISS.
 
 * Classes não podem ter mais de 100 linhas de código.
-* Métodos não pode ser maior do que cinco linhas de código.
-* Os métodos podem ter um máximo de 4 parâmetros.
-* Controllers só deve instanciar um objeto.
+* Métodos não podem ser maior do que cinco linhas de código.
+* Os métodos podem ter no máximo 4 parâmetros.
+* Controllers só devem instanciar um objeto.
 * Views só devem ter acesso a uma variável de instância.
 * Nunca diretamente referêncie uma outra classe/módulo de dentro de uma classe. Estas referências devem ser passado por parâmetros.
 
@@ -105,10 +105,10 @@ Recomendamos o uso de Concerns como descrito neste [post do blog](http://37signa
 
 ###Orientações
 
-* Operações CRUD que estão limitados a um único modelo deve ser implementado no modelo. Por exemplo, um método `full_name` 
+* Operações CRUD que estão limitados a um único modelo deve ser implementada no modelo. Por exemplo, um método `full_name` 
 que concatena `first_name` e `last_name`
-* Operações CRUD que ultrapassam este modelo deve ser implementado como uma Concern. Por exemplo, um método `status` que 
-precisa de olhar para vários outros modelos.
+* Operações CRUD que ultrapassam este modelo devem ser implementadas como uma Concern. Por exemplo, um método `status` que 
+precisa olhar para vários outros modelos.
 * Operações simples não CRUD, devem ser implementadas como uma Concern.
 * Importante! Concerns devem ser isolados e independentes. Eles não devem fazer suposições sobre como o receiver é composto 
 em tempo de execução. É inaceitável que uma concern invoque métodos definidos em outras concerns, no entanto, invocando 
@@ -162,7 +162,7 @@ Ou seja, nós adicionamos um diretório `processes` em `app` para realizar imple
     |-views
 {% endcodeblock %}
 
-Recomendamos o uso de uma ferramenta como o [Hero](https://github.com/hopsoft/rails_standards/tree/rails-3-2) para ajudar 
+Recomendamos o uso de uma ferramenta como o [Hero](https://github.com/hopsoft/hero) para ajudar 
 a modelar esses processos.
 
 **Importante:** Não use model ou controller callbacks para invocar um processo. Em vez disso, invocar processos diretamente 

@@ -4,7 +4,7 @@
   <title><![CDATA[Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-02-12T23:11:40-02:00</updated>
+  <updated>2013-02-12T23:15:56-02:00</updated>
   <id>http://LeandroSNunes.github.com/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -393,7 +393,7 @@ ser vigilantes sobre os patches de segurança. Serviços como <a href="https://g
 </ul>
 
 
-<p>Ser cuidadoso sobre a decisão de usar um framework frontend. Pergunte-se se ha complexidad em manter e se a decisão é certa.
+<p>Ser cuidadoso sobre a decisão de usar um framework frontend. Pergunte-se se existe complexidade em manter e se a decisão é certa.
 Muitas vezes existem soluções melhores e mais simples.</p>
 
 <p>Leia os seguintes artigos antes de decidir. No final, você deve ser capaz de expressar por que sua decisão é a certa.</p>

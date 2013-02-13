@@ -5,8 +5,8 @@ date: 2012-10-27 10:12
 comments: true
 categories: [Rails, Ruby]
 tags: [engine, tests, bugs]
-description:"Exemplo de execução de teste em uma Rails Egine e mostrando a correção dos possíveis erros"
-keywords:"configurando rails engine, teste em uma rails engines, erros ao rodar testes, erros de testes unitarios, rubyonrails testes engine, criar uma rails engine"
+description: "Exemplo de execução de teste em uma Rails Egine e mostrando a correção dos possíveis erros"
+keywords: "configurando rails engine, teste em uma rails engines, erros ao rodar testes, erros de testes unitarios, rubyonrails testes engine, criar uma rails engine"
 ---
 
 ![banner do post Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable](/images/bug_engine/banner.jpg)

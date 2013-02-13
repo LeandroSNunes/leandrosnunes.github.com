@@ -66,13 +66,19 @@
         <loc>
             http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/
         </loc>
-        <lastmod>2013-01-20T16:20:50-02:00</lastmod>
+        <lastmod>2013-01-21T01:03:24-02:00</lastmod>
     </url>
     <url>
         <loc>
             http://LeandroSNunes.github.com/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/
         </loc>
-        <lastmod>2013-01-21T00:46:41-02:00</lastmod>
+        <lastmod>2013-01-21T00:53:40-02:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://LeandroSNunes.github.com/blog/2013/02/11/padroes-para-desenvolvimento-com-rails/
+        </loc>
+        <lastmod>2013-02-12T23:10:40-02:00</lastmod>
     </url>
     <url>
         <loc>http://LeandroSNunes.github.com/about/</loc>
@@ -80,14 +86,14 @@
     </url>
     <url>
         <loc>http://LeandroSNunes.github.com/blog/archives/</loc>
-        <lastmod>2013-01-21T00:46:41-02:00</lastmod>
+        <lastmod>2013-02-12T23:10:40-02:00</lastmod>
     </url>
     <url>
         <loc>http://LeandroSNunes.github.com/contact/</loc>
-        <lastmod>2013-01-21T00:46:41-02:00</lastmod>
+        <lastmod>2013-02-12T23:10:40-02:00</lastmod>
     </url>
     <url>
         <loc>http://LeandroSNunes.github.com/</loc>
-        <lastmod>2013-01-21T00:46:41-02:00</lastmod>
+        <lastmod>2013-02-12T23:10:40-02:00</lastmod>
     </url>
 </urlset>

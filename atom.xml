@@ -4,7 +4,7 @@
   <title><![CDATA[Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-01-21T00:46:41-02:00</updated>
+  <updated>2013-02-12T23:11:40-02:00</updated>
   <id>http://LeandroSNunes.github.com/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -12,6 +12,398 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Padrões para desenvolvimento com Rails]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2013/02/11/padroes-para-desenvolvimento-com-rails/"/>
+    <updated>2013-02-11T18:31:00-02:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2013/02/11/padroes-para-desenvolvimento-com-rails</id>
+    <content type="html"><![CDATA[<p>Todos nós gostamos (ou não) de codar com clareza e organização, dessa forma podemos dar possibilidades à terceiros e a nós mesmos
+de efetuar manutenções no programa que desenvolvemos. Quando se trata de equipe de desenvolvimento, algumas regras
+deveriam ser explícita e revisadas cotidianamente, pois a curva de entendimento para um novo dev no projeto pode ser
+alta e em alguns casos, ficar com um a menos no time resulta na entrega de software mais rápido que ambientar um novo dev.</p>
+
+<!-- more -->
+
+
+<p>Pensando nesses conceitos, encontrei o artigo <a href="https://github.com/hopsoft/rails_standards/tree/rails-3-2"><em>Rails 3.2 Development Standards Guide</em></a>
+do <a href="https://github.com/hopsoft">Nathan Hopkins</a> que baseando-se em princípios como o
+<a href="http://en.wikipedia.org/wiki/You_ain't_gonna_need_it">YAGNI</a> e  <a href="http://en.wikipedia.org/wiki/KISS_principle">KISS</a> elaborou alguns
+padrões a seguir quando se desenvolve em Rails, achei bastante interessante e resolvir compartilhar. Vejamos:</p>
+
+<h2>Introdução</h2>
+
+<p>Aplicar os princípios <a href="http://en.wikipedia.org/wiki/You_ain't_gonna_need_it">YAGNI</a> e
+<a href="http://en.wikipedia.org/wiki/KISS_principle">KISS</a> para:.</p>
+
+<ul>
+<li>Arquitetura Geral</li>
+<li>Produtos e Recursos da API</li>
+<li>Implementações Específicas</li>
+</ul>
+
+
+<h2>Arquivos</h2>
+
+<ul>
+<li>Deve ser usado espaços e não tabs</li>
+<li>Tabs devem ser iguais a dois espaços</li>
+<li>Finais de linha no padrão Unix (\n)</li>
+<li>Usar UTF-8 encoding</li>
+</ul>
+
+
+<h2>Documentação</h2>
+
+<p>Faça um esforço para o código ser auto-explicativo.</p>
+
+<ul>
+<li>Prefira nomes descritivos em seu código. Por exemplo <code>user_count</code> é um nome melhor do que <code>len</code>.</li>
+<li>Use comentários <a href="http://yardoc.org/">YARD</a> quando a documentação do código for considerado necessária.</li>
+<li>Evite comentários no método quando ele for muito complexo; <em>refatoração</em> é melhor.</li>
+</ul>
+
+
+<h2>Diretrizes Gerais</h2>
+
+<p>Essas diretrizes são baseadas nas regras de programação de <a href="http://sandimetz.com/">Sandi Metz</a> introduzidas no Ruby Rogues.
+As regras são propositalmente agressiva e são projetadas para dar-lhe uma pausa para que o seu app não corra solto.
+Espera-se que você vai quebrá-las por razões pragmáticas &#8230; muito. Veja a nota na YAGNI e KISS.</p>
+
+<ul>
+<li>Classes não podem ter mais de 100 linhas de código.</li>
+<li>Métodos não pode ser maior do que cinco linhas de código.</li>
+<li>Os métodos podem ter um máximo de 4 parâmetros.</li>
+<li>Controllers só deve instanciar um objeto.</li>
+<li>Views só devem ter acesso a uma variável de instância.</li>
+<li>Nunca diretamente referêncie uma outra classe/módulo de dentro de uma classe. Estas referências devem ser passado por parâmetros.</li>
+</ul>
+
+
+<p><em>Seja atencioso ao aplicar estas regras. Se você está lutando contra o quadro (no caso de Scrum, Kaban, etc..), é hora de ser um pouco mais pragmático.</em></p>
+
+<h2>Models</h2>
+
+<ul>
+<li>Nunca use finders dinâmicos. por exemplo <code>find_by_ …</code></li>
+<li>Seja atencioso sobre o uso de callbacks e observers que podem levar ao acoplamento indesejado.</li>
+</ul>
+
+
+<p>Todos os modelos devem ser organizadas usando o seguinte formato:</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyModel</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="c1"># extends ...................................................................</span>
+</span><span class='line'>  <span class="c1"># includes ..................................................................</span>
+</span><span class='line'>  <span class="c1"># security (i.e. attr_accessible) ...........................................</span>
+</span><span class='line'>  <span class="c1"># relationships .............................................................</span>
+</span><span class='line'>  <span class="c1"># validations ...............................................................</span>
+</span><span class='line'>  <span class="c1"># callbacks .................................................................</span>
+</span><span class='line'>  <span class="c1"># scopes ....................................................................</span>
+</span><span class='line'>  <span class="c1"># additional config .........................................................</span>
+</span><span class='line'>  <span class="c1"># class methods .............................................................</span>
+</span><span class='line'>  <span class="c1"># public instance methods ...................................................</span>
+</span><span class='line'>  <span class="c1"># protected instance methods ................................................</span>
+</span><span class='line'>  <span class="c1"># private instance methods ..................................................</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>OBS: Os comentários listados acima deve existir no arquivo para servir como um lembrete visual do formato.</em></p>
+
+<h2>Implementação de Models</h2>
+
+<p>É geralmente uma boa idéia isolar diferentes obrigações em módulos separados.
+Recomendamos o uso de Concerns como descrito neste <a href="http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns">post do blog</a>.</p>
+
+<figure class='code'><figcaption><span>Project </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|-project
+</span><span class='line'>  |-app
+</span><span class='line'>    |-assets
+</span><span class='line'>    |-controllers
+</span><span class='line'>    |-helpers
+</span><span class='line'>    |-mailers
+</span><span class='line'>    |-models
+</span><span class='line'>      |-concerns &lt;-----
+</span><span class='line'>    |-views</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Orientações</h3>
+
+<ul>
+<li>Operações CRUD que estão limitados a um único modelo deve ser implementado no modelo. Por exemplo, um método <code>full_name</code>
+que concatena <code>first_name</code> e <code>last_name</code></li>
+<li>Operações CRUD que ultrapassam este modelo deve ser implementado como uma Concern. Por exemplo, um método <code>status</code> que
+precisa de olhar para vários outros modelos.</li>
+<li>Operações simples não CRUD, devem ser implementadas como uma Concern.</li>
+<li>Importante! Concerns devem ser isolados e independentes. Eles não devem fazer suposições sobre como o receiver é composto
+em tempo de execução. É inaceitável que uma concern invoque métodos definidos em outras concerns, no entanto, invocando
+métodos definidos no receiver pretendido é permitido.</li>
+<li>Operações complexas multi-step devem ser implementadas como um processo. Veja abaixo.</li>
+</ul>
+
+
+<h2>Controllers</h2>
+
+<p>Controladores devem higienizar parâmetros antes de realizar qualquer outra lógica. A solução preferida é inspirada por esta
+<a href="https://gist.github.com/dhh/1975644">essência do DHH</a>.</p>
+
+<p>Aqui está um exemplo de higienização de parâmetros.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ExampleController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="no">Example</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">sanitized_params</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>    <span class="no">Example</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">update_attributes!</span><span class="p">(</span><span class="n">sanitized_params</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">protected</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">sanitized_params</span>
+</span><span class='line'>    <span class="n">params</span><span class="o">[</span><span class="ss">:example</span><span class="o">].</span><span class="n">slice</span><span class="p">(</span><span class="ss">:expected_param</span><span class="p">,</span> <span class="ss">:another_expected_param</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Processos</h2>
+
+<p>Um processo é definido como uma operação multi-step, que inclui qualquer um dos seguintes itens.</p>
+
+<ul>
+<li>Uma transação com uma tarefa complexa está sendo realizada.</li>
+<li>Uma chamada feita para um serviço externo.</li>
+<li>Qualquer interação no nível do sistema operacional é executada.</li>
+<li>O envio de e-mails, a exportação de arquivos, etc ..</li>
+</ul>
+
+
+<p>Em uma tentativa de gerir melhor os processos, nós seguimos vagamente alguns princípios de Domain Driven Development (DDD).
+Ou seja, nós adicionamos um diretório <code>processes</code> em <code>app</code> para realizar implementações de nossos processos.</p>
+
+<figure class='code'><figcaption><span>Project </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|-project
+</span><span class='line'>  |-app
+</span><span class='line'>    |-assets
+</span><span class='line'>    |-controllers
+</span><span class='line'>    |-helpers
+</span><span class='line'>    |-mailers
+</span><span class='line'>    |-models
+</span><span class='line'>    |-processes &lt;-----
+</span><span class='line'>    |-views</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Recomendamos o uso de uma ferramenta como o <a href="https://github.com/hopsoft/rails_standards/tree/rails-3-2">Hero</a> para ajudar
+a modelar esses processos.</p>
+
+<p><strong>Importante:</strong> Não use model ou controller callbacks para invocar um processo. Em vez disso, invocar processos diretamente
+do controlador.</p>
+
+<h2>Logging</h2>
+
+<p>Nós usamos a gem <a href="https://github.com/rudionrails/yell">Yell</a> para registro. Aqui está um exemplo de configuração.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># example/config/application.rb</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">Example</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Rails</span><span class="o">::</span><span class="no">Application</span>
+</span><span class='line'>    <span class="n">log_levels</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:debug</span><span class="p">,</span> <span class="ss">:info</span><span class="p">,</span> <span class="ss">:warn</span><span class="p">,</span> <span class="ss">:error</span><span class="p">,</span> <span class="ss">:fatal</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># %m : The message to be logged</span>
+</span><span class='line'>    <span class="c1"># %d : The ISO8601 Timestamp</span>
+</span><span class='line'>    <span class="c1"># %L : The log level, e.g INFO, WARN</span>
+</span><span class='line'>    <span class="c1"># %l : The log level (short), e.g. I, W</span>
+</span><span class='line'>    <span class="c1"># %p : The PID of the process from where the log event occured</span>
+</span><span class='line'>    <span class="c1"># %t : The Thread ID from where the log event occured</span>
+</span><span class='line'>    <span class="c1"># %h : The hostname of the machine from where the log event occured</span>
+</span><span class='line'>    <span class="c1"># %f : The filename from where the log event occured</span>
+</span><span class='line'>    <span class="c1"># %n : The line number of the file from where the log event occured</span>
+</span><span class='line'>    <span class="c1"># %F : The filename with path from where the log event occured</span>
+</span><span class='line'>    <span class="c1"># %M : The method where the log event occured</span>
+</span><span class='line'>    <span class="n">log_format</span> <span class="o">=</span> <span class="no">Yell</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="s2">&quot;[%d] [%L] [%h][%p][%t] [%F:%n:%M] %m&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="no">Yell</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">logger</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">logger</span><span class="o">.</span><span class="n">adapter</span> <span class="no">STDOUT</span><span class="p">,</span> <span class="ss">:level</span> <span class="o">=&gt;</span> <span class="n">log_levels</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="n">log_format</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Extensions &amp; Monkey Patches</h2>
+
+<ul>
+<li>Seja pensativo sobre monkey patching e procure primeiro soluções alternativas.</li>
+<li>Use um inicializador para carregar extensions e monkey patches.</li>
+</ul>
+
+
+<p>Todas as extensions e monkey patches deve estar em um diretório de extensões em lib.</p>
+
+<figure class='code'><figcaption><span>Project </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|-project
+</span><span class='line'>  |-app
+</span><span class='line'>  |-config
+</span><span class='line'>  |-db
+</span><span class='line'>  |-lib
+</span><span class='line'>    |-extensions &lt;-----</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Use módulos para estender objetos ou adicionar monkey patches. Isto fornece alguma consistência quando você precisa
+para rastrear bugs.</p>
+
+<p>Aqui está um exemplo:</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">CowboyString</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">downcase</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">upcase</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">::</span><span class="nb">String</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:include</span><span class="p">,</span> <span class="no">CowboyString</span><span class="p">)</span>
+</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">ancestors</span> <span class="c1"># =&gt; [String, CowboyString, Enumerable, Comparable, Object, Kernel]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Dependências de Gems</h2>
+
+<p>Dependências de gems deve ser fixadas antes de implantar no aplicativo de produção. Isto vai garantir a estabilidade da aplicação.</p>
+
+<p>Recomendamos o uso de <a href="http://gembundler.com/v1.2/gemfile.html">gerenciadores de dependência</a>. Ao utilizar um gerenciador de
+dependência, certifique-se de especificar pelo menos as versões maiores ou menores. Aqui está um exemplo.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.11&#39;</span> <span class="c1"># GOOD: exact</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt;0.9&#39;</span>     <span class="c1"># GOOD: tilde</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;yell&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;=1.2&#39;</span>   <span class="c1"># BAD: unspecific</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;nokogiri&#39;</span>        <span class="c1"># BAD: unversioned</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bundler&#8217;s Gemfile.lock resolve o mesmo problema, mas nós descobrimos que as atualizações indevidas do pacote podem causar problemas.
+É muito melhor ser explícito no Gemfile para garantir a estabilidade do aplicativo.</p>
+
+<p><strong>This will cause your project to slowy drift away from the bleeding edge</strong>. A estratégia deve ser empregada para garantir que o
+projeto não se desvie muito do comportamento da versão da gem. Por exemplo, atualizar as gems regularmente (a cada 3-4 meses) e
+ser vigilantes sobre os patches de segurança. Serviços como <a href="https://gemnasium.com/">Gemnasium</a> pode ajudar com isso.</p>
+
+<h2>Uma nota sobre Frameworks frontend</h2>
+
+<p>Coisas interessantes estão acontecendo no mundo dos frameworks frontend.</p>
+
+<ul>
+<li><a href="http://backbonejs.org/">Backbone</a></li>
+<li><a href="http://emberjs.com/">Ember</a></li>
+<li><a href="http://angularjs.org/">Angular</a></li>
+<li><a href="http://knockoutjs.com/">Knockout</a></li>
+<li>e muitos outros &#8230;</li>
+</ul>
+
+
+<p>Ser cuidadoso sobre a decisão de usar um framework frontend. Pergunte-se se ha complexidad em manter e se a decisão é certa.
+Muitas vezes existem soluções melhores e mais simples.</p>
+
+<p>Leia os seguintes artigos antes de decidir. No final, você deve ser capaz de expressar por que sua decisão é a certa.</p>
+
+<p><a href="http://37signals.com/svn/posts/3112-how-basecamp-next-got-to-be-so-damn-fast-without-using-much-client-side-ui">How Basecamp Next got to be so damn fast without using much client-side UI</a>
+<a href="http://layervault.tumblr.com/post/30932219739/rails-in-realtime">Rails in Realtime</a>
+<a href="http://layervault.tumblr.com/post/31462727280/rails-in-realtime-part-2">Rails in Realtime, Part 2</a>
+Em ambos os casos estar atento a &#8220;layout thrashing&#8221;, <a href="http://kellegous.com/j/2013/01/26/layout-performance/">conforme descrito aqui</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Habilitando Apache com Virtual Host no Mac OS X 10.8]]></title>

@@ -1,6 +1,5 @@
-<ul class="main-navigation">
-  <li><a href="{{ root_url }}/">Início</a></li>
-  <li><a href="{{ root_url }}/about">Sobre</a></li>
-  <li><a href="{{ root_url }}/blog/archives">Arquivos</a></li>
-<!--  <li><a href="{{ root_url }}/contact">Contato</a></li>-->
+<ul class="nav">
+    {% for link in site.navigation %}
+        <li {% if page.url == link.url %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.text }}</a></li>
+    {% endfor %}
 </ul>

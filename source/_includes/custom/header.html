@@ -1,24 +1,16 @@
-<hgroup>
-  <div id="logo">
-<!--  	<div id="logoLeft">{</div>-->
-<!--  	<div id="logoText">mob</div>-->
-<!--  	<div id="logoRight">}</div>-->
-  	<div class="clear"></div>
+<div class="jumbotron">
+  <div class="container">
+    {% if site.title %}
+      {{ site.title }}
+    {% else %}
+      Hi. I'm {{ site.author }}.
+    {% endif %}
+    <h3 class="tagline">
+      {% if site.subtitle %}
+        {{ site.subtitle }}
+      {% else %}
+         Here are some thoughts of mine.
+      {% endif %}
+    </h3>
   </div>
-  <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
-  {% if site.subtitle %}
-    <h2>{{ site.subtitle }}</h2>
-  {% endif %}
-  <div class="clear"></div>
-  
-  <div id="socialIcons">
-    <a href="https://twitter.com/LeandroSNunes" target="_blank"><img src="{{ root_url }}/images/twitter.png" alt="icon twitter" /></a>
-    <a href="http://www.facebook.com/leandronunesdeveloper" target="_blank"><img src="{{ root_url }}/images/facebook.png" alt="icon facebook" /></a> 
-    <a href="http://www.flickr.com/photos/45796698@N05/" target="_blank"><img src="{{ root_url }}/images/flickr.png" alt="icon flickr" /></a> 
-    <a href="http://br.linkedin.com/in/leandrosnunes" target="_blank"><img src="{{ root_url }}/images/linkedin.png" alt="icon linkedin" /></a> 
-    <a href="http://www.youtube.com/user/leandronunesdevelope" target="_blank"><img src="{{ root_url }}/images/youtube.png" alt="icon youtube" /></a> 
-    <a href="http://www.orkut.com.br/Main#Profile?uid=8120271981440334720" target="_blank"><img src="{{ root_url }}/images/orkut.png" alt="icon orkut" /></a> 
-    <a href="https://plus.google.com/100479053205966074229" target="_blank"><img src="{{ root_url }}/images/google.png" alt="icon google" /></a> 
-  </div>
-  
-</hgroup>
+</div>

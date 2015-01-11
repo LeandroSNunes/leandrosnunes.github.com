@@ -7,7 +7,7 @@ title: Leandro Nunes
 subtitle: Bit a Bit disseminando conhecimento.
 author: Leandro Nunes
 simple_search: http://google.com/search
-description: "Blog mantido por Leandro Nunes com assuntos relacionados à desenvolvimento web, matemática e robótica"	
+description: "Blog mantido por Leandro Nunes com assuntos relacionados a desenvolvimento web, matematica e robotica"	
 keywords: "rails, css, javascript, desenvolvimento web, php, mysql, sqlite, java, arduino, debian, linux, mac, nginx, apache, html5, html, design pattern, assemble, matemática, robótica"
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -40,7 +40,7 @@ pygments: false # default python pygments have been replaced by pygments.rb
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
-excerpt_link: "Leia mais &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_link: "Leia mais"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: true       # Converts page and post titles to titlecase
 

@@ -54,6 +54,15 @@ default_asides: [asides/programming.html, asides/category_list.html, asides/twit
 # post_asides:
 # page_asides:
 
+# ---------------------------- #
+#   Octoflat theme Settings    #
+# ---------------------------- #
+navigation:
+  - text: Home
+    url: /index.html
+  - text: Arquivos
+    url: /blog/archives/index.html
+
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
@@ -98,3 +107,5 @@ google_analytics_tracking_id: UA-33903906-1
 
 # Facebook Like
 facebook_like: true
+
+linkedin_user: leandrosnunes

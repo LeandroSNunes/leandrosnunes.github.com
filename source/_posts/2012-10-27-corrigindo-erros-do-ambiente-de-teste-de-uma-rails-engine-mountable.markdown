@@ -9,9 +9,6 @@ description: "Exemplo de execução de teste em uma Rails Egine e mostrando a co
 keywords: "configurando rails engine, teste em uma rails engines, erros ao rodar testes, erros de testes unitarios, rubyonrails testes engine, criar uma rails engine"
 ---
 
-![banner do post Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable](/images/bug_engine/banner.jpg)
-
-
 Ao tentar executar a suite de testes em uma [Rails Engine](http://edgeapi.rubyonrails.org/classes/Rails/Engine.html) fui surpreendido com alguns erros, então partir para campo afim de 
 descobrir o porquê das coisas não funcionarem convencionalmente como se esperava. Na página [Issues](https://github.com/rails/rails/issues?labels=engines&state=open)
  do Rails no [GitHub](https://github.com/) vi que se tratava de bugs do Rails mesmo, no meu caso a versão 3.2.8.

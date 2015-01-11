@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: http://LeandroSNunes.github.com/sitemap.xml

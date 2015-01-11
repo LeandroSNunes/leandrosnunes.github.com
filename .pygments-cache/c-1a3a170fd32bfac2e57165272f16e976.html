@@ -1,0 +1,29 @@
+<div class="highlight"><pre><span class="cp">#include &lt;SoftwareSerial.h&gt;</span>
+
+<span class="n">SoftwareSerial</span> <span class="n">mySerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// RX, TX</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>  
+<span class="p">{</span>
+ <span class="c1">// Open serial communications and wait for port to open:</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+   <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">;</span> <span class="c1">// wait for serial port to connect. Needed for Leonardo only</span>
+  <span class="p">}</span>
+
+  
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Goodnight moon!&quot;</span><span class="p">);</span>
+
+  <span class="c1">// set the data rate for the SoftwareSerial port</span>
+  <span class="n">mySerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  <span class="n">mySerial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello, world?&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="c1">// run over and over</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span>
+    <span class="n">mySerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+<span class="p">}</span>
+</pre>
+</div>

@@ -1,0 +1,9 @@
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">CowboyString</span>
+  <span class="k">def</span> <span class="nf">downcase</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">upcase</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="o">::</span><span class="nb">String</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:include</span><span class="p">,</span> <span class="no">CowboyString</span><span class="p">)</span>
+<span class="nb">String</span><span class="o">.</span><span class="n">ancestors</span> <span class="c1"># =&gt; [String, CowboyString, Enumerable, Comparable, Object, Kernel]</span>
+</pre>
+</div>

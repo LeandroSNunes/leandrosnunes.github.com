@@ -1,0 +1,319 @@
+<p><img src="/images/bug_engine/banner.jpg" alt="banner do post Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable" /></p>
+
+<p>Ao tentar executar a suite de testes em uma <a href="http://edgeapi.rubyonrails.org/classes/Rails/Engine.html">Rails Engine</a> fui surpreendido com alguns erros, então partir para campo afim de
+descobrir o porquê das coisas não funcionarem convencionalmente como se esperava. Na página <a href="https://github.com/rails/rails/issues?labels=engines&amp;state=open">Issues</a>
+ do Rails no <a href="https://github.com/">GitHub</a> vi que se tratava de bugs do Rails mesmo, no meu caso a versão 3.2.8.</p>
+
+<p>Como não era somente um bug para corrigir e não achei um post relacionando todos, depois da garimpada na net, resolvi juntar
+tudo e postar aqui.</p>
+
+<p>Vou fazer um exemplo de execução de testes em uma Engine para exemplificar melhor. Nossa mega Engine vai se chamar
+Blog (nesse momento estou inspirado), vamos lá então.</p>
+
+<!-- more -->
+
+
+<blockquote><p>Não vou entrar em detalhes sobre Rails Engine, se você não tem noção nenhuma do que seria isso pode começar aqui: <a href="http://www.akitaonrails.com/2010/05/10/rails-3-introducao-a-engines#.UIqn32lUMzE">http://www.akitaonrails.com/2010/05/10/rails-3-introducao-a-engines#.UIqn32lUMzE</a>  -  (Sto. @AkitaOnRails).</p>
+
+<p>Futuramente (quando a faculdade deixar) pretendo fazer um exemplo para documentar também, ai coloco o link aqui ;)</p></blockquote>
+
+<h2>Criando uma Rails Engine</h2>
+
+<p>Vamos criar nossa app Blog.</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails plugin new Blog --mountable
+</span><span class='line'><span class="nb">cd </span>Blog
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Vimos que criamos uma Engine isolada, dessa forma nossas classes serão englobadas no namespace Blog e criadas dentro de pastas nomeadas
+pelo namespace.</em></p>
+
+<p><img src="/images/bug_engine/estrutura.png" alt="Estrutura de pastas" /></p>
+
+<p>Agora vamos gerar um Scaffold para ter o que testar ;P</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g scaffold Post title body:text
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Em uma Engine, temos tarefas rake específicas prefixadas com &#8220;app&#8221;, as que nos interessam nesse momento são as relativas ao banco de dados</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake -T db
+</span><span class='line'>
+</span><span class='line'>rake app:db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
+</span><span class='line'>rake app:db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
+</span><span class='line'>rake app:db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
+</span><span class='line'>rake app:db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
+</span><span class='line'>rake app:db:migrate:status <span class="c"># Display status of migrations</span>
+</span><span class='line'>rake app:db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
+</span><span class='line'>rake app:db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
+</span><span class='line'>rake app:db:schema:load <span class="c"># Load a schema.rb file into the database</span>
+</span><span class='line'>rake app:db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
+</span><span class='line'>rake app:db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
+</span><span class='line'>rake app:db:structure:dump <span class="c"># Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql</span>
+</span><span class='line'>rake app:db:version <span class="c"># Retrieves the current schema version number</span>
+</span><span class='line'>rake db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
+</span><span class='line'>rake db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
+</span><span class='line'>rake db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
+</span><span class='line'>rake db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
+</span><span class='line'>rake db:migrate:status <span class="c"># Display status of migrations</span>
+</span><span class='line'>rake db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
+</span><span class='line'>rake db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
+</span><span class='line'>rake db:schema:load <span class="c"># Load a schema.rb file into the database</span>
+</span><span class='line'>rake db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
+</span><span class='line'>rake db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
+</span><span class='line'>rake db:structure:dump <span class="c"># Dump the database structure to an SQL file</span>
+</span><span class='line'>rake db:version <span class="c"># Retrieves the current schema version number</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vamos criar nosso DB e executar as migrações</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake app:db:create
+</span><span class='line'>rake app:db:migrate
+</span><span class='line'>
+</span><span class='line'><span class="o">==</span> CreateBlogPosts: <span class="nv">migrating</span> <span class="o">================================================</span>
+</span><span class='line'>-- create_table<span class="o">(</span>:blog_posts<span class="o">)</span>
+</span><span class='line'>-&gt; 0.0015s
+</span><span class='line'><span class="o">==</span> CreateBlogPosts: migrated <span class="o">(</span>0.0016s<span class="o">)</span> <span class="o">=======================================</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Observe que a tabela criada é prefixada pelo nome da Engine.</p>
+
+<p>Com o scaffold criamos toda a estrutura para os testes.</p></blockquote>
+
+<p><img src="/images/bug_engine/teste.png" alt="Estrutura de pastas nos testes" /></p>
+
+<p>Enfim, vamos aos erros.</p>
+
+<h2>ERROS</h2>
+
+<p>O scaffold já cria os testes funcionais para CRUD, veja o arquivo <code>test/functional/blog/posts_controller_test.rb</code>,
+dessa forma já podemos executar os testes e ver se está tudo funfando.</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>1) NoMethodError: undefined method `posts&#8217; for #&lt;Blog::PostsControllerTest:0x007f942c045ed0></h3>
+
+<p>Esse error acontece devido nosso controller tentar carregar as fixtures do post que não foram carregadas/criadas, veja:</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Blog</span>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">PostsControllerTest</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+</span><span class='line'>        <span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>            <span class="vi">@post</span> <span class="o">=</span> <span class="n">posts</span><span class="p">(</span><span class="ss">:one</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você precisa explicitar isso para o <a href="http://api.rubyonrails.org/classes/ActiveSupport/TestCase.html">ActiveSupport::TestCase</a>,
+abra o arquivo <code>test/test_helper.rb</code> e adicione: <code>ActiveSupport::TestCase.fixtures :all</code> no contexto onde as fixtures são carregadas.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Load fixtures from the engine</span>
+</span><span class='line'><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixtures</span> <span class="ss">:all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>2) ActiveRecord::StatementInvalid: Could not find table &#8216;blog_posts&#8217;</h3>
+
+<p>Esse error é devido as convenções não funcionarem aqui, se você reparou o path das fixtures está setado para raiz da pasta fixtures, então vamos alterar.</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Load fixtures from the engine</span>
+</span><span class='line'><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures/blog&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixtures</span> <span class="ss">:all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>3) ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: posts: DELETE FROM &#8220;posts&#8221;</h3>
+
+<p>Como convenção, a fixture post tenta utilizar a tabela post, mais como vimos, estamos &#8220;namespaceados&#8221; pelo nome da engine,
+então precisamos novamente explicitar para o ActiveSupport::TestCase que o objeto utilizado pela fixture post é <code>Blog::Post</code>,
+dessa forma o <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html">ActiveRecord</a> referencia a tabela correta.</p>
+
+<p>Então adicione mais uma linha no seu test_helper.rb</p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Load fixtures from the engine</span>
+</span><span class='line'><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;../fixtures/blog&quot;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">fixtures</span> <span class="ss">:all</span>
+</span><span class='line'>    <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">set_fixture_class</span> <span class="ss">:posts</span> <span class="o">=&gt;</span> <span class="no">Blog</span><span class="o">::</span><span class="no">Post</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
+
+<h3>4) ActionController::RoutingError: No route matches {:id=>&#8221;980190962&#8221;, :post=>{:body=>&#8221;MyText&#8221;, :title=>&#8221;MyString&#8221;}, :controller=>&#8221;blog/posts&#8221;, :action=>&#8221;update&#8221;}</h3>
+
+<p>Vamos observar o arquivo de rotas, <code>config/routes.rb</code></p>
+
+<figure class='code'><figcaption><span>ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">BlogTest</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>   <span class="n">resources</span> <span class="ss">:posts</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Realmente não temos a rota &#8216;blog/posts&#8217; criada e não devemos criar, pois quando montamos nossa Engine em uma App mãe,
+essa rota será criada devido nossa Engine ser isolada (&#8211;mountable), então a App precisa diferenciar a requisição ao
+controller post da Engine da requisição do controller post dela mesma (caso tenha).</p>
+
+<p>Não sei se expliquei bem, mais é só para justificar o porquê de não alterar esse arquivo.</p>
+
+<p>Para resolver isso, vamos disponibilizar diretamente ao controller_test as rotas.
+Em <code>test/functional/blog/posts_controller_test.rb</code> adicione:</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>setup <span class="k">do</span>
+</span><span class='line'>    @post <span class="o">=</span> posts<span class="o">(</span>:one<span class="o">)</span>
+</span><span class='line'>    @routes <span class="o">=</span> Engine.routes
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora rode os testes;</p>
+
+<figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>Congratulation!</strong></p></blockquote>
+
+<p>Agora nossa suite de teste esta rodando, já podemos trabalhar. :P</p>
+
+<p>Tentei explicar as correções de forma que quem esteja começando no mundo Rails possa entender o que está acontecendo e não
+simplesmente copiar e colar o código para correção. Lembrando que também sou um aspirante Rails e estou aberto para correções
+neste post caso cometi alguma gafe.</p>
+
+<h2>Referencias</h2>
+
+<ul>
+<li><a href="https://github.com/rails/rails/issues/4971">https://github.com/rails/rails/issues/4971</a></li>
+<li><a href="https://github.com/rails/rails/issues/6573">https://github.com/rails/rails/issues/6573</a></li>
+</ul>
+
+
+<h2>Mais sobre Engine</h2>
+
+<ul>
+<li><a href="http://edgeguides.rubyonrails.org/engines.html">http://edgeguides.rubyonrails.org/engines.html</a></li>
+</ul>
+

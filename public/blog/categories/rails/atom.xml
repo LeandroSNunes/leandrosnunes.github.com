@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails | Leandro Nunes]]></title>
+  <link href="http://LeandroSNunes.github.com/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/"/>
+  <updated>2015-01-11T20:54:38+00:00</updated>
+  <id>http://LeandroSNunes.github.com/</id>
+  <author>
+    <name><![CDATA[Leandro Nunes]]></name>
+    <email><![CDATA[leandronunes.dev@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  Liquid error: incompatible character encodings: UTF-8 and ISO-8859-1
+</feed>

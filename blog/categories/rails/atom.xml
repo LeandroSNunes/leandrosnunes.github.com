@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-01-12T01:41:42+00:00</updated>
+  <updated>2015-01-12T01:56:04+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -92,36 +92,22 @@ Espera-se que você vai quebrá-las por razões pragmáticas ... muito. Veja a n
 
 <p>Todos os modelos devem ser organizadas usando o seguinte formato:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyModel</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="c1"># extends ...................................................................</span>
-</span><span class='line'>  <span class="c1"># includes ..................................................................</span>
-</span><span class='line'>  <span class="c1"># security (i.e. attr_accessible) ...........................................</span>
-</span><span class='line'>  <span class="c1"># relationships .............................................................</span>
-</span><span class='line'>  <span class="c1"># validations ...............................................................</span>
-</span><span class='line'>  <span class="c1"># callbacks .................................................................</span>
-</span><span class='line'>  <span class="c1"># scopes ....................................................................</span>
-</span><span class='line'>  <span class="c1"># additional config .........................................................</span>
-</span><span class='line'>  <span class="c1"># class methods .............................................................</span>
-</span><span class='line'>  <span class="c1"># public instance methods ...................................................</span>
-</span><span class='line'>  <span class="c1"># protected instance methods ................................................</span>
-</span><span class='line'>  <span class="c1"># private instance methods ..................................................</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+class MyModel &lt; ActiveRecord::Base
+  # extends ...................................................................
+  # includes ..................................................................
+  # security (i.e. attr_accessible) ...........................................
+  # relationships .............................................................
+  # validations ...............................................................
+  # callbacks .................................................................
+  # scopes ....................................................................
+  # additional config .........................................................
+  # class methods .............................................................
+  # public instance methods ...................................................
+  # protected instance methods ................................................
+  # private instance methods ..................................................
+end
+{% endcodeblock %}</p>
 
 <p><em>OBS: Os comentários listados acima deve existir no arquivo para servir como um lembrete visual do formato.</em></p>
 
@@ -130,33 +116,20 @@ Espera-se que você vai quebrá-las por razões pragmáticas ... muito. Veja a n
 <p>É geralmente uma boa idéia isolar diferentes obrigações em módulos separados.
 Recomendamos o uso de Concerns como descrito neste <a href="http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns">post do blog</a>.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Project </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>|-project
-</span><span class='line'>  |-app&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>|-assets
-</span><span class='line'>|-controllers
-</span><span class='line'>|-helpers
-</span><span class='line'>|-mailers
-</span><span class='line'>|-models
-</span><span class='line'>  |-concerns &lt;-----
-</span><span class='line'>|-views
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Project %}
+|-project
+  |-app</p>
+
+<pre><code>|-assets
+|-controllers
+|-helpers
+|-mailers
+|-models
+  |-concerns &lt;-----
+|-views
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h3>Orientações</h3>
 
@@ -180,56 +153,32 @@ métodos definidos no receiver pretendido é permitido.</li>
 
 <p>Aqui está um exemplo de higienização de parâmetros.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ExampleController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;Example.create(sanitized_params)</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">update</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;Example.find(params[:id]).update_attributes!(sanitized_params)</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="kp">protected</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def sanitized_params&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">params</span><span class="o">[</span><span class="ss">:example</span><span class="o">].</span><span class="n">slice</span><span class="p">(</span><span class="ss">:expected_param</span><span class="p">,</span> <span class="ss">:another_expected_param</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+class ExampleController &lt; ActionController::Base
+  def create</p>
+
+<pre><code>Example.create(sanitized_params)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def update</p>
+
+<pre><code>Example.find(params[:id]).update_attributes!(sanitized_params)
+</code></pre>
+
+<p>  end</p>
+
+<p>  protected</p>
+
+<p>  def sanitized_params</p>
+
+<pre><code>params[:example].slice(:expected_param, :another_expected_param)
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h2>Processos</h2>
 
@@ -246,33 +195,20 @@ métodos definidos no receiver pretendido é permitido.</li>
 <p>Em uma tentativa de gerir melhor os processos, nós seguimos vagamente alguns princípios de Domain Driven Development (DDD).
 Ou seja, nós adicionamos um diretório <code>processes</code> em <code>app</code> para realizar implementações de nossos processos.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Project </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>|-project
-</span><span class='line'>  |-app&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>|-assets
-</span><span class='line'>|-controllers
-</span><span class='line'>|-helpers
-</span><span class='line'>|-mailers
-</span><span class='line'>|-models
-</span><span class='line'>|-processes &lt;-----
-</span><span class='line'>|-views
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Project %}
+|-project
+  |-app</p>
+
+<pre><code>|-assets
+|-controllers
+|-helpers
+|-mailers
+|-models
+|-processes &lt;-----
+|-views
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>Recomendamos o uso de uma ferramenta como o <a href="https://github.com/hopsoft/hero">Hero</a> para ajudar
 a modelar esses processos.</p>
@@ -284,66 +220,36 @@ do controlador.</p>
 
 <p>Nós usamos a gem <a href="https://github.com/rudionrails/yell">Yell</a> para registro. Aqui está um exemplo de configuração.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;example/</span><span class="n">config</span><span class="o">/</span><span class="n">application</span><span class="o">.</span><span class="n">rb</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;module Example</span>
-</span><span class='line'><span class="sr">  class Application &amp;lt; Rails::Application&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">log_levels</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:debug</span><span class="p">,</span> <span class="ss">:info</span><span class="p">,</span> <span class="ss">:warn</span><span class="p">,</span> <span class="ss">:error</span><span class="p">,</span> <span class="ss">:fatal</span><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># %m : The message to be logged</span>
-</span><span class='line'><span class="c1"># %d : The ISO8601 Timestamp</span>
-</span><span class='line'><span class="c1"># %L : The log level, e.g INFO, WARN</span>
-</span><span class='line'><span class="c1"># %l : The log level (short), e.g. I, W</span>
-</span><span class='line'><span class="c1"># %p : The PID of the process from where the log event occured</span>
-</span><span class='line'><span class="c1"># %t : The Thread ID from where the log event occured</span>
-</span><span class='line'><span class="c1"># %h : The hostname of the machine from where the log event occured</span>
-</span><span class='line'><span class="c1"># %f : The filename from where the log event occured</span>
-</span><span class='line'><span class="c1"># %n : The line number of the file from where the log event occured</span>
-</span><span class='line'><span class="c1"># %F : The filename with path from where the log event occured</span>
-</span><span class='line'><span class="c1"># %M : The method where the log event occured</span>
-</span><span class='line'><span class="n">log_format</span> <span class="o">=</span> <span class="no">Yell</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="s2">&quot;[%d] [%L] [%h][%p][%t] [%F:%n:%M] %m&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="no">Yell</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">logger</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">logger</span><span class="o">.</span><span class="n">adapter</span> <span class="no">STDOUT</span><span class="p">,</span> <span class="ss">:level</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">log_levels</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">log_format</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>example/config/application.rb</h1>
+
+<p>module Example
+  class Application &lt; Rails::Application</p>
+
+<pre><code>log_levels = [:debug, :info, :warn, :error, :fatal]
+
+# %m : The message to be logged
+# %d : The ISO8601 Timestamp
+# %L : The log level, e.g INFO, WARN
+# %l : The log level (short), e.g. I, W
+# %p : The PID of the process from where the log event occured
+# %t : The Thread ID from where the log event occured
+# %h : The hostname of the machine from where the log event occured
+# %f : The filename from where the log event occured
+# %n : The line number of the file from where the log event occured
+# %F : The filename with path from where the log event occured
+# %M : The method where the log event occured
+log_format = Yell.format( "[%d] [%L] [%h][%p][%t] [%F:%n:%M] %m")
+
+config.logger = Yell.new do |logger|
+  logger.adapter STDOUT, :level =&gt; log_levels, :format =&gt; log_format
+end
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h2>Extensions &amp; Monkey Patches</h2>
 
@@ -355,55 +261,35 @@ do controlador.</p>
 
 <p>Todas as extensions e monkey patches deve estar em um diretório de extensões em lib.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Project </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>|-project
-</span><span class='line'>  |-app
-</span><span class='line'>  |-config
-</span><span class='line'>  |-db
-</span><span class='line'>  |-lib&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>|-extensions &lt;-----
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Project %}
+|-project
+  |-app
+  |-config
+  |-db
+  |-lib</p>
+
+<pre><code>|-extensions &lt;-----
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>Use módulos para estender objetos ou adicionar monkey patches. Isto fornece alguma consistência quando você precisa
 para rastrear bugs.</p>
 
 <p>Aqui está um exemplo:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">CowboyString</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">downcase</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;self.upcase</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">::String.send(:include, CowboyString)</span>
-</span><span class='line'><span class="sr">String.ancestors # =&gt; [String, CowboyString, Enumerable, Comparable, Object, Kernel]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+module CowboyString
+  def downcase</p>
+
+<pre><code>self.upcase
+</code></pre>
+
+<p>  end
+end
+::String.send(:include, CowboyString)
+String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
+{% endcodeblock %}</p>
 
 <h2>Dependências de Gems</h2>
 
@@ -412,24 +298,15 @@ para rastrear bugs.</p>
 <p>Recomendamos o uso de <a href="http://gembundler.com/v1.2/gemfile.html">gerenciadores de dependência</a>. Ao utilizar um gerenciador de
 dependência, certifique-se de especificar pelo menos as versões maiores ou menores. Aqui está um exemplo.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Gemfile&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.11&#39;</span> <span class="c1"># GOOD: exact</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt;0.9&#39;</span>     <span class="c1"># GOOD: tilde</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;yell&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;=1.2&#39;</span>   <span class="c1"># BAD: unspecific</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;nokogiri&#39;</span>        <span class="c1"># BAD: unversioned</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Gemfile</h1>
+
+<p>gem 'rails', '3.2.11' # GOOD: exact
+gem 'pg', '~>0.9'     # GOOD: tilde
+gem 'yell', '>=1.2'   # BAD: unspecific
+gem 'nokogiri'        # BAD: unversioned
+{% endcodeblock %}</p>
 
 <p>Bundler's Gemfile.lock resolve o mesmo problema, mas nós descobrimos que as atualizações indevidas do pacote podem causar problemas.
 É muito melhor ser explícito no Gemfile para garantir a estabilidade do aplicativo.</p>
@@ -489,12 +366,10 @@ Blog (nesse momento estou inspirado), vamos lá então.</p>
 
 <p>Vamos criar nossa app Blog.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails plugin new Blog --mountable
-</span><span class='line'><span class="nb">cd </span>Blog
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rails plugin new Blog --mountable
+cd Blog
+{% endcodeblock %}</p>
 
 <p><em>Vimos que criamos uma Engine isolada, dessa forma nossas classes serão englobadas no namespace Blog e criadas dentro de pastas nomeadas
 pelo namespace.</em></p>
@@ -502,86 +377,52 @@ pelo namespace.</em></p>
 <p><img src="/images/bug_engine/estrutura.png" alt="Estrutura de pastas" /></p>
 
 <p>Agora vamos gerar um Scaffold para ter o que testar ;P
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g scaffold Post title body:text
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock bash lang:bash %}
+rails g scaffold Post title body:text
+{% endcodeblock %}</p>
 
 <p>Em uma Engine, temos tarefas rake específicas prefixadas com "app", as que nos interessam nesse momento são as relativas ao banco de dados</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake -T db&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake app:db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
-</span><span class='line'>rake app:db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
-</span><span class='line'>rake app:db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
-</span><span class='line'>rake app:db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
-</span><span class='line'>rake app:db:migrate:status <span class="c"># Display status of migrations</span>
-</span><span class='line'>rake app:db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
-</span><span class='line'>rake app:db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
-</span><span class='line'>rake app:db:schema:load <span class="c"># Load a schema.rb file into the database</span>
-</span><span class='line'>rake app:db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
-</span><span class='line'>rake app:db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
-</span><span class='line'>rake app:db:structure:dump <span class="c"># Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql</span>
-</span><span class='line'>rake app:db:version <span class="c"># Retrieves the current schema version number</span>
-</span><span class='line'>rake db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
-</span><span class='line'>rake db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
-</span><span class='line'>rake db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
-</span><span class='line'>rake db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
-</span><span class='line'>rake db:migrate:status <span class="c"># Display status of migrations</span>
-</span><span class='line'>rake db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
-</span><span class='line'>rake db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
-</span><span class='line'>rake db:schema:load <span class="c"># Load a schema.rb file into the database</span>
-</span><span class='line'>rake db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
-</span><span class='line'>rake db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
-</span><span class='line'>rake db:structure:dump <span class="c"># Dump the database structure to an SQL file</span>
-</span><span class='line'>rake db:version <span class="c"># Retrieves the current schema version number</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake -T db</p>
+
+<p>rake app:db:create # Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)
+rake app:db:drop # Drops the database for the current Rails.env (use db:drop:all to drop all databases)
+rake app:db:fixtures:load # Load fixtures into the current environment's database.
+rake app:db:migrate # Migrate the database (options: VERSION=x, VERBOSE=false).
+rake app:db:migrate:status # Display status of migrations
+rake app:db:rollback # Rolls the schema back to the previous version (specify steps w/ STEP=n).
+rake app:db:schema:dump # Create a db/schema.rb file that can be portably used against any DB supported by AR
+rake app:db:schema:load # Load a schema.rb file into the database
+rake app:db:seed # Load the seed data from db/seeds.rb
+rake app:db:setup # Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)
+rake app:db:structure:dump # Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql
+rake app:db:version # Retrieves the current schema version number
+rake db:create # Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)
+rake db:drop # Drops the database for the current Rails.env (use db:drop:all to drop all databases)
+rake db:fixtures:load # Load fixtures into the current environment's database.
+rake db:migrate # Migrate the database (options: VERSION=x, VERBOSE=false).
+rake db:migrate:status # Display status of migrations
+rake db:rollback # Rolls the schema back to the previous version (specify steps w/ STEP=n).
+rake db:schema:dump # Create a db/schema.rb file that can be portably used against any DB supported by AR
+rake db:schema:load # Load a schema.rb file into the database
+rake db:seed # Load the seed data from db/seeds.rb
+rake db:setup # Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)
+rake db:structure:dump # Dump the database structure to an SQL file
+rake db:version # Retrieves the current schema version number
+{% endcodeblock %}</p>
 
 <p>Vamos criar nosso DB e executar as migrações</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake app:db:create
-</span><span class='line'>rake app:db:migrate&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">==</span> CreateBlogPosts: <span class="nv">migrating</span> <span class="o">================================================</span>
-</span><span class='line'>-- create_table<span class="o">(</span>:blog_posts<span class="o">)</span>
-</span><span class='line'>-&gt; 0.0015s
-</span><span class='line'><span class="o">==</span> CreateBlogPosts: migrated <span class="o">(</span>0.0016s<span class="o">)</span> <span class="o">=======================================</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake app:db:create
+rake app:db:migrate</p>
+
+<p>== CreateBlogPosts: migrating ================================================
+-- create_table(:blog_posts)
+-> 0.0015s
+== CreateBlogPosts: migrated (0.0016s) =======================================
+{% endcodeblock %}</p>
 
 <blockquote><p>Observe que a tabela criada é prefixada pelo nome da Engine.</p>
 
@@ -596,10 +437,9 @@ pelo namespace.</em></p>
 <p>O scaffold já cria os testes funcionais para CRUD, veja o arquivo <code>test/functional/blog/posts_controller_test.rb</code>,
 dessa forma já podemos executar os testes e ver se está tudo funfando.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -607,63 +447,40 @@ dessa forma já podemos executar os testes e ver se está tudo funfando.</p>
 
 <p>Esse error acontece devido nosso controller tentar carregar as fixtures do post que não foram carregadas/criadas, veja:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Blog</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;class PostsControllerTest &amp;lt; ActionController::TestCase</span>
-</span><span class='line'><span class="sr">    setup do</span>
-</span><span class='line'><span class="sr">        @post = posts(:one)</span>
-</span><span class='line'><span class="sr">    end</span>
-</span><span class='line'><span class="sr"> end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+module Blog</p>
+
+<pre><code>class PostsControllerTest &lt; ActionController::TestCase
+    setup do
+        @post = posts(:one)
+    end
+ end
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Você precisa explicitar isso para o <a href="http://api.rubyonrails.org/classes/ActiveSupport/TestCase.html">ActiveSupport::TestCase</a>,
 abra o arquivo <code>test/test_helper.rb</code> e adicione: <code>ActiveSupport::TestCase.fixtures :all</code> no contexto onde as fixtures são carregadas.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="s2">&quot;, __FILE__)</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.fixtures :all</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Load fixtures from the engine</h1>
+
+<p>if ActiveSupport::TestCase.method_defined?(:fixture_path=)</p>
+
+<pre><code>ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
+ActiveSupport::TestCase.fixtures :all
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -671,37 +488,24 @@ abra o arquivo <code>test/test_helper.rb</code> e adicione: <code>ActiveSupport:
 
 <p>Esse error é devido as convenções não funcionarem aqui, se você reparou o path das fixtures está setado para raiz da pasta fixtures, então vamos alterar.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="o">/</span><span class="n">blog</span><span class="s2">&quot;, __FILE__)</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.fixtures :all</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Load fixtures from the engine</h1>
+
+<p>if ActiveSupport::TestCase.method_defined?(:fixture_path=)</p>
+
+<pre><code>ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures/blog", __FILE__)
+ActiveSupport::TestCase.fixtures :all
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -713,39 +517,25 @@ dessa forma o <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 
 <p>Então adicione mais uma linha no seu test_helper.rb</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="o">/</span><span class="n">blog</span><span class="s2">&quot;, __FILE__)</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.fixtures :all</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.set_fixture_class :posts =&amp;gt; Blog::Post</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Load fixtures from the engine</h1>
+
+<p>if ActiveSupport::TestCase.method_defined?(:fixture_path=)</p>
+
+<pre><code>ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures/blog", __FILE__)
+ActiveSupport::TestCase.fixtures :all
+ActiveSupport::TestCase.set_fixture_class :posts =&gt; Blog::Post
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -753,14 +543,11 @@ dessa forma o <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 
 <p>Vamos observar o arquivo de rotas, <code>config/routes.rb</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">BlogTest</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
-</span><span class='line'>   <span class="n">resources</span> <span class="ss">:posts</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+BlogTest::Engine.routes.draw do
+   resources :posts
+end
+{% endcodeblock %}</p>
 
 <p>Realmente não temos a rota 'blog/posts' criada e não devemos criar, pois quando montamos nossa Engine em uma App mãe,
 essa rota será criada devido nossa Engine ser isolada (--mountable), então a App precisa diferenciar a requisição ao
@@ -771,29 +558,21 @@ controller post da Engine da requisição do controller post dela mesma (caso te
 <p>Para resolver isso, vamos disponibilizar diretamente ao controller_test as rotas.
 Em <code>test/functional/blog/posts_controller_test.rb</code> adicione:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>setup <span class="k">do</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;@post <span class="o">=</span> posts<span class="o">(</span>:one<span class="o">)</span>
-</span><span class='line'>@routes <span class="o">=</span> Engine.routes
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+setup do</p>
+
+<pre><code>@post = posts(:one)
+@routes = Engine.routes
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Congratulation!</strong></p></blockquote>
 
@@ -841,50 +620,33 @@ criei um module "ER" para ir colecionando os patterns rotineiros.</p>
 
 <p>Na pasta <code> /lib </code> criei um arquivo <code> er.rb </code>  que será nosso "repositório de ERs".</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ER</span>
-</span><span class='line'>  <span class="c1"># Pattern para validação de e-mail</span>
-</span><span class='line'>  <span class="no">EMAIL</span> <span class="o">=</span> <span class="sr">/&lt;sup&gt;[&lt;sup&gt;@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i</span><span class="o">&lt;</span><span class="sr">/sup&gt;&lt;/su</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="c1"># Pattern para validação de data no padrão 99/99/9999</span>
-</span><span class='line'>  <span class="no">DATE</span> <span class="o">=</span> <span class="sr">/&lt;sup&gt;(([012][0-9])|(3[01]))\/(0[1-9]|1[012])\/\d{4}$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">  # Pattern para validação de data no padrão 9999-99-99</span>
-</span><span class='line'><span class="sr">  DATE_DB = /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">\</span><span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="o">-</span><span class="p">(</span><span class="mi">0</span><span class="o">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">9</span><span class="o">]|</span><span class="mi">1</span><span class="o">[</span><span class="mo">012</span><span class="o">]</span><span class="p">)</span><span class="o">-</span><span class="p">((</span><span class="o">[</span><span class="mo">012</span><span class="o">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="mi">3</span><span class="o">[</span><span class="mo">01</span><span class="o">]</span><span class="p">))</span><span class="vg">$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">  # Pattern para validação de horas sem os segungos no padrão 99:99</span>
-</span><span class='line'><span class="sr">  TIME_H_M = /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">((</span><span class="o">[</span><span class="mo">01</span><span class="o">]</span><span class="p">\</span><span class="n">d</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="mi">2</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">3</span><span class="o">]</span><span class="p">)):(</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">5</span><span class="o">]</span><span class="p">\</span><span class="n">d</span><span class="p">)</span><span class="vg">$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">  # Pattern para validação de urls, permitido os protocolos http e https</span>
-</span><span class='line'><span class="sr">  URL = /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">(</span><span class="n">http</span><span class="o">|</span><span class="n">https</span><span class="p">):\</span><span class="o">/</span><span class="p">\</span><span class="o">/[</span><span class="n">a</span><span class="o">-</span><span class="n">z0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="p">(</span><span class="o">[-.]</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">[</span><span class="n">a</span><span class="o">-</span><span class="n">z0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="p">)</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;.</span><span class="n">[a</span><span class="o">-</span><span class="n">z</span><span class="o">]</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">}((</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">})</span><span class="sc">?\</span><span class="o">/.</span><span class="n">&lt;</span><span class="sr">/em&gt;)?$/ix</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+module ER
+  # Pattern para validação de e-mail
+  EMAIL = /<sup>[<sup>@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i</sup></sup>
+  # Pattern para validação de data no padrão 99/99/9999
+  DATE = /<sup>(([012][0-9])|(3[01]))\/(0[1-9]|1[012])\/\d{4}$/</sup>
+  # Pattern para validação de data no padrão 9999-99-99
+  DATE_DB = /<sup>\d{4}-(0[1-9]|1[012])-(([012][0-9])|(3[01]))$/</sup>
+  # Pattern para validação de horas sem os segungos no padrão 99:99
+  TIME_H_M = /<sup>(([01]\d)|(2[0-3])):([0-5]\d)$/</sup>
+  # Pattern para validação de urls, permitido os protocolos http e https
+  URL = /<sup>(http|https):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)<em>.[a-z]{2,5}(([0-9]{1,5})?\/.</em>)?$/ix</sup>
+end
+{% endcodeblock %}</p>
 
 <h2>Utilizando</h2>
 
 
 <p>Para exemplificar, vamos validar um model User.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;er&#39;</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">User</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">attr_accessible</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:full_name</span>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="n">presence</span><span class="ss">:true</span><span class="p">,</span>  <span class="nb">format</span><span class="p">:{</span><span class="n">with</span><span class="p">:</span> <span class="no">ER</span><span class="o">::</span><span class="no">EMAIL</span><span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+require 'er'
+class User &lt; ActiveRecord::Base
+  attr_accessible :email, :full_name
+  validates :email, presence:true,  format:{with: ER::EMAIL}
+end
+{% endcodeblock %}</p>
 
 <p>Perceberam a chamada do pattern? :P</p>
 
@@ -894,47 +656,30 @@ precisamos de um passo a mais devido o padrão ser ER crua sem estar contida em 
 <p>Criei então um Help para fazer essa tarefa e as View continuarem fazendo apenas seu papel.
 No arquivo <code> app/helpers/application_helper.rb </code>  incluir:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">er_for_html</span><span class="p">(</span><span class="n">er</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">begin</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ER.const_get(er.upcase.to_sym).source</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  rescue NameError =&gt; exc&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="s2">&quot;A expressao solicitada nao existe&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+def er_for_html(er)
+  begin</p>
+
+<pre><code>ER.const_get(er.upcase.to_sym).source
+</code></pre>
+
+<p>  rescue NameError => exc</p>
+
+<pre><code>"A expressao solicitada nao existe"
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <p>Notem que usei <code> Module#const_get </code>  para pegar a referência da constante informado e no fim o
 <code> Regexp#source </code>  que retorna a string original que está envolvida por "//" <br />
 Ficando no formulário:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="sx">%= f.text_field(:email, :class =</span><span class="o">&gt;</span> <span class="ss">:span3</span><span class="p">,</span> <span class="ss">:pattern</span> <span class="o">=&gt;</span> <span class="n">er_for_html</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">),</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s2">&quot;E-mail&quot;</span> <span class="p">)</span> <span class="sx">%&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+&lt;%= f.text_field(:email, :class => :span3, :pattern => er_for_html("email"), :type => :email, :required => true, :title => "E-mail" ) %></p>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Concluíndo</h2>
 
@@ -1009,10 +754,9 @@ Como citado, o Capistrano é um gem e com isso você pode instalar do jeito trad
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install capistrano
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+gem install capistrano
+{% endcodeblock %}</p>
 
 <p>
 O capistrano adiciona alguns utilitários de linha de comando, o <code>cap</code> e <code>capify</code> iremos conhecer mais abaixo.
@@ -1020,10 +764,9 @@ Também é possível adicionar esta gem no arquivo GemFile do seu projeto.
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+gem 'capistrano'
+{% endcodeblock %}</p>
 
 <p>
 e depois executar o <code>bundle install</code> em seu terminal.
@@ -1040,18 +783,16 @@ Agora utilizamos o <code>capify</code> , nosso amigo de linha de comando para fa
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /app_rails/
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+cd /app_rails/
+{% endcodeblock %}</p>
 
 <p>Agora é só executar!</p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>capify .
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+capify .
+{% endcodeblock %}</p>
 
 <p>Com isso ganhamos dois arquivos em nosso projeto, são eles:</p>
 
@@ -1076,24 +817,20 @@ O Capistrano precisa de algumas informações para que tudo funcione conforme es
 <h3>A) Informações do projeto</h3>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;app_rails&quot;</span>       <span class="c1"># O nome do projeto</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>               <span class="c1"># Isso guardar os 5 últimos deploys</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span>     <span class="s2">&quot;production&quot;</span>    <span class="c1"># O ambiente em que o Rails irá atuar</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+set :application, "app_rails"       # O nome do projeto
+set :keep_releases, 5               # Isso guardar os 5 últimos deploys
+set :rails_env,     "production"    # O ambiente em que o Rails irá atuar
+{% endcodeblock %}</p>
 
 <p>
 Toda vez que adicionarmos uma nova funcionalidade ao projeto iremos implementá-la no servidor para que outros tenham acesso e nesse processo, o Capistrano faz o versionamento mantendo seu release anterior. Na linha 2 dizemos que será mantido as 5 últimas atualizações, assim caso algo saia errado neste novo release, podemos usar um comandinho salvador da pátria.
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap rollback
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+cap rollback
+{% endcodeblock %}</p>
 
 <p>com isso voltamos ao release que estava funfando.</p>
 
@@ -1103,16 +840,12 @@ Toda vez que adicionarmos uma nova funcionalidade ao projeto iremos implementá-
 <h3>B) SCM (source code manager)</h3>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="s1">&#39;git&#39;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span>  <span class="s2">&quot;git@github.com:LeandroSNunes/app_rails.git&quot;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:branch</span><span class="p">,</span> <span class="s1">&#39;master&#39;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+set :scm, 'git'
+set :repository,  "git@github.com:LeandroSNunes/app_rails.git"
+set :branch, 'master'
+set :deploy_via, :remote_cache
+{% endcodeblock %}</p>
 
 <p>
 No meu caso uso Git como repositório e informo na linha 1. A linha 4 é informado ao Capistrano que ele não precisa pegar todo repositório toda vez que subirmos um novo release, ele somente irá buscar as modificações.
@@ -1122,20 +855,14 @@ No meu caso uso Git como repositório e informo na linha 1. A linha 4 é informa
 <h3>C) Informações do servidor</h3>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default_run_options</span><span class="o">[</span><span class="ss">:pty</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="n">ssh_options</span><span class="o">[</span><span class="ss">:forward_agent</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s2">&quot;leandro&quot;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
-</span><span class='line'><span class="n">server</span> <span class="s2">&quot;leandronunes.com.br&quot;</span><span class="p">,</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">&quot;/www/app_rails.leandronunes.com.br/</span><span class="si">#{</span><span class="n">application</span><span class="si">}</span><span class="s2">&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+set :user, "leandro"
+set :use_sudo, false
+server "leandronunes.com.br", :web, :app, :db, :primary => true
+set :deploy_to, "/www/app_rails.leandronunes.com.br/#{application}"
+{% endcodeblock %}</p>
 
 <p>
 Na linha 2 permitimos que o SSH carregue nossa chave para o servidor para que de lá seja acessado o github.<br />
@@ -1148,14 +875,11 @@ O Capistrano entende que sua aplicação irá fazer muito sucesso e que seja pre
 <p>Caso precise redirecionar serviços para outros servidores, você pode substituir a linha 5 por:</p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s1">&#39;dominio&#39;</span>
-</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s1">&#39;dominio&#39;</span>
-</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s1">&#39;dominio&#39;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+role :web, 'dominio'
+role :app, 'dominio'
+role :db,  'dominio', :primary => true
+{% endcodeblock %}</p>
 
 <h2>Ops! Executando.</h2>
 
@@ -1163,119 +887,75 @@ O Capistrano entende que sua aplicação irá fazer muito sucesso e que seja pre
 <p>Agora é a hora! Vamos implantar nossa aplicação no servidor, começamos verificando se tudo está OK.</p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap deploy:check
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+cap deploy:check
+{% endcodeblock %}</p>
 
 <p>Tudo correndo bem, você será informado. Seguindo, criaremos a estrutura de pastas no servidor.</p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap deploy:setup
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+cap deploy:setup
+{% endcodeblock %}</p>
 
 <p>
 O que fizemos? Com isso será criado duas pastas (<em>release</em> e <em>shared</em>) e ainda um link simbólico chamado <em>current</em> apontando para o último release. Na pasta releases é criado uma pasta para o deploy efetuado. A pasta shared serve para armazenar arquivos que serão compartilhados entre os releases, como logs, imagens, arquivos de configuração, etc…
 </p>
 
 
-<p><blockquote><p>Quando trabalhamos com Rails, Git e mais de um desenvolvedor é de prática adicionar nosso arquivo database.yml ao .gitignore, fazendo com que este não seja monitorado e conseguentemente não enviado para o repositório, assim configuramos um único arquivo de banco de dados e colocamos na pasta shared para que todos releases compartilhem a mesma configuração. Mais abaixo vamos adicionar uma tarefa pra fazer isso.</p></blockquote></p>
+<p>{% blockquote %}
+Quando trabalhamos com Rails, Git e mais de um desenvolvedor é de prática adicionar nosso arquivo database.yml ao .gitignore, fazendo com que este não seja monitorado e conseguentemente não enviado para o repositório, assim configuramos um único arquivo de banco de dados e colocamos na pasta shared para que todos releases compartilhem a mesma configuração. Mais abaixo vamos adicionar uma tarefa pra fazer isso.
+{% endblockquote %}</p>
 
 <h3>A) Criando tarefas para o Capistrano</h3>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;task :start do ; end&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">task</span> <span class="ss">:stop</span> <span class="k">do</span> <span class="p">;</span> <span class="k">end</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;   task :restart, :roles =&gt; :app, :except =&gt; { :no_release =&gt; true } do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
-</span><span class='line'> <span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>   <span class="n">task</span> <span class="ss">:database</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt; run &quot;cp </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="sr">/</span><span class="c1">#{shared_dir}/database.yml #{release_path}/config/&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>   <span class="k">end</span>
-</span><span class='line'>   <span class="n">task</span> <span class="ss">:permission</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:web</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:app</span><span class="o">]</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt; run &quot;chmod 755 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="sr">/</span><span class="kp">public</span> <span class="o">-</span><span class="n">R</span><span class="s2">&quot; </span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;   end</span>
-</span><span class='line'><span class="s2">end&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;namespace :assets do&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;pre&gt;&lt;code&gt;task :symlink, :roles =&amp;gt; :app do</span>
-</span><span class='line'><span class="s2">  assets.create_dir</span>
-</span><span class='line'><span class="s2">      run &amp;lt;&amp;lt;-CMD</span>
-</span><span class='line'><span class="s2">        rm -rf  </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/images/upload &amp;amp;&amp;amp;</span>
-</span><span class='line'><span class="s2">        ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/upload </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/images/upload</span>
-</span><span class='line'><span class="s2">      CMD</span>
-</span><span class='line'><span class="s2">end</span>
-</span><span class='line'><span class="s2">    task :create_dir, :roles =&amp;gt; :app do</span>
-</span><span class='line'><span class="s2">      run &quot;</span><span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="c1">#{shared_path}/upload&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;after &quot;deploy:assets:symlink&quot;, &#39;deploy:database&#39;</span>
-</span><span class='line'><span class="sr">after &quot;deploy:update_code&quot;, &#39;deploy:permission&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+namespace :deploy do</p>
+
+<h1>task :start do ; end</h1>
+
+<h1>task :stop do ; end</h1>
+
+<p>   task :restart, :roles => :app, :except => { :no_release => true } do</p>
+
+<pre><code> run "touch #{current_path}/tmp/restart.txt"
+ end
+</code></pre>
+
+<p>   task :database, :roles => :app do</p>
+
+<pre><code> run "cp #{deploy_to}/#{shared_dir}/database.yml #{release_path}/config/"
+</code></pre>
+
+<p>   end
+   task :permission, :roles => [:web, :db, :app] do</p>
+
+<pre><code> run "chmod 755 #{release_path}/public -R" 
+</code></pre>
+
+<p>   end
+end</p>
+
+<p>namespace :assets do</p>
+
+<pre><code>task :symlink, :roles =&gt; :app do
+  assets.create_dir
+      run &lt;&lt;-CMD
+        rm -rf  #{release_path}/public/images/upload &amp;&amp;
+        ln -nfs #{shared_path}/upload #{release_path}/public/images/upload
+      CMD
+end
+    task :create_dir, :roles =&gt; :app do
+      run "mkdir -p #{shared_path}/upload"
+    end
+</code></pre>
+
+<p>end</p>
+
+<p>after "deploy:assets:symlink", 'deploy:database'
+after "deploy:update_code", 'deploy:permission'
+{% endcodeblock %}</p>
 
 <p>
 Ao concluir o deploy é necessário reiniciar o servidor para que as novas configurações entrem em vigor, podemos fazer isso simplesmente atualizando o arquivos <em>tmp/restart.txt</em>, percebam na tarefa restart.
@@ -1302,12 +982,10 @@ Depois, resolvemos o problemas de aquivos de imagens adicionados pelos usuários
 <p>Por fim vamos executar o tão esperado deploy.</p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cap deploy:cold
-</span><span class='line'>cap deploy
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+cap deploy:cold
+cap deploy
+{% endcodeblock %}</p>
 
 <p>
 Rodamos o <code>cap deploy:cold</code> primeiro para colocar os arquivos no servido, depois efetuamos o deploy.<br />
@@ -1323,148 +1001,77 @@ Para mais informações <code>cap -T</code> para visualizar todas as tarefas do 
 <h2>Juntando tudo</h2>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Projeto&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;app_rails&quot;</span>       <span class="c1"># O nome do projeto</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>               <span class="c1"># Isso guardar os 5 últimos deploys</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span>     <span class="s2">&quot;production&quot;</span>    <span class="c1"># O ambiente em que o Rails irá atuar&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">SCM</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;set :scm, &#39;git&#39;</span>
-</span><span class='line'><span class="sr">set :repository,  &quot;git@github.com:LeandroSNunes/</span><span class="n">app_rails</span><span class="o">.</span><span class="n">git</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">set :branch, &#39;master&#39;</span>
-</span><span class='line'><span class="s2">set :deploy_via, :remote_cache&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;h1&gt;Servidor&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;default_run_options[:pty] = true</span>
-</span><span class='line'><span class="s2">ssh_options[:forward_agent] = true</span>
-</span><span class='line'><span class="s2">set :user, &quot;</span><span class="n">leandro</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">set :use_sudo, false</span>
-</span><span class='line'><span class="s2">server &quot;</span><span class="n">leandronunes</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">br</span><span class="s2">&quot;, :web, :app, :db, :primary =&gt; true</span>
-</span><span class='line'><span class="s2">set :deploy_to, &quot;</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">app_rails</span><span class="o">.</span><span class="n">leandronunes</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">br</span><span class="o">/</span><span class="c1">#{application}&quot;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Tarefas</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;namespace :deploy do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">task</span> <span class="ss">:start</span> <span class="k">do</span> <span class="p">;</span> <span class="k">end</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;task :stop do ; end&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>   <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt; run &quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="sr">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">restart</span><span class="o">.</span><span class="n">txt</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2"> end</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;   task :database, :roles =&gt; :app do&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;pre&gt;&lt;code&gt; run &quot;</span><span class="n">cp</span> <span class="c1">#{deploy_to}/#{shared_dir}/database.yml #{release_path}/config/&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>   <span class="k">end</span>
-</span><span class='line'>   <span class="n">task</span> <span class="ss">:permission</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:web</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:app</span><span class="o">]</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt; run &quot;chmod 755 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="sr">/</span><span class="kp">public</span> <span class="o">-</span><span class="n">R</span><span class="s2">&quot; </span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;   end</span>
-</span><span class='line'><span class="s2">end&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;namespace :assets do&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;pre&gt;&lt;code&gt;task :symlink, :roles =&amp;gt; :app do</span>
-</span><span class='line'><span class="s2">  assets.create_dir</span>
-</span><span class='line'><span class="s2">      run &amp;lt;&amp;lt;-CMD</span>
-</span><span class='line'><span class="s2">        rm -rf  </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/images/upload &amp;amp;&amp;amp;</span>
-</span><span class='line'><span class="s2">        ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/upload </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/images/upload</span>
-</span><span class='line'><span class="s2">      CMD</span>
-</span><span class='line'><span class="s2">end</span>
-</span><span class='line'><span class="s2">    task :create_dir, :roles =&amp;gt; :app do</span>
-</span><span class='line'><span class="s2">      run &quot;</span><span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="c1">#{shared_path}/upload&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;after &quot;deploy:assets:symlink&quot;, &#39;deploy:database&#39;</span>
-</span><span class='line'><span class="sr">after &quot;deploy:update_code&quot;, &#39;deploy:permission&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Projeto</h1>
+
+<p>set :application, "app_rails"       # O nome do projeto
+set :keep_releases, 5               # Isso guardar os 5 últimos deploys
+set :rails_env,     "production"    # O ambiente em que o Rails irá atuar</p>
+
+<h1>SCM</h1>
+
+<p>set :scm, 'git'
+set :repository,  "git@github.com:LeandroSNunes/app_rails.git"
+set :branch, 'master'
+set :deploy_via, :remote_cache</p>
+
+<h1>Servidor</h1>
+
+<p>default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+set :user, "leandro"
+set :use_sudo, false
+server "leandronunes.com.br", :web, :app, :db, :primary => true
+set :deploy_to, "/www/app_rails.leandronunes.com.br/#{application}"</p>
+
+<h1>Tarefas</h1>
+
+<p>namespace :deploy do</p>
+
+<h1>task :start do ; end</h1>
+
+<h1>task :stop do ; end</h1>
+
+<p>   task :restart, :roles => :app, :except => { :no_release => true } do</p>
+
+<pre><code> run "touch #{current_path}/tmp/restart.txt"
+ end
+</code></pre>
+
+<p>   task :database, :roles => :app do</p>
+
+<pre><code> run "cp #{deploy_to}/#{shared_dir}/database.yml #{release_path}/config/"
+</code></pre>
+
+<p>   end
+   task :permission, :roles => [:web, :db, :app] do</p>
+
+<pre><code> run "chmod 755 #{release_path}/public -R" 
+</code></pre>
+
+<p>   end
+end</p>
+
+<p>namespace :assets do</p>
+
+<pre><code>task :symlink, :roles =&gt; :app do
+  assets.create_dir
+      run &lt;&lt;-CMD
+        rm -rf  #{release_path}/public/images/upload &amp;&amp;
+        ln -nfs #{shared_path}/upload #{release_path}/public/images/upload
+      CMD
+end
+    task :create_dir, :roles =&gt; :app do
+      run "mkdir -p #{shared_path}/upload"
+    end
+</code></pre>
+
+<p>end</p>
+
+<p>after "deploy:assets:symlink", 'deploy:database'
+after "deploy:update_code", 'deploy:permission'
+{% endcodeblock %}</p>
 
 <h2>Então...</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-01-12T01:41:42+00:00</updated>
+  <updated>2015-01-12T01:56:04+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -39,12 +39,10 @@ Blog (nesse momento estou inspirado), vamos lá então.</p>
 
 <p>Vamos criar nossa app Blog.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails plugin new Blog --mountable
-</span><span class='line'><span class="nb">cd </span>Blog
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rails plugin new Blog --mountable
+cd Blog
+{% endcodeblock %}</p>
 
 <p><em>Vimos que criamos uma Engine isolada, dessa forma nossas classes serão englobadas no namespace Blog e criadas dentro de pastas nomeadas
 pelo namespace.</em></p>
@@ -52,86 +50,52 @@ pelo namespace.</em></p>
 <p><img src="/images/bug_engine/estrutura.png" alt="Estrutura de pastas" /></p>
 
 <p>Agora vamos gerar um Scaffold para ter o que testar ;P
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g scaffold Post title body:text
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock bash lang:bash %}
+rails g scaffold Post title body:text
+{% endcodeblock %}</p>
 
 <p>Em uma Engine, temos tarefas rake específicas prefixadas com "app", as que nos interessam nesse momento são as relativas ao banco de dados</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake -T db&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake app:db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
-</span><span class='line'>rake app:db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
-</span><span class='line'>rake app:db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
-</span><span class='line'>rake app:db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
-</span><span class='line'>rake app:db:migrate:status <span class="c"># Display status of migrations</span>
-</span><span class='line'>rake app:db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
-</span><span class='line'>rake app:db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
-</span><span class='line'>rake app:db:schema:load <span class="c"># Load a schema.rb file into the database</span>
-</span><span class='line'>rake app:db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
-</span><span class='line'>rake app:db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
-</span><span class='line'>rake app:db:structure:dump <span class="c"># Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql</span>
-</span><span class='line'>rake app:db:version <span class="c"># Retrieves the current schema version number</span>
-</span><span class='line'>rake db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
-</span><span class='line'>rake db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
-</span><span class='line'>rake db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
-</span><span class='line'>rake db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
-</span><span class='line'>rake db:migrate:status <span class="c"># Display status of migrations</span>
-</span><span class='line'>rake db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
-</span><span class='line'>rake db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
-</span><span class='line'>rake db:schema:load <span class="c"># Load a schema.rb file into the database</span>
-</span><span class='line'>rake db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
-</span><span class='line'>rake db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
-</span><span class='line'>rake db:structure:dump <span class="c"># Dump the database structure to an SQL file</span>
-</span><span class='line'>rake db:version <span class="c"># Retrieves the current schema version number</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake -T db</p>
+
+<p>rake app:db:create # Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)
+rake app:db:drop # Drops the database for the current Rails.env (use db:drop:all to drop all databases)
+rake app:db:fixtures:load # Load fixtures into the current environment's database.
+rake app:db:migrate # Migrate the database (options: VERSION=x, VERBOSE=false).
+rake app:db:migrate:status # Display status of migrations
+rake app:db:rollback # Rolls the schema back to the previous version (specify steps w/ STEP=n).
+rake app:db:schema:dump # Create a db/schema.rb file that can be portably used against any DB supported by AR
+rake app:db:schema:load # Load a schema.rb file into the database
+rake app:db:seed # Load the seed data from db/seeds.rb
+rake app:db:setup # Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)
+rake app:db:structure:dump # Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql
+rake app:db:version # Retrieves the current schema version number
+rake db:create # Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)
+rake db:drop # Drops the database for the current Rails.env (use db:drop:all to drop all databases)
+rake db:fixtures:load # Load fixtures into the current environment's database.
+rake db:migrate # Migrate the database (options: VERSION=x, VERBOSE=false).
+rake db:migrate:status # Display status of migrations
+rake db:rollback # Rolls the schema back to the previous version (specify steps w/ STEP=n).
+rake db:schema:dump # Create a db/schema.rb file that can be portably used against any DB supported by AR
+rake db:schema:load # Load a schema.rb file into the database
+rake db:seed # Load the seed data from db/seeds.rb
+rake db:setup # Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)
+rake db:structure:dump # Dump the database structure to an SQL file
+rake db:version # Retrieves the current schema version number
+{% endcodeblock %}</p>
 
 <p>Vamos criar nosso DB e executar as migrações</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake app:db:create
-</span><span class='line'>rake app:db:migrate&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">==</span> CreateBlogPosts: <span class="nv">migrating</span> <span class="o">================================================</span>
-</span><span class='line'>-- create_table<span class="o">(</span>:blog_posts<span class="o">)</span>
-</span><span class='line'>-&gt; 0.0015s
-</span><span class='line'><span class="o">==</span> CreateBlogPosts: migrated <span class="o">(</span>0.0016s<span class="o">)</span> <span class="o">=======================================</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake app:db:create
+rake app:db:migrate</p>
+
+<p>== CreateBlogPosts: migrating ================================================
+-- create_table(:blog_posts)
+-> 0.0015s
+== CreateBlogPosts: migrated (0.0016s) =======================================
+{% endcodeblock %}</p>
 
 <blockquote><p>Observe que a tabela criada é prefixada pelo nome da Engine.</p>
 
@@ -146,10 +110,9 @@ pelo namespace.</em></p>
 <p>O scaffold já cria os testes funcionais para CRUD, veja o arquivo <code>test/functional/blog/posts_controller_test.rb</code>,
 dessa forma já podemos executar os testes e ver se está tudo funfando.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -157,63 +120,40 @@ dessa forma já podemos executar os testes e ver se está tudo funfando.</p>
 
 <p>Esse error acontece devido nosso controller tentar carregar as fixtures do post que não foram carregadas/criadas, veja:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Blog</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;class PostsControllerTest &amp;lt; ActionController::TestCase</span>
-</span><span class='line'><span class="sr">    setup do</span>
-</span><span class='line'><span class="sr">        @post = posts(:one)</span>
-</span><span class='line'><span class="sr">    end</span>
-</span><span class='line'><span class="sr"> end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+module Blog</p>
+
+<pre><code>class PostsControllerTest &lt; ActionController::TestCase
+    setup do
+        @post = posts(:one)
+    end
+ end
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Você precisa explicitar isso para o <a href="http://api.rubyonrails.org/classes/ActiveSupport/TestCase.html">ActiveSupport::TestCase</a>,
 abra o arquivo <code>test/test_helper.rb</code> e adicione: <code>ActiveSupport::TestCase.fixtures :all</code> no contexto onde as fixtures são carregadas.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="s2">&quot;, __FILE__)</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.fixtures :all</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Load fixtures from the engine</h1>
+
+<p>if ActiveSupport::TestCase.method_defined?(:fixture_path=)</p>
+
+<pre><code>ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
+ActiveSupport::TestCase.fixtures :all
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -221,37 +161,24 @@ abra o arquivo <code>test/test_helper.rb</code> e adicione: <code>ActiveSupport:
 
 <p>Esse error é devido as convenções não funcionarem aqui, se você reparou o path das fixtures está setado para raiz da pasta fixtures, então vamos alterar.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="o">/</span><span class="n">blog</span><span class="s2">&quot;, __FILE__)</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.fixtures :all</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Load fixtures from the engine</h1>
+
+<p>if ActiveSupport::TestCase.method_defined?(:fixture_path=)</p>
+
+<pre><code>ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures/blog", __FILE__)
+ActiveSupport::TestCase.fixtures :all
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -263,39 +190,25 @@ dessa forma o <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 
 <p>Então adicione mais uma linha no seu test_helper.rb</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="o">/</span><span class="n">blog</span><span class="s2">&quot;, __FILE__)</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.fixtures :all</span>
-</span><span class='line'><span class="s2">ActiveSupport::TestCase.set_fixture_class :posts =&amp;gt; Blog::Post</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}</p>
+
+<h1>Load fixtures from the engine</h1>
+
+<p>if ActiveSupport::TestCase.method_defined?(:fixture_path=)</p>
+
+<pre><code>ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures/blog", __FILE__)
+ActiveSupport::TestCase.fixtures :all
+ActiveSupport::TestCase.set_fixture_class :posts =&gt; Blog::Post
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Ops! deu pau ;(</strong></p></blockquote>
 
@@ -303,14 +216,11 @@ dessa forma o <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 
 <p>Vamos observar o arquivo de rotas, <code>config/routes.rb</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">BlogTest</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
-</span><span class='line'>   <span class="n">resources</span> <span class="ss">:posts</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+BlogTest::Engine.routes.draw do
+   resources :posts
+end
+{% endcodeblock %}</p>
 
 <p>Realmente não temos a rota 'blog/posts' criada e não devemos criar, pois quando montamos nossa Engine em uma App mãe,
 essa rota será criada devido nossa Engine ser isolada (--mountable), então a App precisa diferenciar a requisição ao
@@ -321,29 +231,21 @@ controller post da Engine da requisição do controller post dela mesma (caso te
 <p>Para resolver isso, vamos disponibilizar diretamente ao controller_test as rotas.
 Em <code>test/functional/blog/posts_controller_test.rb</code> adicione:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>setup <span class="k">do</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;@post <span class="o">=</span> posts<span class="o">(</span>:one<span class="o">)</span>
-</span><span class='line'>@routes <span class="o">=</span> Engine.routes
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+setup do</p>
+
+<pre><code>@post = posts(:one)
+@routes = Engine.routes
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>Agora rode os testes;</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake <span class="nb">test</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+rake test
+{% endcodeblock %}</p>
 
 <blockquote><p><strong>Congratulation!</strong></p></blockquote>
 
@@ -391,50 +293,33 @@ criei um module "ER" para ir colecionando os patterns rotineiros.</p>
 
 <p>Na pasta <code> /lib </code> criei um arquivo <code> er.rb </code>  que será nosso "repositório de ERs".</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ER</span>
-</span><span class='line'>  <span class="c1"># Pattern para validação de e-mail</span>
-</span><span class='line'>  <span class="no">EMAIL</span> <span class="o">=</span> <span class="sr">/&lt;sup&gt;[&lt;sup&gt;@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i</span><span class="o">&lt;</span><span class="sr">/sup&gt;&lt;/su</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="c1"># Pattern para validação de data no padrão 99/99/9999</span>
-</span><span class='line'>  <span class="no">DATE</span> <span class="o">=</span> <span class="sr">/&lt;sup&gt;(([012][0-9])|(3[01]))\/(0[1-9]|1[012])\/\d{4}$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">  # Pattern para validação de data no padrão 9999-99-99</span>
-</span><span class='line'><span class="sr">  DATE_DB = /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">\</span><span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="o">-</span><span class="p">(</span><span class="mi">0</span><span class="o">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">9</span><span class="o">]|</span><span class="mi">1</span><span class="o">[</span><span class="mo">012</span><span class="o">]</span><span class="p">)</span><span class="o">-</span><span class="p">((</span><span class="o">[</span><span class="mo">012</span><span class="o">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="mi">3</span><span class="o">[</span><span class="mo">01</span><span class="o">]</span><span class="p">))</span><span class="vg">$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">  # Pattern para validação de horas sem os segungos no padrão 99:99</span>
-</span><span class='line'><span class="sr">  TIME_H_M = /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">((</span><span class="o">[</span><span class="mo">01</span><span class="o">]</span><span class="p">\</span><span class="n">d</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="mi">2</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">3</span><span class="o">]</span><span class="p">)):(</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">5</span><span class="o">]</span><span class="p">\</span><span class="n">d</span><span class="p">)</span><span class="vg">$/</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">  # Pattern para validação de urls, permitido os protocolos http e https</span>
-</span><span class='line'><span class="sr">  URL = /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">(</span><span class="n">http</span><span class="o">|</span><span class="n">https</span><span class="p">):\</span><span class="o">/</span><span class="p">\</span><span class="o">/[</span><span class="n">a</span><span class="o">-</span><span class="n">z0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="p">(</span><span class="o">[-.]</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">[</span><span class="n">a</span><span class="o">-</span><span class="n">z0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="p">)</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;.</span><span class="n">[a</span><span class="o">-</span><span class="n">z</span><span class="o">]</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">}((</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">})</span><span class="sc">?\</span><span class="o">/.</span><span class="n">&lt;</span><span class="sr">/em&gt;)?$/ix</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+module ER
+  # Pattern para validação de e-mail
+  EMAIL = /<sup>[<sup>@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i</sup></sup>
+  # Pattern para validação de data no padrão 99/99/9999
+  DATE = /<sup>(([012][0-9])|(3[01]))\/(0[1-9]|1[012])\/\d{4}$/</sup>
+  # Pattern para validação de data no padrão 9999-99-99
+  DATE_DB = /<sup>\d{4}-(0[1-9]|1[012])-(([012][0-9])|(3[01]))$/</sup>
+  # Pattern para validação de horas sem os segungos no padrão 99:99
+  TIME_H_M = /<sup>(([01]\d)|(2[0-3])):([0-5]\d)$/</sup>
+  # Pattern para validação de urls, permitido os protocolos http e https
+  URL = /<sup>(http|https):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)<em>.[a-z]{2,5}(([0-9]{1,5})?\/.</em>)?$/ix</sup>
+end
+{% endcodeblock %}</p>
 
 <h2>Utilizando</h2>
 
 
 <p>Para exemplificar, vamos validar um model User.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;er&#39;</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">User</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">attr_accessible</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:full_name</span>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="n">presence</span><span class="ss">:true</span><span class="p">,</span>  <span class="nb">format</span><span class="p">:{</span><span class="n">with</span><span class="p">:</span> <span class="no">ER</span><span class="o">::</span><span class="no">EMAIL</span><span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+require 'er'
+class User &lt; ActiveRecord::Base
+  attr_accessible :email, :full_name
+  validates :email, presence:true,  format:{with: ER::EMAIL}
+end
+{% endcodeblock %}</p>
 
 <p>Perceberam a chamada do pattern? :P</p>
 
@@ -444,47 +329,30 @@ precisamos de um passo a mais devido o padrão ser ER crua sem estar contida em 
 <p>Criei então um Help para fazer essa tarefa e as View continuarem fazendo apenas seu papel.
 No arquivo <code> app/helpers/application_helper.rb </code>  incluir:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">er_for_html</span><span class="p">(</span><span class="n">er</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">begin</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;ER.const_get(er.upcase.to_sym).source</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  rescue NameError =&gt; exc&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="s2">&quot;A expressao solicitada nao existe&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+def er_for_html(er)
+  begin</p>
+
+<pre><code>ER.const_get(er.upcase.to_sym).source
+</code></pre>
+
+<p>  rescue NameError => exc</p>
+
+<pre><code>"A expressao solicitada nao existe"
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <p>Notem que usei <code> Module#const_get </code>  para pegar a referência da constante informado e no fim o
 <code> Regexp#source </code>  que retorna a string original que está envolvida por "//" <br />
 Ficando no formulário:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="sx">%= f.text_field(:email, :class =</span><span class="o">&gt;</span> <span class="ss">:span3</span><span class="p">,</span> <span class="ss">:pattern</span> <span class="o">=&gt;</span> <span class="n">er_for_html</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">),</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s2">&quot;E-mail&quot;</span> <span class="p">)</span> <span class="sx">%&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock ruby lang:ruby %}
+&lt;%= f.text_field(:email, :class => :span3, :pattern => er_for_html("email"), :type => :email, :required => true, :title => "E-mail" ) %></p>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Concluíndo</h2>
 

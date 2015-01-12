@@ -8,7 +8,6 @@ tags: [scilab, help, ajuda]
 description: "O Help do Scilab é um dos componentes mais importante para o início do aprendizado da ferramenta, para consulta de sintaxe e pesquisa de funções. Vamos conhecê-lo? "
 keywords: "utilizando a ajuda do scilab, buscar comando no help do scilab, como utilizar a ajuda do scilab, aprender a criar gráficos no scilab, executar comandos no console do scilab, pesquisar sobre funções, utilizar o menu"
 ---
-
 <p>
 O <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais">Scilab</a> possui um componente de help (ajuda) que pode ser utilizado como um contato inicial e sempre que houver dúvidas de sintaxe 
 de comandos, nomes de funções, etc… Quem está começando a manipular o Scilab, é válido dar uma navegada no help para conhecer seu conteúdo e 

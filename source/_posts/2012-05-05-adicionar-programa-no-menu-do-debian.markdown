@@ -8,7 +8,6 @@ tags: [Debian, menu, atalho, shortcut]
 description: "Vamos adicionar um programa ao menu de aplicativos do Debian para facilitar a utilização e não ficar passando path para starta via shell."
 keywords: "instalar programas no debian, instalar programas no Linux, adicionar programa no menu do debian, utilizar o shell para executar programas, adicionar software menu debian, selecionar icones para programas, personalizar o menu"
 ---
-{% img /images/menu-debian/banner.jpg 789 %}
 <p>
 Hoje instalando um software via terminal do Debian senti a necessidade de adicioná-lo ao menu de aplicativos para facilitar a utilização e não  ficar passando path para starta via shell.
 </p>

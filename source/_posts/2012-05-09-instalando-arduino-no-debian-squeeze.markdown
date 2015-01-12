@@ -8,7 +8,6 @@ tags: [Processing, Arduino, Debian, Arduino-core]
 description: "Como usuário do Debian, percebi que instruções sobre instalação em livros não diz muita coisa mais garimpando na web, concluir minha instalação."
 keywords: "aprender sobre Arduino, utilizar arduino no debian, instalar arduino no linux, baixar ide do arduino, criar primeiro programa com arduino no debian, referencia do arduino, guia arduino"
 ---
-{% img /images/arduino/banner.jpg 789 %}
 <p>
 Ta nóis aqui em pleno carnaval 2012 atrás do bloco dos aficionados por tecnologia com uma boa xícara de café e estudando Arduino. Como usuário do Debian, percebi que instruções sobre instalação em livros não diz muita coisa mais garimpando na web, concluir minha instalação.
 </p>

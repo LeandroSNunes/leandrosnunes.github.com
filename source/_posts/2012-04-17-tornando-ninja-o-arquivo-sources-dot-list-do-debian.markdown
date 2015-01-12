@@ -8,7 +8,6 @@ tags: [Debian, aptitude, apt-get, Linux, repositório]
 description: "Vamos então adicionar mais repositórios no arquivo sources.list arquivo para que nossos amigos (APT e APTITUDE) achem o que precisamos com maior facilidade."
 keywords: "programas para Debian, repositório Linux, baixar programas com apt-get, baixar programas com aptitude, atualizar o arquivo sources.list, repositório de pacotes para linux, update debian, atualização de programas com pacotes, lista de repositorios debian"
 ---
-{% img /images/source-list/banner.jpg 789 %}
 <p>
 Para que o uso do computador faça sentido, precisamos instalar softwares que satisfaçam nossas necessidades. Para lidar com esse problema, o Debian possui ferramentas para instalar e atualizar pacotes e suas dependências de maneira rápida e prática. Nossos amigos são o APT e o APTITUDE.
 </p>

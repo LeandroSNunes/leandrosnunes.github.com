@@ -8,8 +8,6 @@ tags: [Computação em Nuvem, Virtualização, Cloud Computing]
 description: "Vamos conhecer sobre um conceito que pretende levar às últimas conseguências à transferência de processamento, a ideia de que uma hora ou outra não será mais necessário investir em máquinas com HD alto para suportar aplicativos pesados, já que a computação em nuvem abre de vez os caminhos para um processo demigração maciça de softwares alojados em PCs para servidores mais potentes."
 keywords: "Linux, instalar Máquina Virtual, tutorial Gmail, o que é iCloud, o que é Ubuntu One, baixar Google Talk, o que é IBM Smart Business, configurar servidore, tutorial Azure, tutorial Amazon, significado AWS"
 ---
-{% img /images/cloud_computing/banner.jpg 789 %}
-
 <p>
 Quando cursei a disciplina de Introdução a Computação, desenvolvi uma pequena pesquisa sobre Computação em Nuvem <em>(Cloud Computind)</em>
 para o trabalho de conclusão de período, assim, pude conhecer um pouco mais sobre um conceito que pretende levar às últimas 

@@ -1,0 +1,10 @@
+<div class="highlight"><pre><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;h1&gt;Gemfile&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.11&#39;</span> <span class="c1"># GOOD: exact</span>
+<span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt;0.9&#39;</span>     <span class="c1"># GOOD: tilde</span>
+<span class="n">gem</span> <span class="s1">&#39;yell&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;=1.2&#39;</span>   <span class="c1"># BAD: unspecific</span>
+<span class="n">gem</span> <span class="s1">&#39;nokogiri&#39;</span>        <span class="c1"># BAD: unversioned</span>
+</pre>
+</div>

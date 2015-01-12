@@ -1,0 +1,51 @@
+<div class="highlight"><pre><span class="c1"># Projeto</span>
+<span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;app_rails&quot;</span>       <span class="c1"># O nome do projeto</span>
+<span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>               <span class="c1"># Isso guardar os 5 últimos deploys</span>
+<span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span>     <span class="s2">&quot;production&quot;</span>    <span class="c1"># O ambiente em que o Rails irá atuar</span>
+ 
+<span class="c1"># SCM</span>
+<span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="s1">&#39;git&#39;</span>
+<span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span>  <span class="s2">&quot;git@github.com:LeandroSNunes/app_rails.git&quot;</span>
+<span class="n">set</span> <span class="ss">:branch</span><span class="p">,</span> <span class="s1">&#39;master&#39;</span>
+<span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span>
+ 
+<span class="c1"># Servidor</span>
+<span class="n">default_run_options</span><span class="o">[</span><span class="ss">:pty</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">ssh_options</span><span class="o">[</span><span class="ss">:forward_agent</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s2">&quot;leandro&quot;</span>
+<span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
+<span class="n">server</span> <span class="s2">&quot;leandronunes.com.br&quot;</span><span class="p">,</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+<span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">&quot;/www/app_rails.leandronunes.com.br/</span><span class="si">#{</span><span class="n">application</span><span class="si">}</span><span class="s2">&quot;</span>
+ 
+<span class="c1">#Tarefas</span>
+<span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+<span class="c1">#   task :start do ; end</span>
+<span class="c1">#   task :stop do ; end</span>
+   <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+     <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
+	 <span class="k">end</span>
+   <span class="n">task</span> <span class="ss">:database</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+     <span class="n">run</span> <span class="s2">&quot;cp </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">shared_dir</span><span class="si">}</span><span class="s2">/database.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/&quot;</span>
+   <span class="k">end</span>
+   <span class="n">task</span> <span class="ss">:permission</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:web</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:app</span><span class="o">]</span> <span class="k">do</span>
+     <span class="n">run</span> <span class="s2">&quot;chmod 755 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public -R&quot;</span> 
+   <span class="k">end</span>
+<span class="k">end</span> 
+
+<span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+    <span class="n">task</span> <span class="ss">:symlink</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+      <span class="n">assets</span><span class="o">.</span><span class="n">create_dir</span>
+		  <span class="n">run</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span>
+<span class="sh">		    rm -rf  #{release_path}/public/images/upload &amp;&amp;</span>
+<span class="sh">		    ln -nfs #{shared_path}/upload #{release_path}/public/images/upload</span>
+<span class="no">		  CMD</span>
+    <span class="k">end</span>
+		<span class="n">task</span> <span class="ss">:create_dir</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+		  <span class="n">run</span> <span class="s2">&quot;mkdir -p </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/upload&quot;</span>
+		<span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">after</span> <span class="s2">&quot;deploy:assets:symlink&quot;</span><span class="p">,</span> <span class="s1">&#39;deploy:database&#39;</span> 
+<span class="n">after</span> <span class="s2">&quot;deploy:update_code&quot;</span><span class="p">,</span> <span class="s1">&#39;deploy:permission&#39;</span>
+</pre>
+</div>

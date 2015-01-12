@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Matemática | Leandro Nunes]]></title>
+  <link href="http://LeandroSNunes.github.com/blog/categories/matemática/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/"/>
+  <updated>2015-01-12T00:19:35+00:00</updated>
+  <id>http://LeandroSNunes.github.com/</id>
+  <author>
+    <name><![CDATA[Leandro Nunes]]></name>
+    <email><![CDATA[leandronunes.dev@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Instalando o Scilab no Windows]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows/"/>
+    <updated>2012-02-22T20:40:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows</id>
+    <content type="html"><![CDATA[<p>
+Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="http://www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
+</p>
+
+
+
+
+<!-- more -->
+
+
+
+
+<p>
+Clique em download para baixar a versão de 32bits ou selecione Other Systems para baixar para a versão de 64bits ou para outro OS.
+</p>
+
+
+
+
+<h3>Instalação</h3>
+
+
+<p>
+1) Ao terminar o download, execute o arquivo para iniciar a instalação. Na tela que se abre, clique em Run.
+</p>
+
+
+<p><img src="/images/scilab-windows/step2.jpg" width="789"></p>
+
+<p>
+2) Agora escolha o idioma que será utilizado durante a instalação.
+</p>
+
+
+<p><img src="/images/scilab-windows/step3.jpg" width="789"></p>
+
+<p>
+3) Chegamos no assistente, então, clique em avançar.
+</p>
+
+
+<p><img src="/images/scilab-windows/step4.jpg" width="789"></p>
+
+<p>
+Daqui pra frente, segue-se o modo de instalação padrão do windows: avançar, avançar e avançar. <br />
+
+4) Após a instação o Scilab abrirá o seu Console:
+</p>
+
+
+<p><img src="/images/scilab-windows/console.jpg" width="789"></p>
+
+<p><blockquote><p>Este iremos estudar no próximo post.</p></blockquote></p>
+
+<h3>Finalizando</h3>
+
+
+<p>
+Como de costume após uma instação, vamos imprimir a famosa frase “Alô Mundo” e testar se está tudo ok, para isso, no pronpt do 
+console <code> –> </code> digite o seguinte comando:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>disp<span class="o">(</span><span class="s2">&quot;Alô Mundo&quot;</span><span class="o">)</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Agora para encerrar e aguardarmos o próximo post digite:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">exit</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Informações Úteis</h3>
+
+
+<p><a href="http://leandronunes.com/blog/2012/02/22/instalando-o-scilab-no-linux/">Para saber como instalar o Scilab em ambiente windows clique aqui.</a>
+No site  do Scilab existe versões de instalação para MacOSX, Linux e Windows ambas de distribuição <a href="http://www.gnu.org/licenses/license-list.html" title="Ir para outro site" target="_blank">free</a>,
+lembrando que seu uso está sobre a licença <a href="http://www.cecill.info/" title="Ir para outro site" target="_blank">CeCILL (GPL compatible)</a>. Você pode usar, modificar e / ou redistribuir o software sob os termos da licença.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Instalando o Scilab no Linux]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux/"/>
+    <updated>2012-02-22T20:01:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux</id>
+    <content type="html"><![CDATA[<p>Para instalar o Scilab no Linux vamos fazer uso do nosso terminal, assim fica bem simples. <br />
+A minha instalação foi efetuada no Debian 6 squeeze 64bits.</p>
+
+<!-- more -->
+
+
+
+
+<h3>Instalação</h3>
+
+
+<p>Temos versões do Scilab para 32bits e 64bits. A instalação é igual mudando apenas o link para o download. Fazemos assim:</p>
+
+<p><b>1)</b> Acessando a pasta onde queremos efetuar a instalação, no meu caso  <code> /opt </code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /opt
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><b>2)</b> Baixando o binário na versão do nosso sistema.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;32 bits&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;wget http://www.scilab.org/download/5.3.3/scilab-5.3.3.bin.linux-i686.tar.gz&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;64 bits&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;wget http://www.scilab.org/download/5.3.3/scilab-5.3.3.bin.linux-x86_64.tar.gz
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><blockquote><p>Vou seguir utilizando a verão para 64 bits.</p></blockquote></p>
+
+<p><b>3)</b> Vamos descompactá-lo então
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar fzxv scilab-5.3.3.bin.linux-x86_64.tar.gz
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Pronto! Scilab instalado.
+</p>
+
+
+
+
+<h3>Utilizando</h3>
+
+
+<p>
+Para executá-lo é so digitar
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/opt/scilab-5.3.3/bin/scilab
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Para facilitar, podemos adicionar o Scilab no menu do Debian, é só dar uma olhada <a href="http://goo.gl/bmTol" title="Ir para o post">aqui</a> para saber como.
+<br />
+Com o Scilab em execução, vamos imprimir a famosa frase “Alô Mundo” e testar se está tudo ok, para isso, no pronpt do console do Scilab  <code> –> </code> digite o seguinte comando:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>disp<span class="o">(</span><span class="s2">&quot;Alô Mundo&quot;</span><span class="o">)</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Agora para encerrar e aguardarmos o próximo post digite:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">exit</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Informações Úteis</h3>
+
+
+<p><a href="http://leandronunes.com/blog/2012/02/22/instalando-o-scilab-no-windows/">Para saber como instalar o Scilab em ambiente windows clique aqui.</a>
+No site  do Scilab existe versões de instalação para MacOSX, Linux e Windows ambas de distribuição <a href="http://www.gnu.org/licenses/license-list.html" title="Ir para outro site" target="_blank">free</a>,
+lembrando que seu uso está sobre a licença <a href="http://www.cecill.info/" title="Ir para outro site" target="_blank">CeCILL (GPL compatible)</a>. Você pode usar, modificar e / ou redistribuir o software sob os termos da licença.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scilab, conceitos básicos]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos/"/>
+    <updated>2012-02-21T23:57:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos</id>
+    <content type="html"><![CDATA[<p>
+A melhor maneira de se aprender algo é colocando a mão na massa. <br />
+Vamos conhecer neste post o Console do <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais" >Scilab</a> que é o pontapé inicial para entender
+ o software. Nele encontra-se o pronpt <code> –> </code> onde podemos executar comandos, instruções, carregar arquivos, configurar o path, iniciar outras janelas, etc…
+</p>
+
+
+
+
+<!-- more -->
+
+
+<p><img src="/images/scilab-conceitos/janela-console.png" width="789" title="&#34;Janela do console do Scilab&#34;" alt="&#34;Janela do console do Scilab&#34;"></p>
+
+<h2>Conhecendo o console</h2>
+
+
+<p>
+Vamos conhecer alguns itens do menu que poderão ser úteis e a execução de algumas tarefas. Percorrendo o menu temos:
+</p>
+
+
+<p><img src="/images/scilab-conceitos/menu.png" width="789" title="&#34;Imagem do menu do Scilab&#34;" alt="&#34;Imagem do menu do Scilab&#34;"></p>
+
+<p>
+
+<ul>
+  <li>File:</li>
+    <ul>
+      <li>Execute: Executa arquivos de scripts e com instruções de comando</li>
+      <li>Open a File: Carrega arquivos de textos criados no ambiente do Scilab (.sce e .sci)</li>
+      <li>Change Current Directory: Muda o diretório atual do ambiente para um novo local,  comando: <code> –>chdir(‘novaPasta’); </code> no prompt.</li>
+      <li>Display Current Directory: Mostra o diretório atual, <code> –>pwd; </code> no prompt.</li>
+    </ul>
+  <li>Edit</li>
+    <ul>
+      <li>No menu editar temos as opções padrão que dispensa comentários.</li>
+    </ul>
+  <li>Preferences</li>
+    <ul>
+      <li>Clear Console: Limpa o console mais não apaga os dados da memória, podemos executar esta função de outras duas formas: a) Apertando a tecla F2 ou  b) digitando <code> –>clc; </code> no prompt</li>
+    </ul>  
+  <li>Control</li>
+    <ul>
+      <li>Resume: Continua a execução após um pause ou um stop</li>
+      <li>Abort: Interromp a execução</li>
+      <li>Interrupt: Entra no modo de pause, podemos fazer <code> –>Ctrl+C; </code> no prompt</li>
+    </ul>
+  <li>Applications</li>
+    <ul>
+      <li>SciNotes: O editor de textos, podemos chamá-lo via prompt com o comando <code> –>editor; </code></li>
+    </ul>
+  <li>?</li>
+    <ul>
+      <li>Scilab help: Abre o componente de ajuda.</li>
+      <li>Scilab Demonstrations: Exibe a janela de demonstrações de comandos do Scilab</li>
+    </ul>
+</ul>
+</p>
+
+
+
+
+<h2>Digitando comandos</h2>
+
+
+<p>
+Comandos são palavras-chave do Scilab que executam determinadas tarefas e instruções são um conjunto de 
+palavras-chave em ordens digitadas no prompt e finalizadas com <code> <Enter> </code>.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">y</span><span class="o">=</span>ode<span class="o">(</span>1.e-8*<span class="o">[</span>1;1;1<span class="o">]</span>,0,0:0.005:50,<span class="s1">&#39;loren&#39;</span><span class="o">)</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;O console permite várias instruções na mesma linha&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;separadas por ponto e vírgula.&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;a <span class="o">=</span> 10; <span class="nv">b</span> <span class="o">=</span> 5; <span class="nv">c</span> <span class="o">=</span> 4+3&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;O console sempre retorna  o valor <span class="k">do</span> último processamento&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+O uso de <code> ; </code> (ponto e vírgura) no final de cada instrução é opcional, a diferença é que se usarmos a saída será omitida.
+</p>
+
+
+
+
+<p>
+Muitas vezes quando trabalhamos no editor e executamos um script, percebe-se que não aconteceu nada e aparentemente o 
+Scilab está travado, na verdade, o console pode estar esperando uma interação sua para continuar a exibir as 
+informações, isso ocorre devido que o retorno de algumas funções ultrapassam a area visível do console.
+</p>
+
+
+<p><img src="/images/scilab-conceitos/interacao.png" width="789" title="&#34;Janela do console esperando uma interação para continuar a exibir as informações&#34;" alt="&#34;Janela do console esperando uma interação para continuar a exibir as informações&#34;"></p>
+
+<p>
+então é sempre bom fazer uso do <code> ; </code> (ponto e virgula) no final de cada instrução.<br />
+
+Caso não lembre o nome do comando, você pode utilizar <code> Ctrl+Espaço </code> que aparece uma lista de comando similares.
+</p>
+
+
+<p><img src="/images/scilab-conceitos/auto-complete.jpg" width="789" title="&#34;Pesquisando nome de funções pela funcionalidade do auto-complete&#34;" alt="&#34;Pesquisando nome de funções pela funcionalidade do auto-complete&#34;"></p>
+
+<h2>Conhecendo erros</h2>
+
+
+<p>
+Para os comandos não executados corretamente uma mensagem de erro será exibida. Exemplo:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>!--error 4
+</span><span class='line'>Undefined variable: e
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Podemos exibir a lista de todos os erros gerados pelo Scilab
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">help </span>error_table
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Considerações sobre variáveis</h2>
+
+
+<p>
+<ul>
+  <li>O Scilab é case sensitive, isto é, difere maiúscula de minúscula;</li>
+  <li>Tem tipagem dinâmica, ou seja, a variável que recebe o tipo de dados numérico poderá posteriormente receber uma string sem problemas;</li>
+  <li>Em nomes de variáveis não são permitidos caracteres especiais;</li>
+  <li>O nome de uma variável pode ter no máximo 24 caracteres e começar com <code> _ </code> (underline) ou letra;</li>
+</ul>
+</p>
+
+
+
+
+<h2>Considerações sobre constantes</h2>
+
+
+<p>
+Constantes especiais começam com %
+<ul>
+  <li>%f – Valor lógico false</li>
+  <li>%t – Valor lógico True</li>
+  <li>%eps – Precisão da máquina virtual para números reais</li>
+  <li>%pi – 3.1415927…</li>
+  <li>%e – Base dos logaritmos naturais</li>
+  <li>%inf – Infinito</li>
+  <li>%nan – not a number (não é número)</li>
+  <li>%i – parte imaginária de númeors complexos</li>
+</ul>
+</p>
+
+
+
+
+<h2>Comandos básicos</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">pwd</span>         <span class="c">#exibe o diretorio atual ,</span>
+</span><span class='line'>home        <span class="c">#exibe o diretorio atual</span>
+</span><span class='line'>chdir       <span class="c">#muda o diretorio de corrent</span>
+</span><span class='line'>mkdir       <span class="c">#cria diretórios</span>
+</span><span class='line'>dir         <span class="c">#exibe o nome dos arquivos no diretório corrent</span>
+</span><span class='line'>clc         <span class="c">#limpa toda area de trabalho e coloca o cursor no inicio</span>
+</span><span class='line'>clc<span class="o">(</span>n<span class="o">)</span>      <span class="c">#limpa n linhas acima da linha atual</span>
+</span><span class='line'>clear       <span class="c">#limpa as variáveis da memória</span>
+</span><span class='line'>who         <span class="c">#exibe  as constantes especias e as variaveis atuais na memória</span>
+</span><span class='line'>whos        <span class="c">#exibe os nomes, os tamanhos e os tipos de dados de todas as variáveis na memória</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>É isso ai</h2>
+
+
+<p>
+Conhecemos um pouco do ambiente do Scilab, ficar atento ao “;” pode poupar tempo na execução de scripts.<br /> 
+Para saber mais sobre o console você pode acessar a documentação <a href="http://help.scilab.org/docs/5.3.2/pt_BR/console.html" title="Ir para página do console">clicando aqui!</a>
+</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scilab Help, torne-se amigo dele!]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/02/20/scilab-help/"/>
+    <updated>2012-02-20T22:27:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/02/20/scilab-help</id>
+    <content type="html"><![CDATA[<p>
+O <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais">Scilab</a> possui um componente de help (ajuda) que pode ser utilizado como um contato inicial e sempre que houver dúvidas de sintaxe 
+de comandos, nomes de funções, etc… Quem está começando a manipular o Scilab, é válido dar uma navegada no help para conhecer seu conteúdo e 
+ter uma ideia de onde procurar o que necessitar.
+</p>
+
+
+
+
+<!-- more -->
+
+
+
+
+<h2>Meios de acesso ao help</h2>
+
+
+<p>
+Podemos acessar o help de 4 formas:<br /><br />
+
+<b>1)</b> Pelo menu principal:
+</p>
+
+
+<p><img src="/images/scilab-help/menu-help.jpg" width="789" title="'Acessando o help do Scilab pelo menu principal'" ></p>
+
+<p>
+2) Pela tecla F1
+</p>
+
+
+<p>
+3) Pelo ícone na barra de ferramentas:
+</p>
+
+
+<p><img src="/images/scilab-help/barra-ferramentas.jpg" width="789" title="'Acessando o help do Scilab pelo ícone localizado na barra de ferramenta'" ></p>
+
+<p>
+4) Pelo comando help executado no prompt
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">help</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+O comando help aceita um termo para pesquisar como parâmetro
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">help </span>plot2d
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>CONHECENDO A INTERFACE</h2>
+
+
+<p>
+Ao abrir a janela de help podemos na coluna da esquerda navegar pela relação de todos os grupos dos elementos, começando com o 
+manual da ferramenta e a classificação por assunto dos itens. A cada grupo, o sistema mostra a relação de itens que o compôem.
+</p>
+
+
+<p>
+Também temos uma aba para buscas.
+</p>
+
+
+<p><img src="/images/scilab-help/help.png" width="789" title="&#34;Janela do help do Scilab para consulta&#34;" alt="&#34;Janela do help do Scilab para consulta&#34;"></p>
+
+<p>
+Do lado direito temos a descrição do item selecionado a esquerda.<br />
+Reparem na parte dos exemplos, existe dos botões muito úteis.
+</p>
+
+
+<p><img src="/images/scilab-help/botoes-exemplos.jpg" width="789" title="&#34;Visualizando os exemplos e executando com o botôes de atalho&#34;" alt="&#34;Visualizando os exemplos e executando com o botôes de atalho&#34;"></p>
+
+<p>
+O da esquerda executa o código do exemplo direto no console.<br />
+O da direitra abre o código no editor (SciNotes)
+</p>
+
+
+
+
+<h2>Concluíndo</h2>
+
+
+<p>
+Este post foi uma passada rápida por um dos componentes mais utilizado. ;P
+</p>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

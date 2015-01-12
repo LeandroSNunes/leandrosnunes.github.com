@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Arduino | Leandro Nunes]]></title>
+  <link href="http://LeandroSNunes.github.com/blog/categories/arduino/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/"/>
+  <updated>2015-01-12T00:19:35+00:00</updated>
+  <id>http://LeandroSNunes.github.com/</id>
+  <author>
+    <name><![CDATA[Leandro Nunes]]></name>
+    <email><![CDATA[leandronunes.dev@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Conectando módulo Bluetooth JY-MCU V1.02 + Arduino + Debian]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/"/>
+    <updated>2012-06-05T21:54:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian</id>
+    <content type="html"><![CDATA[<p>
+Tempo curtissímo neste final de período de faculdade, mais hoje, não pude deixar de compartilhar algumas informações com os que estão junto comigo, descobrindo 
+o Arduino. Vamos desenrrolar o assunto...
+</p>
+
+
+<p>
+Recentemente comprei um módulo de Bluetooth para Arduino, o módulo adquirido foi o "JY-MCU V1.02" 
+<a href="http://dx.com/p/jy-mcu-arduino-bluetooth-wireless-serial-port-module-104299?item=1">Confira aqui!!!</a>, então, fui à luta 
+para fazer funfar no Debian (lembrando que sou novato no Debian e Arduino também) ;) , a briga foi boa!!! <br />
+Gostaria de agradecer nosso
+amigo/professor Marcelo Brunoro por ter mostrado que a placa realmente funciona (utilizando outro OS), antes que eu desistisse heheheh.
+</p>
+
+
+<!-- more -->
+
+
+
+
+<h2>Requisitos para o Debian</h2>
+
+
+<p>
+O Debian 6 é instalado com o pacode de ferramentas <a href="http://packages.debian.org/pt/sid/gnome-bluetooth">gnome-bluetooth</a> para 
+manipular dispositivos Bluetooth utilizado inteface gráfica, porém, esse pacote não possibilita o mapeamento de uma porta serial para o
+dispositivo, e a comunição com o Arduino se dá via porta serial que, neste caso, utilizaremos como exemplo a biblioteca <a href="http://arduino.cc/hu/Reference/SoftwareSerial">SoftwareSerial</a>.
+É preciso então a instalação do pacote <a href="http://blueman-project.org/">Blueman</a>, vamos lá então...
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install blueman
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Depois da instalação o programa se encontra em <em>System -> Preferences -> Bluetooth Manager</em>
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/blueman.png" width="789" title="&#34;Janela inicial do Blueman&#34;" alt="&#34;Janela inicial do Blueman&#34;"></p>
+
+<p>
+Antes de plugar o módulo, é preciso instalar mais um software, o <a href="http://packages.debian.org/unstable/comm/cutecom">"CuteCom"</a>, para monitoramento da porta serial, ele será útil para enviar e receber dados da porta destinada ao
+módulo de Bluetooth.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install cutecom
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Para finalizar, é preciso que sua IDE do Arduino seja a 1.0.1 ou superior, caso contrário a biblioteca SoftwareSerial irá bugar, para fazer esse trabalho de atualização 
+é só seguir os passos neste post <a href="http://leandronunes.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze/">Instalando Arduino No Debian Squeeze</a> trocando
+a versão da IDE.
+</p>
+
+
+
+
+<h2>Ligando os componentes</h2>
+
+
+<p>
+O módulo JY-MCU V1.02 possui 4 pinos (RX, TX, GND E VCC) e já vem com um cabo.
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/modulo.jpg" width="789" title="&#34;módulo JY-MCU V1.02 por Leandro Nunes&#34;" alt="&#34;módulo JY-MCU V1.02 por Leandro Nunes&#34;"></p>
+
+<p>
+A ligação no Arduino se dá da seguinte forma:
+</p>
+
+
+<table width="200px">
+    <thead>
+        <tr><th>JY-MCU</td><td>Arduino</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>RX</td><td>PINO 3</td></tr>
+        <tr><td>TX</td><td>PINO 2</td></tr>
+        <tr><td>GND</td><td>GND</td></tr>
+        <tr><td>VCC</td><td>5V</td></tr>
+    </tbody>
+</table>
+
+
+<br />
+
+
+<p>
+Agora é só plugar o cabo USB no Arduino e no PC, pronto, tudo conectado
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/arduino.jpg" width="789" title="&#34;módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes&#34;" alt="&#34;módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes&#34;"></p>
+
+<h2>Codando nosso exemplo</h2>
+
+
+<p>
+Na IDE do Arduino existe vário exemplos de códigos para iniciar projetos, vamos utilizar um para testar nossa conexão, vá em <em>File -> Exemples -> SoftwareSerial -> SoftwareSerialExemple </em>
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/exemplos_arduino.jpg" width="789"></p>
+
+<p>
+Com algumas modificações o código ficou assim:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Processing  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">SoftwareSerial</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">SoftwareSerial</span> <span class="n">mySerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// RX, TX&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">setup</span><span class="p">()</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="c1">// Open serial communications and wait for port to open:</span>
+</span><span class='line'>  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class='line'>   <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// wait for serial port to connect. Needed for Leonardo only</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Goodnight moon!&quot;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// set the data rate for the SoftwareSerial port</span>
+</span><span class='line'>  <span class="n">mySerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">mySerial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello, world?&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">loop</span><span class="p">()</span> <span class="c1">// run over and over</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">mySerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>O que foi mudado</h3>
+
+
+<p>
+<ul>
+    <li>Os pinos utilizados <code>SoftwareSerial mySerial(2, 3);</code></li>
+    <li>A taxa de rate na linha <code>Serial.begin(9600);</code></li>
+    <li>A taxa rate do módulo<code>mySerial.begin(9600);</code></li>
+</ul>
+</p>
+
+
+
+
+<p>
+Vá em frente e faça o upload para o Arduino :)
+</p>
+
+
+
+
+<h2>Detectando o módulo de Bluetooth no PC</h2>
+
+
+<p>
+Agora abra o Bluetooth Manager, clique em Search e o módulo será listado como "linvor", clicando com o botão direito, selecione "add Device"
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/add_device.png" width="789"></p>
+
+<p>
+Novamente como botão direito clique em "Pair", será pedido o PIN, no nosso caso digite "1234". <br />
+Novamente como botão direito clique em "Dev B", ufa! chega de botão direito, já estar conectado.
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/conected.png" width="789"></p>
+
+<p><em>
+Em baixo na tarja amarela, visualizamos a porta que está sendo utilizada "/dev/rfcomm0"
+</em></p>
+
+<h3>Monitorando</h3>
+
+
+<p>
+Abra o CuteCom e no campo "Device:", clique e digite o caminho da porta, depois é so clicar em "Open device"
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/cutecom.png" width="789"></p>
+
+<p>
+Voltamos na IDE do Arduino e abrimos o Serial Monitor, a mensagem "Goodnight moon!" será exibida
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/serial_monitor.png" width="789"></p>
+
+<p>
+No CuteCom será exibido "Hello, world?"
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/cutecom_mensagem.png" width="789"></p>
+
+<p>
+Pronto, agora o que voce digitar no campo "input" do CuteCom será exibido no Serial Monitor e vice-versa, neste caso os dispositivos estão pareados.
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/mensagem_ok.png" width="789"></p>
+
+<h2>Então...</h2>
+
+
+<p>
+Ufa! O módulo de Bluetooth JY-MCU V1.02 está conectado e conversando com o Arduino.<br />
+O módulo de Bluetooth não estando pareado ele aceita uma série de comando como descrito por <a href="http://byron76.blogspot.com.br/2011/09/one-board-several-firmwares.html">Byron</a>,
+vale a pena dar uma conferida, vou deixar para outro post. <br />
+É isso ai, espero ter fornecido informações importantes para a continuação dos estudos. Até a proxima!!!!!
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Instalando Arduino no Debian squeeze]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze/"/>
+    <updated>2012-05-09T21:39:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze</id>
+    <content type="html"><![CDATA[<p>
+Ta nóis aqui em pleno carnaval 2012 atrás do bloco dos aficionados por tecnologia com uma boa xícara de café e estudando Arduino. Como usuário do Debian, percebi que instruções sobre instalação em livros não diz muita coisa mais garimpando na web, concluir minha instalação.
+</p>
+
+
+<!-- more -->
+
+
+<p>
+O Arduino esta dividido em dois pacotes:
+</p>
+
+
+<ul>
+    <li>Arduino: Que é a IDE em Java para desenvolvimento e contém algumas biblioteca.</li>
+    <li>Arquino-Core:  Ferramenta mínima para interagir via linha de comando sem dependências do Java, usando Makefile Martin Oldfield.</li>
+</ul>
+
+
+
+
+<p>
+Alternativamente se seu arquivo  <em>/etc/apt/sources.list</em>  estiver atualizado você pode faze a instalação dos pacotes executando:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install arduino
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+ou
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install arduino-core
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Atualize seu arquivo lendo o post Tornando ninja o arquivo sources.list do Debian
+</p>
+
+
+<p><blockquote><p>Como eu não tinha certeza que a última versão está disponível nos repositórios do Debian e não queria testar,<br/>fiz a instalação baixando o pacote no site oficial <a href="http://arduino.cc/en/Main/Software" >http://arduino.cc/en/Main/Software.</a></p></blockquote></p>
+
+<h2>Dependencias</h2>
+
+
+<p>
+Usuários do arduino Uno precisam instalar o pacote <em>brxtx-java versão 2.2pre2-3</em> ou superior  Então edite seu arquivo  <em>/etc /apt /sources.list</em> (ou use seu gerenciador de pacotes favorito gui) e adicione:
+</p>
+
+
+
+
+<p>
+<em>deb http://ftp.us.debian.org/debian/ squeeze main contrib non-free</em><br /> 
+Feito isso, execute:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install librxtx-java
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Agora instale todas as dependências
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install gcc-avr avrdude gcc avr-libc libantlr-java libecj-java libjna-java liboro-java openjdk-6-jdk
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Caso queira instalar somentes pacotes instáveis, retire a linha do arquivo source.list antes de executar este último comando.
+</p>
+
+
+
+
+<h2>Fazendo o download</h2>
+
+
+<p>
+Baixe o binário para linux de 32 bits (ou 64 bits, se for preciso) clicando no link <a href="http://arduino.cc/en/Main/Software">http://arduino.cc/en/Main/Software</a> e extraia o arquivo .tgz para a pasta de sua preferência.<br />
+Vou baixar a versão para 64bits na pasta onde irei efetuar a instalação via linha de comando.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /opt/
+</span><span class='line'>sudo wget http://arduino.googlecode.com/files/arduino-1.0-linux64.tgz
+</span><span class='line'>sudo tar zxvf arduino-1.0-linux64.tgz
+</span><span class='line'>sudo rm arduino-1.0-linux64.tgz
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Executando</h2>
+
+
+<p>
+Agora você já pode executar a IDE dando dois clicks no arquivo <em>/opt/arduino-1.0/arduino</em>  ou via linha de comando
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>arduino-1.0
+</span><span class='line'>sh arduino
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Caso queira adicionar o Arduino no menu de programas do Debian, leia este post <a href="http://leandronunes.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian/">“Adicionar programa no menu do Debian”.</a>
+</p>
+
+
+
+
+<h2>Dando permissão</h2>
+
+
+<p>
+Você vai notar que não pode selecionar uma porta serial no menu ferramentas. Isto é provavelmente porque você precisa adicionar o usuário para alguns grupos. Você também tem que conectar o Arduino UNO para poder selecionar uma porta serial.
+</p>
+
+
+
+
+<p>
+Para um teste rápido, você pode executar arduino como root com: sudo sh arduino. Você deve ser capaz de selecionar uma porta serial agora.
+</p>
+
+
+
+
+<p>
+Claro que você não quer estar executando o IDE Arduino como root, então adicionar seu usuário ao grupo <code>tty</code> e <code>dialout</code>   assim:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo usermod -a -G tty yourUserName
+</span><span class='line'>sudo usermod -a -G dialout yourUserName
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Faça logoff e logon novamente para que as alterações tenham efeito!
+</p>
+
+
+
+
+<h2>Então..</h2>
+
+
+<p>
+Isso é o começo para iniciar os teste com arduino e impressionar os vizinhos.<br />
+Para mais detalhes sobre instalação em outros ambiente visite o <a href="http://renatoaloi.blogspot.com/2011/10/instalando-arduino-guia-completo.html">blog do Renato Aloi</a>, uma ótima referência de estudos também!
+Mais informações de instação leia o site oficial <a href="http://arduino.cc/playground/Linux/Debian">http://arduino.cc/playground/Linux/Debian</a>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

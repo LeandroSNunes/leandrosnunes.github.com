@@ -1,0 +1,13 @@
+<div class="highlight"><pre><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;h1&gt;Load fixtures from the engine&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span><span class="o">.</span><span class="n">method_defined?</span><span class="p">(</span><span class="ss">:fixture_path</span><span class="o">=</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;ActiveSupport::TestCase.fixture_path = File.expand_path(&quot;../</span><span class="n">fixtures</span><span class="s2">&quot;, __FILE__)</span>
+<span class="s2">ActiveSupport::TestCase.fixtures :all</span>
+<span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+
+<span class="s2">&lt;p&gt;end</span>
+</pre>
+</div>

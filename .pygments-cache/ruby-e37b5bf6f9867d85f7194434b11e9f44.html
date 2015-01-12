@@ -1,0 +1,12 @@
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">CowboyString</span>
+  <span class="k">def</span> <span class="nf">downcase</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt;self.upcase</span>
+<span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+
+<span class="sr">&lt;p&gt;  end</span>
+<span class="sr">end</span>
+<span class="sr">::String.send(:include, CowboyString)</span>
+<span class="sr">String.ancestors # =&gt; [String, CowboyString, Enumerable, Comparable, Object, Kernel]</span>
+</pre>
+</div>

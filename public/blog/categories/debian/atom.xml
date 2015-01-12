@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Debian | Leandro Nunes]]></title>
+  <link href="http://LeandroSNunes.github.com/blog/categories/debian/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/"/>
+  <updated>2015-01-12T00:19:35+00:00</updated>
+  <id>http://LeandroSNunes.github.com/</id>
+  <author>
+    <name><![CDATA[Leandro Nunes]]></name>
+    <email><![CDATA[leandronunes.dev@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Conectando módulo Bluetooth JY-MCU V1.02 + Arduino + Debian]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/"/>
+    <updated>2012-06-05T21:54:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian</id>
+    <content type="html"><![CDATA[<p>
+Tempo curtissímo neste final de período de faculdade, mais hoje, não pude deixar de compartilhar algumas informações com os que estão junto comigo, descobrindo 
+o Arduino. Vamos desenrrolar o assunto...
+</p>
+
+
+<p>
+Recentemente comprei um módulo de Bluetooth para Arduino, o módulo adquirido foi o "JY-MCU V1.02" 
+<a href="http://dx.com/p/jy-mcu-arduino-bluetooth-wireless-serial-port-module-104299?item=1">Confira aqui!!!</a>, então, fui à luta 
+para fazer funfar no Debian (lembrando que sou novato no Debian e Arduino também) ;) , a briga foi boa!!! <br />
+Gostaria de agradecer nosso
+amigo/professor Marcelo Brunoro por ter mostrado que a placa realmente funciona (utilizando outro OS), antes que eu desistisse heheheh.
+</p>
+
+
+<!-- more -->
+
+
+
+
+<h2>Requisitos para o Debian</h2>
+
+
+<p>
+O Debian 6 é instalado com o pacode de ferramentas <a href="http://packages.debian.org/pt/sid/gnome-bluetooth">gnome-bluetooth</a> para 
+manipular dispositivos Bluetooth utilizado inteface gráfica, porém, esse pacote não possibilita o mapeamento de uma porta serial para o
+dispositivo, e a comunição com o Arduino se dá via porta serial que, neste caso, utilizaremos como exemplo a biblioteca <a href="http://arduino.cc/hu/Reference/SoftwareSerial">SoftwareSerial</a>.
+É preciso então a instalação do pacote <a href="http://blueman-project.org/">Blueman</a>, vamos lá então...
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install blueman
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Depois da instalação o programa se encontra em <em>System -> Preferences -> Bluetooth Manager</em>
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/blueman.png" width="789" title="&#34;Janela inicial do Blueman&#34;" alt="&#34;Janela inicial do Blueman&#34;"></p>
+
+<p>
+Antes de plugar o módulo, é preciso instalar mais um software, o <a href="http://packages.debian.org/unstable/comm/cutecom">"CuteCom"</a>, para monitoramento da porta serial, ele será útil para enviar e receber dados da porta destinada ao
+módulo de Bluetooth.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install cutecom
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Para finalizar, é preciso que sua IDE do Arduino seja a 1.0.1 ou superior, caso contrário a biblioteca SoftwareSerial irá bugar, para fazer esse trabalho de atualização 
+é só seguir os passos neste post <a href="http://leandronunes.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze/">Instalando Arduino No Debian Squeeze</a> trocando
+a versão da IDE.
+</p>
+
+
+
+
+<h2>Ligando os componentes</h2>
+
+
+<p>
+O módulo JY-MCU V1.02 possui 4 pinos (RX, TX, GND E VCC) e já vem com um cabo.
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/modulo.jpg" width="789" title="&#34;módulo JY-MCU V1.02 por Leandro Nunes&#34;" alt="&#34;módulo JY-MCU V1.02 por Leandro Nunes&#34;"></p>
+
+<p>
+A ligação no Arduino se dá da seguinte forma:
+</p>
+
+
+<table width="200px">
+    <thead>
+        <tr><th>JY-MCU</td><td>Arduino</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>RX</td><td>PINO 3</td></tr>
+        <tr><td>TX</td><td>PINO 2</td></tr>
+        <tr><td>GND</td><td>GND</td></tr>
+        <tr><td>VCC</td><td>5V</td></tr>
+    </tbody>
+</table>
+
+
+<br />
+
+
+<p>
+Agora é só plugar o cabo USB no Arduino e no PC, pronto, tudo conectado
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/arduino.jpg" width="789" title="&#34;módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes&#34;" alt="&#34;módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes&#34;"></p>
+
+<h2>Codando nosso exemplo</h2>
+
+
+<p>
+Na IDE do Arduino existe vário exemplos de códigos para iniciar projetos, vamos utilizar um para testar nossa conexão, vá em <em>File -> Exemples -> SoftwareSerial -> SoftwareSerialExemple </em>
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/exemplos_arduino.jpg" width="789"></p>
+
+<p>
+Com algumas modificações o código ficou assim:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Processing  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">SoftwareSerial</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">SoftwareSerial</span> <span class="n">mySerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// RX, TX&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">setup</span><span class="p">()</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="c1">// Open serial communications and wait for port to open:</span>
+</span><span class='line'>  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class='line'>   <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// wait for serial port to connect. Needed for Leonardo only</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Goodnight moon!&quot;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// set the data rate for the SoftwareSerial port</span>
+</span><span class='line'>  <span class="n">mySerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">mySerial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello, world?&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">loop</span><span class="p">()</span> <span class="c1">// run over and over</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">mySerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>O que foi mudado</h3>
+
+
+<p>
+<ul>
+    <li>Os pinos utilizados <code>SoftwareSerial mySerial(2, 3);</code></li>
+    <li>A taxa de rate na linha <code>Serial.begin(9600);</code></li>
+    <li>A taxa rate do módulo<code>mySerial.begin(9600);</code></li>
+</ul>
+</p>
+
+
+
+
+<p>
+Vá em frente e faça o upload para o Arduino :)
+</p>
+
+
+
+
+<h2>Detectando o módulo de Bluetooth no PC</h2>
+
+
+<p>
+Agora abra o Bluetooth Manager, clique em Search e o módulo será listado como "linvor", clicando com o botão direito, selecione "add Device"
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/add_device.png" width="789"></p>
+
+<p>
+Novamente como botão direito clique em "Pair", será pedido o PIN, no nosso caso digite "1234". <br />
+Novamente como botão direito clique em "Dev B", ufa! chega de botão direito, já estar conectado.
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/conected.png" width="789"></p>
+
+<p><em>
+Em baixo na tarja amarela, visualizamos a porta que está sendo utilizada "/dev/rfcomm0"
+</em></p>
+
+<h3>Monitorando</h3>
+
+
+<p>
+Abra o CuteCom e no campo "Device:", clique e digite o caminho da porta, depois é so clicar em "Open device"
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/cutecom.png" width="789"></p>
+
+<p>
+Voltamos na IDE do Arduino e abrimos o Serial Monitor, a mensagem "Goodnight moon!" será exibida
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/serial_monitor.png" width="789"></p>
+
+<p>
+No CuteCom será exibido "Hello, world?"
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/cutecom_mensagem.png" width="789"></p>
+
+<p>
+Pronto, agora o que voce digitar no campo "input" do CuteCom será exibido no Serial Monitor e vice-versa, neste caso os dispositivos estão pareados.
+</p>
+
+
+<p><img src="/images/arduino_bluetooth/mensagem_ok.png" width="789"></p>
+
+<h2>Então...</h2>
+
+
+<p>
+Ufa! O módulo de Bluetooth JY-MCU V1.02 está conectado e conversando com o Arduino.<br />
+O módulo de Bluetooth não estando pareado ele aceita uma série de comando como descrito por <a href="http://byron76.blogspot.com.br/2011/09/one-board-several-firmwares.html">Byron</a>,
+vale a pena dar uma conferida, vou deixar para outro post. <br />
+É isso ai, espero ter fornecido informações importantes para a continuação dos estudos. Até a proxima!!!!!
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[adicionar programa no menu do debian]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian/"/>
+    <updated>2012-05-05T21:07:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian</id>
+    <content type="html"><![CDATA[<p>
+Hoje instalando um software via terminal do Debian senti a necessidade de adicioná-lo ao menu de aplicativos para facilitar a utilização e não  ficar passando path para starta via shell.
+</p>
+
+
+
+
+<p>
+Nesse tutorial vamos instalar o <a href="http://www.scilab.org/">Scilab</a>. Para outros aplicativos somente precisamos trocar o path do executável e do ícone.
+</p>
+
+
+<!-- more -->
+
+
+
+
+<h2>Adicionando…</h2>
+
+
+<p>
+<b>1)</b> Clique com o botão direito na barra de menu e escolha a opção <em>Edit menus</em>
+</p>
+
+
+<p><img src="/images/menu-debian/step1.jpg" width="789"></p>
+
+<p>
+<b>2)</b> Na tela que se abre, ecolha na aba Menus no lado esquerdo onde irá inserir o programa e depois clique em <em>New Item</em>.
+</p>
+
+
+<p><img src="/images/menu-debian/step2.jpg" width="789"></p>
+
+<p>
+<b>3)</b> Agora vamos inserir as informações necessárias
+</p>
+
+
+<ul>
+    <li>Type:          Application</li>
+    <li>Name:          Scilab</li>
+    <li>Command:  <code>/opt/scilab-5.3.3/bin/scilab</code></li>
+    <li>Comment:  Qualquer coisa</li>
+</ul>
+
+
+<p><img src="/images/menu-debian/step3.jpg" width="789"></p>
+
+<p>
+<b>4)</b> Para trocar o ícone, clique nele e selecione uma imagem em  /opt/scilab-5.3.3/share/scilab/icons
+<blockquote><p>Por default o Debian abre na paste de ícones padrão.</p></blockquote>
+</p>
+
+
+<p><img src="/images/menu-debian/step4.jpg" width="789"></p>
+
+<p>
+<b>5)</b> Pronto! está lá nosso atalho para o Scilab inserido no menu. Acesse e confira pois o Debian não deixou eu dar um print screen com o menu aberto. :P
+</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tornando ninja o arquivo sources.list do Debian]]></title>
+    <link href="http://LeandroSNunes.github.com/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/"/>
+    <updated>2012-04-17T22:30:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian</id>
+    <content type="html"><![CDATA[<p>
+Para que o uso do computador faça sentido, precisamos instalar softwares que satisfaçam nossas necessidades. Para lidar com esse problema, o Debian possui ferramentas para instalar e atualizar pacotes e suas dependências de maneira rápida e prática. Nossos amigos são o APT e o APTITUDE.
+</p>
+
+
+<!-- more -->
+
+
+<p>
+Quando utilizamos essas ferramentas para instalar pacotes, elas fazem uma consulta no arquivo <em>sources.list</em> que geralmente estar em <em>/etc/apt/</em> e este arquivo possui uma lista de repositórios onde irá ser efetuada a busca atrás do pacote solicitado.
+</p>
+
+
+
+
+<p>
+Vamos então adicionar mais repositórios neste arquivo para que nossos amigos (APT e APTITUDE) achem o que precisamos com maior facilidade.
+</p>
+
+
+
+
+<p>
+O Jonhnatha Trigueiro mantem o site <a href="http://goo.gl/L0H76" title="Ir para o site">Debian Sources List</a> Generator que é uma mão na roda para esta tarefa. Vamos ver como tudo funciona.
+</p>
+
+
+
+
+<h2>Selecionado repositórios</h2>
+
+
+<p>
+<a href="http://goo.gl/L0H76">Acessem o site clicando aqui..</a> Na página inicial possuímos 5 passos para gerar um arquivo <em>sources.list</em> customizado, vamos seguílos.
+</p>
+
+
+
+
+<h3>1 – Select your country</h3>
+
+
+<p><img src="/images/source-list/step1.png" width="789"></p>
+
+<p>
+Escolhemos de qual país serão nossos repositórios.
+</p>
+
+
+
+
+<h3>2 – Select your release</h3>
+
+
+<p><img src="/images/source-list/step2.png" width="789"></p>
+
+<p>
+Para qual versão do Debian.
+</p>
+
+
+
+
+<h3>3 – Debian Branches</h3>
+
+
+<p><img src="/images/source-list/step3.png" width="789"></p>
+
+<p>
+Repositórios disponíveis. Temos duas opções para cada um sendo que a que possui Sources Repository armazena código fonte para desenvolvedores.
+</p>
+
+
+
+
+<h3>4 – Debian Updates</h3>
+
+
+<p><img src="/images/source-list/step4.png" width="789"></p>
+
+<p>
+O títudo é bem intuitivo!
+</p>
+
+
+
+
+<h3>5 – 3rd Parties Repos</h3>
+
+
+<p><img src="/images/source-list/step5.png" width="789"></p>
+
+<p>
+Repositórios adicionados por terceiros. Esta lista é bem maior e varia de acordo com o release escolhido.
+</p>
+
+
+
+
+<h2>Gerando o arquivo</h2>
+
+
+<p>
+Depois das escolhas, clique em <strong>Generate List</strong>
+Uma lista com todos os repositórios escolhidos é gerada, então abra o arquivo sources.list e substitua seu conteúdo.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vim /etc/apt/sources.list
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Para os repositórios de terceiro é necessário adicionar a chave publica ssh para que seja efetuada a busca, observe a lista que o comando para esta tarefa já está incluído.
+</p>
+
+
+<p><img src="/images/source-list/step6.png" width="789"></p>
+
+<p>
+É só copiar e executar no terminal!
+</p>
+
+
+
+
+<h2>Atualizando a distro!</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get upgrade
+</span><span class='line'>sudo aptitude update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+Espero que estas informações sejam úteis, principalmente para os que como eu, estão começando.
+Dêem uma navegada em <a href="http://goo.gl/L0H76" title="Ir para o site">Debian Sources List</a> , temos a possibilidade de adicionar repositórios também e contribuir para a comunidade open source.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

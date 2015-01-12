@@ -1,0 +1,28 @@
+<div class="highlight"><pre>rake -T db
+
+rake app:db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
+rake app:db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
+rake app:db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
+rake app:db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
+rake app:db:migrate:status <span class="c"># Display status of migrations</span>
+rake app:db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
+rake app:db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
+rake app:db:schema:load <span class="c"># Load a schema.rb file into the database</span>
+rake app:db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
+rake app:db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
+rake app:db:structure:dump <span class="c"># Dump the database structure to db/structure.sql. Specify another file with DB_STRUCTURE=db/my_structure.sql</span>
+rake app:db:version <span class="c"># Retrieves the current schema version number</span>
+rake db:create <span class="c"># Create the database from config/database.yml for the current Rails.env (use db:create:all to create all dbs in the config)</span>
+rake db:drop <span class="c"># Drops the database for the current Rails.env (use db:drop:all to drop all databases)</span>
+rake db:fixtures:load <span class="c"># Load fixtures into the current environment&#39;s database.</span>
+rake db:migrate <span class="c"># Migrate the database (options: VERSION=x, VERBOSE=false).</span>
+rake db:migrate:status <span class="c"># Display status of migrations</span>
+rake db:rollback <span class="c"># Rolls the schema back to the previous version (specify steps w/ STEP=n).</span>
+rake db:schema:dump <span class="c"># Create a db/schema.rb file that can be portably used against any DB supported by AR</span>
+rake db:schema:load <span class="c"># Load a schema.rb file into the database</span>
+rake db:seed <span class="c"># Load the seed data from db/seeds.rb</span>
+rake db:setup <span class="c"># Create the database, load the schema, and initialize with the seed data (use db:reset to also drop the db first)</span>
+rake db:structure:dump <span class="c"># Dump the database structure to an SQL file</span>
+rake db:version <span class="c"># Retrieves the current schema version number</span>
+</pre>
+</div>

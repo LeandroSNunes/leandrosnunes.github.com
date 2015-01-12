@@ -1,0 +1,72 @@
+<div class="highlight"><pre><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;h1&gt;Projeto&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;app_rails&quot;</span>       <span class="c1"># O nome do projeto</span>
+<span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>               <span class="c1"># Isso guardar os 5 últimos deploys</span>
+<span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span>     <span class="s2">&quot;production&quot;</span>    <span class="c1"># O ambiente em que o Rails irá atuar&lt;/p&gt;</span>
+
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">SCM</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+
+<span class="sr">&lt;p&gt;set :scm, &#39;git&#39;</span>
+<span class="sr">set :repository,  &quot;git@github.com:LeandroSNunes/</span><span class="n">app_rails</span><span class="o">.</span><span class="n">git</span><span class="s2">&quot;</span>
+<span class="s2">set :branch, &#39;master&#39;</span>
+<span class="s2">set :deploy_via, :remote_cache&lt;/p&gt;</span>
+
+<span class="s2">&lt;h1&gt;Servidor&lt;/h1&gt;</span>
+
+<span class="s2">&lt;p&gt;default_run_options[:pty] = true</span>
+<span class="s2">ssh_options[:forward_agent] = true</span>
+<span class="s2">set :user, &quot;</span><span class="n">leandro</span><span class="s2">&quot;</span>
+<span class="s2">set :use_sudo, false</span>
+<span class="s2">server &quot;</span><span class="n">leandronunes</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">br</span><span class="s2">&quot;, :web, :app, :db, :primary =&gt; true</span>
+<span class="s2">set :deploy_to, &quot;</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">app_rails</span><span class="o">.</span><span class="n">leandronunes</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">br</span><span class="o">/</span><span class="c1">#{application}&quot;&lt;/p&gt;</span>
+
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Tarefas</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+
+<span class="sr">&lt;p&gt;namespace :deploy do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">task</span> <span class="ss">:start</span> <span class="k">do</span> <span class="p">;</span> <span class="k">end</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+
+<span class="sr">&lt;h1&gt;task :stop do ; end&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>   <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt; run &quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="sr">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">restart</span><span class="o">.</span><span class="n">txt</span><span class="s2">&quot;</span>
+<span class="s2"> end</span>
+<span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+
+<span class="s2">&lt;p&gt;   task :database, :roles =&gt; :app do&lt;/p&gt;</span>
+
+<span class="s2">&lt;pre&gt;&lt;code&gt; run &quot;</span><span class="n">cp</span> <span class="c1">#{deploy_to}/#{shared_dir}/database.yml #{release_path}/config/&quot;</span>
+<span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>   <span class="k">end</span>
+   <span class="n">task</span> <span class="ss">:permission</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:web</span><span class="p">,</span> <span class="ss">:db</span><span class="p">,</span> <span class="ss">:app</span><span class="o">]</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;pre&gt;&lt;code&gt; run &quot;chmod 755 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="sr">/</span><span class="kp">public</span> <span class="o">-</span><span class="n">R</span><span class="s2">&quot; </span>
+<span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+
+<span class="s2">&lt;p&gt;   end</span>
+<span class="s2">end&lt;/p&gt;</span>
+
+<span class="s2">&lt;p&gt;namespace :assets do&lt;/p&gt;</span>
+
+<span class="s2">&lt;pre&gt;&lt;code&gt;task :symlink, :roles =&amp;gt; :app do</span>
+<span class="s2">  assets.create_dir</span>
+<span class="s2">      run &amp;lt;&amp;lt;-CMD</span>
+<span class="s2">        rm -rf  </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/images/upload &amp;amp;&amp;amp;</span>
+<span class="s2">        ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/upload </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/images/upload</span>
+<span class="s2">      CMD</span>
+<span class="s2">end</span>
+<span class="s2">    task :create_dir, :roles =&amp;gt; :app do</span>
+<span class="s2">      run &quot;</span><span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="c1">#{shared_path}/upload&quot;</span>
+    <span class="k">end</span>
+<span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;after &quot;deploy:assets:symlink&quot;, &#39;deploy:database&#39;</span>
+<span class="sr">after &quot;deploy:update_code&quot;, &#39;deploy:permission&#39;</span>
+</pre>
+</div>

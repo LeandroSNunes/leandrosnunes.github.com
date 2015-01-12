@@ -1,0 +1,7 @@
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;er&#39;</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">attr_accessible</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:full_name</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="n">presence</span><span class="ss">:true</span><span class="p">,</span>  <span class="nb">format</span><span class="p">:{</span><span class="n">with</span><span class="p">:</span> <span class="no">ER</span><span class="o">::</span><span class="no">EMAIL</span><span class="p">}</span>
+<span class="k">end</span>
+</pre>
+</div>

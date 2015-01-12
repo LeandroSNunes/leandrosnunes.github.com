@@ -1,0 +1,17 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">ExampleController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="no">Example</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">sanitized_params</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="no">Example</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">update_attributes!</span><span class="p">(</span><span class="n">sanitized_params</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">sanitized_params</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:example</span><span class="o">].</span><span class="n">slice</span><span class="p">(</span><span class="ss">:expected_param</span><span class="p">,</span> <span class="ss">:another_expected_param</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

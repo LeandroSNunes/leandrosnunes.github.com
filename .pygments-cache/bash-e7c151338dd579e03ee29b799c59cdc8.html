@@ -1,0 +1,19 @@
+<div class="highlight"><pre>NameVirtualHost *:80
+
+&lt;VirtualHost *:80&gt;
+  ServerAdmin seuemail@email.com
+  DocumentRoot <span class="s2">&quot;/Users/leandronunes/&quot;</span>
+  ErrorLog <span class="s2">&quot;/private/var/log/apache2/error_log&quot;</span>
+  CustomLog <span class="s2">&quot;/private/var/log/apache2/access_log&quot;</span> common
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+  ServerAdmin seuemail@email.com
+  DocumentRoot <span class="s2">&quot;/Users/leandronunes/blog&quot;</span>
+  ServerName leandronunes.com
+  ServerAlias www.leandronunes.com
+  ErrorLog <span class="s2">&quot;/Users/leandronunes/blog/log/error_log&quot;</span>
+  CustomLog <span class="s2">&quot;/Users/leandronunes/blog/log/access_log&quot;</span> common
+&lt;/VirtualHost&gt;
+</pre>
+</div>

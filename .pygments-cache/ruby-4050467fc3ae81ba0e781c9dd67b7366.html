@@ -1,0 +1,14 @@
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">ER</span>
+  <span class="c1"># Pattern para validação de e-mail</span>
+  <span class="no">EMAIL</span> <span class="o">=</span> <span class="sr">/^[^@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i</span> 
+  <span class="c1"># Pattern para validação de data no padrão 99/99/9999</span>
+  <span class="no">DATE</span> <span class="o">=</span> <span class="sr">/^(([012][0-9])|(3[01]))\/(0[1-9]|1[012])\/\d{4}$/</span> 
+  <span class="c1"># Pattern para validação de data no padrão 9999-99-99</span>
+  <span class="no">DATE_DB</span> <span class="o">=</span> <span class="sr">/^\d{4}-(0[1-9]|1[012])-(([012][0-9])|(3[01]))$/</span>
+  <span class="c1"># Pattern para validação de horas sem os segungos no padrão 99:99</span>
+  <span class="no">TIME_H_M</span> <span class="o">=</span> <span class="sr">/^(([01]\d)|(2[0-3])):([0-5]\d)$/</span>
+  <span class="c1"># Pattern para validação de urls, permitido os protocolos http e https</span>
+  <span class="no">URL</span> <span class="o">=</span> <span class="sr">/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix</span>
+<span class="k">end</span>
+</pre>
+</div>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linux | Leandro Nunes]]></title>
-  <link href="http://LeandroSNunes.github.com/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-02-13T10:52:38-02:00</updated>
-  <id>http://LeandroSNunes.github.com/</id>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
+  <updated>2015-01-12T01:12:45+00:00</updated>
+  <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
     <email><![CDATA[leandronunes.dev@gmail.com]]></email>
@@ -15,12 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Seminário Computação em Nuvem]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/08/12/seminario-computacao-em-nuvem/"/>
-    <updated>2012-08-12T16:15:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/08/12/seminario-computacao-em-nuvem</id>
-    <content type="html"><![CDATA[<p><img src="/images/cloud_computing/banner.jpg" width="789"></p>
-
-<p>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/08/12/seminario-computacao-em-nuvem/"/>
+    <updated>2012-08-12T16:15:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/08/12/seminario-computacao-em-nuvem</id>
+    <content type="html"><![CDATA[<p>
 Quando cursei a disciplina de Introdução a Computação, desenvolvi uma pequena pesquisa sobre Computação em Nuvem <em>(Cloud Computind)</em>
 para o trabalho de conclusão de período, assim, pude conhecer um pouco mais sobre um conceito que pretende levar às últimas 
 consequências à transferência de processamento, a ideia de que uma hora ou outra não será mais necessário investir em máquinas 
@@ -68,9 +66,9 @@ suas pesquisas.
   
   <entry>
     <title type="html"><![CDATA[Conectando módulo Bluetooth JY-MCU V1.02 + Arduino + Debian]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/"/>
-    <updated>2012-06-05T21:54:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian</id>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/"/>
+    <updated>2012-06-05T21:54:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian</id>
     <content type="html"><![CDATA[<p>
 Tempo curtissímo neste final de período de faculdade, mais hoje, não pude deixar de compartilhar algumas informações com os que estão junto comigo, descobrindo 
 o Arduino. Vamos desenrrolar o assunto...
@@ -353,12 +351,10 @@ vale a pena dar uma conferida, vou deixar para outro post. <br />
   
   <entry>
     <title type="html"><![CDATA[adicionar programa no menu do debian]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian/"/>
-    <updated>2012-05-05T21:07:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian</id>
-    <content type="html"><![CDATA[<p><img src="/images/menu-debian/banner.jpg" width="789"></p>
-
-<p>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/05/05/adicionar-programa-no-menu-do-debian/"/>
+    <updated>2012-05-05T21:07:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/05/05/adicionar-programa-no-menu-do-debian</id>
+    <content type="html"><![CDATA[<p>
 Hoje instalando um software via terminal do Debian senti a necessidade de adicioná-lo ao menu de aplicativos para facilitar a utilização e não  ficar passando path para starta via shell.
 </p>
 
@@ -426,12 +422,10 @@ Nesse tutorial vamos instalar o <a href="http://www.scilab.org/">Scilab</a>. Par
   
   <entry>
     <title type="html"><![CDATA[Tornando ninja o arquivo sources.list do Debian]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/"/>
-    <updated>2012-04-17T22:30:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian</id>
-    <content type="html"><![CDATA[<p><img src="/images/source-list/banner.jpg" width="789"></p>
-
-<p>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/"/>
+    <updated>2012-04-17T22:30:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian</id>
+    <content type="html"><![CDATA[<p>
 Para que o uso do computador faça sentido, precisamos instalar softwares que satisfaçam nossas necessidades. Para lidar com esse problema, o Debian possui ferramentas para instalar e atualizar pacotes e suas dependências de maneira rápida e prática. Nossos amigos são o APT e o APTITUDE.
 </p>
 

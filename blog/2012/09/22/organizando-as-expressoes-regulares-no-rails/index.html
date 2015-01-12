@@ -8,8 +8,9 @@
   <title>Organizando as Expressões Regulares no Rails - Leandro Nunes</title>
   <meta name="author" content="Leandro Nunes">
 
+   
+  <meta name="description" content="No dia a dia sempre necessitamos dos super poderes das Expressões Regulares para validações de formulários e organizá-las é uma boa idéia. Neste post mostro uma solução que estou usando no Rails">
   
-  <meta name="description" content="No dia a dia sempre necessitamos dos super poderes das Expressões Regulares para validações de formulários e organizá-las é uma boa idéia. Neste post &hellip;">
   <meta name="keywords" content="expressões regulares, expressôes regulares, er, ers, patterns, regex, regexp, utilizando ers ruby, regexp no ruby, validação com  expressão regular, validar email com expressão regular, atributo pattern do html5, validação de formulário com er, criando validação de formulario, text_field + rails, validando dados na tag input, regexp ruby-doc.org">
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,28 +19,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/">
+  <link rel="canonical" href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails">
   <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Leandro Nunes" type="application/atom+xml">
-  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/modernizr-2.0.js"></script>
+  <script src="/js/octopress.js" type="text/javascript"></script>
+  <script src="/js/application.js"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
-    // Avoid conflict with ender.js.
-    jQuery.noConflict();
-</script>
-<!-- jQuery Form Plugin -->
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<!-- jQuery Form Validation Plugin -->
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
-<script src="/javascripts/google_form.js"></script>
 
   
   <script type="text/javascript">
@@ -58,68 +51,58 @@
 </head>
 
 <body   >
-  <header role="banner"><hgroup>
-  <div id="logo">
-<!--  	<div id="logoLeft">{</div>-->
-<!--  	<div id="logoText">mob</div>-->
-<!--  	<div id="logoRight">}</div>-->
-  	<div class="clear"></div>
-  </div>
-  <h1><a href="/">Leandro Nunes</a></h1>
-  
-    <h2>Bit a Bit disseminando conhecimento.</h2>
-  
-  <div class="clear"></div>
-  
-  <div id="socialIcons">
-    <a href="https://twitter.com/LeandroSNunes" target="_blank"><img src="/images/twitter.png" alt="icon twitter" /></a>
-    <a href="http://www.facebook.com/leandronunesdeveloper" target="_blank"><img src="/images/facebook.png" alt="icon facebook" /></a> 
-    <a href="http://www.flickr.com/photos/45796698@N05/" target="_blank"><img src="/images/flickr.png" alt="icon flickr" /></a> 
-    <a href="http://br.linkedin.com/in/leandrosnunes" target="_blank"><img src="/images/linkedin.png" alt="icon linkedin" /></a> 
-    <a href="http://www.youtube.com/user/leandronunesdevelope" target="_blank"><img src="/images/youtube.png" alt="icon youtube" /></a> 
-    <a href="http://www.orkut.com.br/Main#Profile?uid=8120271981440334720" target="_blank"><img src="/images/orkut.png" alt="icon orkut" /></a> 
-    <a href="https://plus.google.com/100479053205966074229" target="_blank"><img src="/images/google.png" alt="icon google" /></a> 
-  </div>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-    <li><a href="leandronunes.dev@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:LeandroSNunes.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Início</a></li>
-  <li><a href="/about">Sobre</a></li>
-  <li><a href="/blog/archives">Arquivos</a></li>
-<!--  <li><a href="/contact">Contato</a></li>-->
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="navbar-inner">
+  	  <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="fui-menu-24"></span>
+        </a>
+  	  	<div class="nav-collapse collapse navbar-responsive-collapse" style="height:0;">
+  	      <ul class="nav">
+    
+        <li ><a href="/index.html">Home</a></li>
+    
+        <li ><a href="/blog/archives/index.html">Arquivos</a></li>
+    
 </ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
+<ul class="nav pull-right">
+    
+    <li><a href="http://github.com/LeandroSNunes" title="Github Profile"><i class="icon-github-sign social-navbar"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/leandrosnunes" title="Linkedin Profile"><i class="icon-linkedin-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://twitter.com/LeandroSNunes" title="Twitter Profile"><i class="icon-twitter-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://plus.google.com/100479053205966074229" title="Google+ Profile"><i class="icon-google-plus-sign social-navbar"></i></a></li>
+    
+    
+    
+
+    
+    <li><a href="mailto:leandronunes.dev@gmail.com" title="Email"><i class="icon-envelope social-navbar"></i></a></li>
+    
+</ul>
+
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  <div class="container" id="main">
+      <div class="row-fluid">
+        <div id="content">
+          <div>
 <article class="hentry" role="article">
   
+
   <header>
-    
-      
-        <h1 class="entry-title">Organizando as Expressões Regulares No Rails</h1>
-      
-    
-    
-      <p class="meta">
-        
+  <div class="jumbotron">
+    Organizando as Expressões Regulares No Rails
+	<h5>
 
 
 
@@ -131,49 +114,26 @@
   
 
 
-<time datetime="2012-09-22T14:55:00-03:00" pubdate data-updated="true">22 - Sep - 2012</time>
-        
-         | <a href="#disqus_thread">Comments</a> 
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p><img src="/images/post-organizando-ers.jpg" width="789" title="&#34;Banner do post Organizando as Expressões Regulares no Rails&#34;" alt="&#34;Banner do post Organizando as Expressões Regulares no Rails&#34;"></p>
-
-<p>
-No dia a dia sempre necessitamos dos super poderes das Expressões Regulares para validações de formulários, replaces em 
-textos e tantas outras coisas mais, alguns patterns raramente mudam de um projeto para outro, o pattern para validar e-mails 
-é um exemplo.
-</p>
-
+<i class="icon-calendar-empty"></i> <time datetime="2012-09-22T14:55:00+00:00" pubdate data-updated="true">22 - Sep - 2012</time></h5>
+  </div>
+</header>
+  <div class="row-fluid">
+    <div class="span12">
+      <p>No dia a dia sempre necessitamos dos super poderes das Expressões Regulares para validações de formulários, replaces em
+textos e tantas outras coisas mais, alguns patterns raramente mudam de um projeto para outro, o pattern para validar e-mails
+é um exemplo.</p>
 
 <!-- more -->
 
 
-
-
-<p>
-Pensando nisso e aproveitando a estrutura do Rails que já possui a pasta <code> /lib </code>  para armazenar nossos códigos customizados, 
-criei um module &#8220;ER&#8221; para ir colecionando os patterns rotineiros. 
-</p>
-
+<p>Pensando nisso e aproveitando a estrutura do Rails que já possui a pasta <code> /lib </code>  para armazenar nossos códigos customizados,
+criei um module &#8220;ER&#8221; para ir colecionando os patterns rotineiros.</p>
 
 <blockquote><p>Neste post estou mostrando uma solução que encontrei pois ainda desconheço se o Rails possui alguma convenção para essa tarefa.</p></blockquote>
 
-
 <h2>Vamos ver a ideia!</h2>
 
-
-
-
-<p>
-Na pasta <code> /lib </code> criei um arquivo <code> er.rb </code>  que será nosso &#8220;repositório de ERs&#8221;.
-</p>
-
-
-
+<p>Na pasta <code> /lib </code> criei um arquivo <code> er.rb </code>  que será nosso &#8220;repositório de ERs&#8221;.</p>
 
 <figure class='code'><figcaption><span>ruby  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -208,12 +168,7 @@ Na pasta <code> /lib </code> criei um arquivo <code> er.rb </code>  que será no
 <h2>Utilizando</h2>
 
 
-<p>
-Para exemplificar, vamos validar um model User.
-</p>
-
-
-
+<p>Para exemplificar, vamos validar um model User.</p>
 
 <figure class='code'><figcaption><span>ruby  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -231,21 +186,11 @@ Para exemplificar, vamos validar um model User.
 
 <p>Perceberam a chamada do pattern? :P</p>
 
-<p>
-Para validação em front-end utilizando o atributo <code> pattern </code> do HTML5, podemos reaproveitar nossos patterns, só que 
-precisamos de um passo a mais devido o padrão ser ER crua sem estar contida em &#8220;//&#8221; (barras). 
-</p>
+<p>Para validação em front-end utilizando o atributo <code> pattern </code> do HTML5, podemos reaproveitar nossos patterns, só que
+precisamos de um passo a mais devido o padrão ser ER crua sem estar contida em &#8220;//&#8221; (barras).</p>
 
-
-
-
-<p>
-Criei então um Help para fazer essa tarefa e as View continuarem fazendo apenas seu papel. 
-No arquivo <code> app/helpers/application_helper.rb </code>  incluir:
-</p>
-
-
-
+<p>Criei então um Help para fazer essa tarefa e as View continuarem fazendo apenas seu papel.
+No arquivo <code> app/helpers/application_helper.rb </code>  incluir:</p>
 
 <figure class='code'><figcaption><span>ruby  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -265,16 +210,9 @@ No arquivo <code> app/helpers/application_helper.rb </code>  incluir:
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
-<p>
-Notem que usei <code> Module#const_get </code>  para pegar a referência da constante informado e no fim o 
+<p>Notem que usei <code> Module#const_get </code>  para pegar a referência da constante informado e no fim o
 <code> Regexp#source </code>  que retorna a string original que está envolvida por &#8220;//&#8221; <br />
-Ficando no formulário:
-</p>
-
-
-
+Ficando no formulário:</p>
 
 <figure class='code'><figcaption><span>ruby  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -287,217 +225,99 @@ Ficando no formulário:
 <h2>Concluíndo</h2>
 
 
+<p>É isso ai, a intenção é só para mostar uma possibilidade de organizar as coisas, claro que deve possuir outras, dessa forma,
+aceito sugestões e dicas. :)</p>
 
+<p>Para uma consulta rápida sobre metacaracteres o Aurélio disponibiliza um guia rápido <a href="http://piazinho.com.br/download/expressoes-regulares-3-tabelas.pdf" title="Ir para outra página">http://piazinho.com.br/download/expressoes-regulares-3-tabelas.pdf</a>.<br />
+Para se aprofundar, leia o livro <a href="http://piazinho.com.br/" title="Ir para página do livro">Expressões Regulares - Uma abordagem divertida</a>.</p>
 
-<p>
-É isso ai, a intenção é só para mostar uma possibilidade de organizar as coisas, claro que deve possuir outras, dessa forma, 
-aceito sugestões e dicas. :)
-</p>
+    </div>
+  </div>
 
-
-
-
-<p>
-Para uma consulta rápida sobre metacaracteres o Aurélio disponibiliza um guia rápido <a href="http://piazinho.com.br/download/expressoes-regulares-3-tabelas.pdf" title="Ir para outra página">http://piazinho.com.br/download/expressoes-regulares-3-tabelas.pdf</a>.<br />
-Para se aprofundar, leia o livro <a href="http://piazinho.com.br/" title="Ir para página do livro">Expressões Regulares - Uma abordagem divertida</a>.
-</p>
-
-
-
-</div>
 
 
   <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Leandro Nunes</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-22T14:55:00-03:00" pubdate data-updated="true">22 - Sep - 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
-  
-</span>
-
-
-    </p>
+    <hr>
     
-      <div class="sharing">
+    <div class="row-fluid">
+      
+      <div class="span6">
+        <p class="meta">
+        
+        
+
+
+
+  <a href="/blog/categories/rails/"><span class="badge">Rails</span></a>
+
+  <a href="/blog/categories/ruby/"><span class="badge">Ruby</span></a>
+
+
+
+
+        </p>
+      </div>
+      
+      <div class="span6 social-sharing">
+        <div class="sharing">
+  <div class="addthis_toolbox addthis_default_style ">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/" data-via="LeandroSNunes" data-counturl="http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/" >Tweet</a>
+  <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
   
   
-  <div class="g-plusone" data-size="medium"></div>
+  <a class="addthis_button_tweet"></a>
   
   
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
   
+  <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
 </div>
 
+      </div>
+      
+      
+    </div>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2012/08/26/simulando-circuitos-com-o-digital-works/" title="Previous Post: Simulando Circuitos com o Digital Works">&laquo; Simulando Circuitos com o Digital Works</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/" title="Next Post: Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable">Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable &raquo;</a>
-      
-    </p>
+    <div class="row-fluid">
+      <div class="span12">
+        <p class="meta">
+          
+            <a class="basic-alignment left" href="/blog/2012/08/26/simulando-circuitos-com-o-digital-works/" title="Previous Post: Simulando Circuitos com o Digital Works">&laquo; Simulando Circuitos com o Digital Works</a>
+          
+          
+            <a class="basic-alignment right" href="/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/" title="Next Post: Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable">Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable &raquo;</a>
+          
+        </p>
+      </div>
+    </div>
   </footer>
 </article>
 
   <section>
-    <h1>Comments</h1>
+    <h1>Comentários</h1>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
   </section>
 
 </div>
 
-<aside class="sidebar">
-  
-    <section id="programming">
-  
-  <div id="personal">
-    <div class="cols">
-      <a class="workingwithrails" href="http://leandronunes.com">
-        <img alt="Leandro Nunes" src="/images/avatar.jpg" />
-      </a>
-    </div>
-    <div class="cols">
-      <em>
-        Leandro Nunes<br />
-        Web Developer<br />
-        Serra - ES
-      </em>
-      <a href="http://workingwithrails.com/recommendation/new/person/704818-leandro-souza-nunes">
-        <img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small.jpg" />
-      </a>
-    </div>
-  </div>
-  
-  <div id="specialties">
-    <a href="http://www.ruby-lang.org/" title="Ruby"><img src="/images/ruby.png" alt="Ruby" /></a>  
-    <a href="http://php.net/" title="PHP"><img src="/images/php.png" alt="PHP" /></a> 
-    <a href="http://www.w3schools.com/js/default.asp" title="Javascript"><img src="/images/javascript.png" alt="Javascript" /></a>
-    <a href="http://www.jquery.com" title="jQuery"><img src="/images/jquery.png" alt="jQuery" /></a> 
-    <a href="http://www.oracle.com/technetwork/java/index.html" title="Java"><img src="/images/java.png" alt="Java" /></a>
-    <a href="http://rubyonrails.org/" title="RubyOnRails"><img src="/images/rails.png" alt="RubyOnRails" /></a>    
-    <a href="http://www.w3.org/TR/#tr_CSS" title="CSS3"><img src="/images/css.png" alt="CSS3" /></a>
-    <a href="http://www.html5rocks.com/en/" title="HTML5"><img src="/images/html.png" alt="HTML5" /></a>
-    <a href="http://www.debian.org" title="Debian"><img src="/images/debian.png" alt="Debian" /></a>
-    <a href="http://www.arduino.cc/" title="Arduino"><img src="/images/arduino.png" alt="Arduino" /></a>
-  </div>
-  
-</section>  
-  
-<section>
-  <h1>Categorias</h1>
-<ul>
-  <li>
-     <a class='category' href='/blog/categories/apache/'>Apache</a>, <a class='category' href='/blog/categories/arduino/'>Arduino</a>, <a class='category' href='/blog/categories/debian/'>Debian</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/matemática/'>Matemática</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/softwares/'>Softwares</a>
-  </li>
-</ul>
-</section>
-
-<section>
-  <h1>Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Atualizando...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("LeandroSNunes", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/LeandroSNunes" class="twitter-follow-button" data-show-count="false">Follow @LeandroSNunes</a>
-  
-</section>
 
 
-<section>
-  <h1>GitHub</h1>
-  <ul id="gh_repos">
-    <li class="loading">Nenhum repositório disponível</li>
-  </ul>
-  
-  <a href="https://github.com/LeandroSNunes">@LeandroSNunes</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'LeandroSNunes',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-<section>
-  <h1>Links</h1>
-  <ul>
-    <li><a href="https://www.ruby-toolbox.com/" >The Ruby Toolbox</a></li>
-    <li><a href="http://akitaonrails.com.br/" >Ruby- AkitaOnRails</a></li>
-    <li><a href="http://www.rubygems.org/" >Ruby Gems</a></li>
-    <li><a href="http://rubyonbr.org/" >RubyOnBr</a></li>
-  </ul>
- </section>
- 
- 
-
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-9103952879374380";
-/* Livros Programaçao */
-google_ad_slot = "6014198873";
-google_ad_width = 250;
-google_ad_height = 250;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Leandro Nunes -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <footer class="footer-page" role="contentinfo">
+          <p>
+  Copyright &copy; 2015 - Leandro Nunes -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> - Theme by <a href="http://alexgaribay.com">Alex Garibay</a>
 </p>
 
-</footer>
+
+        </footer>
+      </div>
+  </div>
   
 
 <script type="text/javascript">
@@ -505,8 +325,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/';
-        var disqus_url = 'http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/';
+        var disqus_identifier = 'http://LeandroSNunes.github.com/leandrosnunes/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/';
+        var disqus_url = 'http://LeandroSNunes.github.com/leandrosnunes/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/';
         var disqus_script = 'embed.js';
       
     (function () {
@@ -522,7 +342,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Softwares | Leandro Nunes]]></title>
-  <link href="http://LeandroSNunes.github.com/blog/categories/softwares/atom.xml" rel="self"/>
-  <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-02-13T10:52:38-02:00</updated>
-  <id>http://LeandroSNunes.github.com/</id>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/softwares/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
+  <updated>2015-01-12T01:12:45+00:00</updated>
+  <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
     <email><![CDATA[leandronunes.dev@gmail.com]]></email>
@@ -15,72 +15,49 @@
   
   <entry>
     <title type="html"><![CDATA[Simulando Circuitos com o Digital Works]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/08/26/simulando-circuitos-com-o-digital-works/"/>
-    <updated>2012-08-26T01:08:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/08/26/simulando-circuitos-com-o-digital-works</id>
-    <content type="html"><![CDATA[<p><img src="/images/digital_works.jpg" width="789"></p>
-
-<p>
-  Digital Works é uma ferramenta que permite construir circuitos lógicos digitais, Flip-Flops, memórias e analisar o seu comportamento através de simulação em tempo real. 
-  As entradas podem ser implementadas usando chaves, clocks, sequenciadores e dispositivos de entrada iterativos, possui uma interface intuitiva, fácil de usar que o 
-  torna a escolha ideal para aprender ou ensinar eletrônica digital. 
-</p>
-
-
-
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/08/26/simulando-circuitos-com-o-digital-works/"/>
+    <updated>2012-08-26T01:08:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/08/26/simulando-circuitos-com-o-digital-works</id>
+    <content type="html"><![CDATA[<p>Digital Works é uma ferramenta que permite construir circuitos lógicos digitais, Flip-Flops, memórias e analisar o seu comportamento através de simulação em tempo real.
+As entradas podem ser implementadas usando chaves, clocks, sequenciadores e dispositivos de entrada iterativos, possui uma interface intuitiva, fácil de usar que o
+torna a escolha ideal para aprender ou ensinar eletrônica digital.</p>
 
 <!-- more -->
 
 
-
-
-<p>
-  Durante o curso de Circuitos Digitas, os alunos deverão simular todos os circuitos antes de irem ao laboratório, dessa forma, conhecer
-  o funcionamento da ferramenta facilitará bastante.
-</p>
-
-
-
+<p>Durante o curso de Circuitos Digitas, os alunos deverão simular todos os circuitos antes de irem ao laboratório, dessa forma, conhecer
+o funcionamento da ferramenta facilitará bastante.</p>
 
 <h3>Download</h3>
 
 
-<p>
-A versão atual disponível no site não é livre. É demoware e impede versões de demonstração do software, de abrir arquivos criados 
-por outras cópias do demo. No entanto, possui uma versão disponível mais antiga que não tem tais limitações e <a href="http://electronics-lab.com/downloads/schematic/002/index.html" target="_blank" title="Ir para http://electronics-lab.com">pode ser baixada aqui.</a>
-</p>
-
-
-
+<p>A versão atual disponível no site não é livre. É demoware e impede versões de demonstração do software, de abrir arquivos criados
+por outras cópias do demo. No entanto, possui uma versão disponível mais antiga que não tem tais limitações e <a href="http://electronics-lab.com/downloads/schematic/002/index.html" target="_blank" title="Ir para http://electronics-lab.com">pode ser baixada aqui.</a></p>
 
 <h3>Tutoriais</h3>
 
 
-<p>
-Como encontrei bastante material disponível na net, achei melhor mensioná-los aqui do que criar um novo tutorial. 
+<p>Como encontrei bastante material disponível na net, achei melhor mensioná-los aqui do que criar um novo tutorial.</p>
+
 <ul>
   <li><a href="http://www.clemson.edu/ces/crb/students/dbragan/classes/dworks_tutorial.htm" title="Ir para http://www.clemson.edu">Intro to Digital Works</a> (inglês)</li>
   <li><a href="http://www.scribd.com/doc/66993742/Tutorial-Digital-Works" title="Ir para http://www.scribd.com"> Sistemas Digitais</a>  - <em>Miguel Tavares</em></li>
   <li><a href="http://www-usr.inf.ufsm.br/~leandromc/iac/TutorialDW.pdf" title="Ir para http://www-usr.inf.ufsm.br">Tutorial Digital Works</a>  - <em>Leandro M. Crescencio</em></li>
   <li><a href="http://www.feng.pucrs.br/~jmiguel/_dworks/Tutorial_Digital_Works.pdf" title="http://www.feng.pucrs.br">Digital Works</a> - <em>Anderson Royes Terroso</em></li>
-  <li><a href="http://LeandroSNunes.github.com/assets/files/tutorial_macros_no_dw_3.04.pdf" title="Baixar arquivo">Macros no Digital Works</a> -    <em>Marcelo Brunoro</em></li>
+  <li><a href="http://LeandroSNunes.github.com/leandrosnunes/assets/files/tutorial_macros_no_dw_3.04.pdf" title="Baixar arquivo">Macros no Digital Works</a> -  <em>Marcelo Brunoro</em></li>
 </ul>
 
-<p>
-A cada novo material descoberto irei adicionando à lista.
-</p>
 
+<p>A cada novo material descoberto irei adicionando à lista.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Seminário Computação em Nuvem]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/08/12/seminario-computacao-em-nuvem/"/>
-    <updated>2012-08-12T16:15:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/08/12/seminario-computacao-em-nuvem</id>
-    <content type="html"><![CDATA[<p><img src="/images/cloud_computing/banner.jpg" width="789"></p>
-
-<p>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/08/12/seminario-computacao-em-nuvem/"/>
+    <updated>2012-08-12T16:15:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/08/12/seminario-computacao-em-nuvem</id>
+    <content type="html"><![CDATA[<p>
 Quando cursei a disciplina de Introdução a Computação, desenvolvi uma pequena pesquisa sobre Computação em Nuvem <em>(Cloud Computind)</em>
 para o trabalho de conclusão de período, assim, pude conhecer um pouco mais sobre um conceito que pretende levar às últimas 
 consequências à transferência de processamento, a ideia de que uma hora ou outra não será mais necessário investir em máquinas 
@@ -128,12 +105,10 @@ suas pesquisas.
   
   <entry>
     <title type="html"><![CDATA[Instalando o Scilab no Windows]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows/"/>
-    <updated>2012-02-22T20:40:00-02:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows</id>
-    <content type="html"><![CDATA[<p><img src="/images/scilab-windows/banner.jpg" width="789" title="&#34;Banner informativo para download no site scilab.org&#34;" alt="&#34;Banner informativo para download no site scilab.org&#34;"></p>
-
-<p>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-windows/"/>
+    <updated>2012-02-22T20:40:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-windows</id>
+    <content type="html"><![CDATA[<p>
 Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="http://www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
 </p>
 
@@ -222,11 +197,10 @@ lembrando que seu uso está sobre a licença <a href="http://www.cecill.info/" t
   
   <entry>
     <title type="html"><![CDATA[Instalando o Scilab no Linux]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux/"/>
-    <updated>2012-02-22T20:01:00-02:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux</id>
-    <content type="html"><![CDATA[<p><img src="/images/scilab-linux/banner.jpg" width="789" title="&#34;Banner informativo para download no site scilab.org&#34;" alt="&#34;Banner informativo para download no site scilab.org&#34;">
-Para instalar o Scilab no Linux vamos fazer uso do nosso terminal, assim fica bem simples. <br />
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-linux/"/>
+    <updated>2012-02-22T20:01:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-linux</id>
+    <content type="html"><![CDATA[<p>Para instalar o Scilab no Linux vamos fazer uso do nosso terminal, assim fica bem simples. <br />
 A minha instalação foi efetuada no Debian 6 squeeze 64bits.</p>
 
 <!-- more -->
@@ -328,9 +302,9 @@ lembrando que seu uso está sobre a licença <a href="http://www.cecill.info/" t
   
   <entry>
     <title type="html"><![CDATA[Scilab, conceitos básicos]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos/"/>
-    <updated>2012-02-21T23:57:00-02:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos</id>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/21/scilab-conceitos-basicos/"/>
+    <updated>2012-02-21T23:57:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/21/scilab-conceitos-basicos</id>
     <content type="html"><![CDATA[<p>
 A melhor maneira de se aprender algo é colocando a mão na massa. <br />
 Vamos conhecer neste post o Console do <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais" >Scilab</a> que é o pontapé inicial para entender

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Apache | Leandro Nunes]]></title>
-  <link href="http://LeandroSNunes.github.com/blog/categories/apache/atom.xml" rel="self"/>
-  <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-02-13T10:52:38-02:00</updated>
-  <id>http://LeandroSNunes.github.com/</id>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/apache/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
+  <updated>2015-01-12T01:12:45+00:00</updated>
+  <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
     <email><![CDATA[leandronunes.dev@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Habilitando Apache com Virtual Host no Mac OS X 10.8]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/"/>
-    <updated>2013-01-20T00:24:00-02:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8</id>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/"/>
+    <updated>2013-01-20T00:24:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8</id>
     <content type="html"><![CDATA[<p>Na versão do Mac OS X 10.8 (Mountain Lion) foi <a href="http://support.apple.com/kb/HT5230?viewlocale=pt_BR">removido</a> a opção "Web Sharing" do painel de controle "Sharing" em System Preferences, dessa forma a configuração se dá
 de outra forma, basicamente usando o terminal com <code>sudo</code> ou usuário <code>root</code> e um editor de texto que pode ser o <a href="http://www.vim.org">Vim</a>. Vamos as configurações.</p>
 

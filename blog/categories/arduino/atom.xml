@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Arduino | Leandro Nunes]]></title>
-  <link href="http://LeandroSNunes.github.com/blog/categories/arduino/atom.xml" rel="self"/>
-  <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2013-02-13T10:52:38-02:00</updated>
-  <id>http://LeandroSNunes.github.com/</id>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/arduino/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
+  <updated>2015-01-12T01:12:45+00:00</updated>
+  <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
     <email><![CDATA[leandronunes.dev@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Conectando módulo Bluetooth JY-MCU V1.02 + Arduino + Debian]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/"/>
-    <updated>2012-06-05T21:54:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian</id>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/"/>
+    <updated>2012-06-05T21:54:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian</id>
     <content type="html"><![CDATA[<p>
 Tempo curtissímo neste final de período de faculdade, mais hoje, não pude deixar de compartilhar algumas informações com os que estão junto comigo, descobrindo 
 o Arduino. Vamos desenrrolar o assunto...
@@ -300,12 +300,10 @@ vale a pena dar uma conferida, vou deixar para outro post. <br />
   
   <entry>
     <title type="html"><![CDATA[Instalando Arduino no Debian squeeze]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze/"/>
-    <updated>2012-05-09T21:39:00-03:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze</id>
-    <content type="html"><![CDATA[<p><img src="/images/arduino/banner.jpg" width="789"></p>
-
-<p>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/05/09/instalando-arduino-no-debian-squeeze/"/>
+    <updated>2012-05-09T21:39:00+00:00</updated>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/05/09/instalando-arduino-no-debian-squeeze</id>
+    <content type="html"><![CDATA[<p>
 Ta nóis aqui em pleno carnaval 2012 atrás do bloco dos aficionados por tecnologia com uma boa xícara de café e estudando Arduino. Como usuário do Debian, percebi que instruções sobre instalação em livros não diz muita coisa mais garimpando na web, concluir minha instalação.
 </p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | Leandro Nunes]]></title>
-  <link href="http://LeandroSNunes.github.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2015-01-12T00:44:05+00:00</updated>
-  <id>http://LeandroSNunes.github.com/</id>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
+  <updated>2015-01-12T01:12:45+00:00</updated>
+  <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
     <email><![CDATA[leandronunes.dev@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/"/>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/"/>
     <updated>2012-10-27T10:12:00+00:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable</id>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable</id>
     <content type="html"><![CDATA[<p>Ao tentar executar a suite de testes em uma <a href="http://edgeapi.rubyonrails.org/classes/Rails/Engine.html">Rails Engine</a> fui surpreendido com alguns erros, então partir para campo afim de
 descobrir o porquê das coisas não funcionarem convencionalmente como se esperava. Na página <a href="https://github.com/rails/rails/issues?labels=engines&amp;state=open">Issues</a>
  do Rails no <a href="https://github.com/">GitHub</a> vi que se tratava de bugs do Rails mesmo, no meu caso a versão 3.2.8.</p>
@@ -372,9 +372,9 @@ neste post caso cometi alguma gafe.</p>
   
   <entry>
     <title type="html"><![CDATA[Organizando as Expressões Regulares no Rails]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/"/>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/"/>
     <updated>2012-09-22T14:55:00+00:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails</id>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails</id>
     <content type="html"><![CDATA[<p>No dia a dia sempre necessitamos dos super poderes das Expressões Regulares para validações de formulários, replaces em
 textos e tantas outras coisas mais, alguns patterns raramente mudam de um projeto para outro, o pattern para validar e-mails
 é um exemplo.</p>

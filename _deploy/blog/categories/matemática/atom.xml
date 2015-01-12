@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Matemática | Leandro Nunes]]></title>
-  <link href="http://LeandroSNunes.github.com/blog/categories/matemática/atom.xml" rel="self"/>
-  <link href="http://LeandroSNunes.github.com/"/>
-  <updated>2015-01-12T00:44:05+00:00</updated>
-  <id>http://LeandroSNunes.github.com/</id>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/matemática/atom.xml" rel="self"/>
+  <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
+  <updated>2015-01-12T01:12:45+00:00</updated>
+  <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
     <email><![CDATA[leandronunes.dev@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Instalando o Scilab no Windows]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows/"/>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-windows/"/>
     <updated>2012-02-22T20:40:00+00:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows</id>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-windows</id>
     <content type="html"><![CDATA[<p>
 Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="http://www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
 </p>
@@ -107,9 +107,9 @@ lembrando que seu uso está sobre a licença <a href="http://www.cecill.info/" t
   
   <entry>
     <title type="html"><![CDATA[Instalando o Scilab no Linux]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux/"/>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-linux/"/>
     <updated>2012-02-22T20:01:00+00:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux</id>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/22/instalando-o-scilab-no-linux</id>
     <content type="html"><![CDATA[<p>Para instalar o Scilab no Linux vamos fazer uso do nosso terminal, assim fica bem simples. <br />
 A minha instalação foi efetuada no Debian 6 squeeze 64bits.</p>
 
@@ -212,9 +212,9 @@ lembrando que seu uso está sobre a licença <a href="http://www.cecill.info/" t
   
   <entry>
     <title type="html"><![CDATA[Scilab, conceitos básicos]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos/"/>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/21/scilab-conceitos-basicos/"/>
     <updated>2012-02-21T23:57:00+00:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos</id>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/21/scilab-conceitos-basicos</id>
     <content type="html"><![CDATA[<p>
 A melhor maneira de se aprender algo é colocando a mão na massa. <br />
 Vamos conhecer neste post o Console do <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais" >Scilab</a> que é o pontapé inicial para entender
@@ -438,9 +438,9 @@ Para saber mais sobre o console você pode acessar a documentação <a href="htt
   
   <entry>
     <title type="html"><![CDATA[Scilab Help, torne-se amigo dele!]]></title>
-    <link href="http://LeandroSNunes.github.com/blog/2012/02/20/scilab-help/"/>
+    <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/20/scilab-help/"/>
     <updated>2012-02-20T22:27:00+00:00</updated>
-    <id>http://LeandroSNunes.github.com/blog/2012/02/20/scilab-help</id>
+    <id>http://LeandroSNunes.github.com/leandrosnunes/blog/2012/02/20/scilab-help</id>
     <content type="html"><![CDATA[<p>
 O <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais">Scilab</a> possui um componente de help (ajuda) que pode ser utilizado como um contato inicial e sempre que houver dúvidas de sintaxe 
 de comandos, nomes de funções, etc… Quem está começando a manipular o Scilab, é válido dar uma navegada no help para conhecer seu conteúdo e 

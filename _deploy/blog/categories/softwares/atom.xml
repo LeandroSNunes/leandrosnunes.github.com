@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Softwares | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/softwares/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-01-12T01:41:42+00:00</updated>
+  <updated>2015-01-12T01:56:04+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -135,21 +135,21 @@ Clique em download para baixar a versão de 32bits ou selecione Other Systems pa
 </p>
 
 
-<p><img src="/images/scilab-windows/step2.jpg" width="789"></p>
+<p>{% img /images/scilab-windows/step2.jpg 789 %}</p>
 
 <p>
 2) Agora escolha o idioma que será utilizado durante a instalação.
 </p>
 
 
-<p><img src="/images/scilab-windows/step3.jpg" width="789"></p>
+<p>{% img /images/scilab-windows/step3.jpg 789 %}</p>
 
 <p>
 3) Chegamos no assistente, então, clique em avançar.
 </p>
 
 
-<p><img src="/images/scilab-windows/step4.jpg" width="789"></p>
+<p>{% img /images/scilab-windows/step4.jpg 789 %}</p>
 
 <p>
 Daqui pra frente, segue-se o modo de instalação padrão do windows: avançar, avançar e avançar. <br />
@@ -158,9 +158,11 @@ Daqui pra frente, segue-se o modo de instalação padrão do windows: avançar, 
 </p>
 
 
-<p><img src="/images/scilab-windows/console.jpg" width="789"></p>
+<p>{% img /images/scilab-windows/console.jpg 789 %}</p>
 
-<p><blockquote><p>Este iremos estudar no próximo post.</p></blockquote></p>
+<p>{% blockquote %}
+Este iremos estudar no próximo post.
+{% endblockquote %}</p>
 
 <h3>Finalizando</h3>
 
@@ -171,20 +173,18 @@ console <code> –> </code> digite o seguinte comando:
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>disp<span class="o">(</span><span class="s2">&quot;Alô Mundo&quot;</span><span class="o">)</span>;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+disp("Alô Mundo");
+{% endcodeblock %}</p>
 
 <p>
 Agora para encerrar e aguardarmos o próximo post digite:
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">exit</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+exit
+{% endcodeblock %}</p>
 
 <h3>Informações Úteis</h3>
 
@@ -214,40 +214,30 @@ A minha instalação foi efetuada no Debian 6 squeeze 64bits.</p>
 <p>Temos versões do Scilab para 32bits e 64bits. A instalação é igual mudando apenas o link para o download. Fazemos assim:</p>
 
 <p><b>1)</b> Acessando a pasta onde queremos efetuar a instalação, no meu caso  <code> /opt </code>
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /opt
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock bash lang:bash %}
+cd /opt
+{% endcodeblock %}</p>
 
 <p><b>2)</b> Baixando o binário na versão do nosso sistema.
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;32 bits&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;wget http://www.scilab.org/download/5.3.3/scilab-5.3.3.bin.linux-i686.tar.gz&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;64 bits&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;wget http://www.scilab.org/download/5.3.3/scilab-5.3.3.bin.linux-x86_64.tar.gz
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock bash lang:bash %}</p>
 
-<p><blockquote><p>Vou seguir utilizando a verão para 64 bits.</p></blockquote></p>
+<h1>32 bits</h1>
+
+<p>wget http://www.scilab.org/download/5.3.3/scilab-5.3.3.bin.linux-i686.tar.gz</p>
+
+<h1>64 bits</h1>
+
+<p>wget http://www.scilab.org/download/5.3.3/scilab-5.3.3.bin.linux-x86_64.tar.gz
+{% endcodeblock %}</p>
+
+<p>{% blockquote %}
+Vou seguir utilizando a verão para 64 bits.
+{% endblockquote %}</p>
 
 <p><b>3)</b> Vamos descompactá-lo então
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar fzxv scilab-5.3.3.bin.linux-x86_64.tar.gz
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock bash lang:bash %}
+tar fzxv scilab-5.3.3.bin.linux-x86_64.tar.gz
+{% endcodeblock %}</p>
 
 <p>
 Pronto! Scilab instalado.
@@ -264,10 +254,9 @@ Para executá-lo é so digitar
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/opt/scilab-5.3.3/bin/scilab
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+/opt/scilab-5.3.3/bin/scilab
+{% endcodeblock %}</p>
 
 <p>
 Para facilitar, podemos adicionar o Scilab no menu do Debian, é só dar uma olhada <a href="http://goo.gl/bmTol" title="Ir para o post">aqui</a> para saber como.
@@ -276,20 +265,18 @@ Com o Scilab em execução, vamos imprimir a famosa frase “Alô Mundo” e tes
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>disp<span class="o">(</span><span class="s2">&quot;Alô Mundo&quot;</span><span class="o">)</span>;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+disp("Alô Mundo");
+{% endcodeblock %}</p>
 
 <p>
 Agora para encerrar e aguardarmos o próximo post digite:
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">exit</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+exit
+{% endcodeblock %}</p>
 
 <h3>Informações Úteis</h3>
 
@@ -317,7 +304,7 @@ Vamos conhecer neste post o Console do <a href="http://www.scilab.org/" title="S
 <!-- more -->
 
 
-<p><img src="/images/scilab-conceitos/janela-console.png" width="789" title="&#34;Janela do console do Scilab&#34;" alt="&#34;Janela do console do Scilab&#34;"></p>
+<p>{% img /images/scilab-conceitos/janela-console.png 789 "Janela do console do Scilab" %}</p>
 
 <h2>Conhecendo o console</h2>
 
@@ -327,7 +314,7 @@ Vamos conhecer alguns itens do menu que poderão ser úteis e a execução de al
 </p>
 
 
-<p><img src="/images/scilab-conceitos/menu.png" width="789" title="&#34;Imagem do menu do Scilab&#34;" alt="&#34;Imagem do menu do Scilab&#34;"></p>
+<p>{% img /images/scilab-conceitos/menu.png 789 "Imagem do menu do Scilab" %}</p>
 
 <p>
 
@@ -377,30 +364,18 @@ palavras-chave em ordens digitadas no prompt e finalizadas com <code> <Enter> </
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">y</span><span class="o">=</span>ode<span class="o">(</span>1.e-8*<span class="o">[</span>1;1;1<span class="o">]</span>,0,0:0.005:50,<span class="s1">&#39;loren&#39;</span><span class="o">)</span>;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;O console permite várias instruções na mesma linha&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;separadas por ponto e vírgula.&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;a <span class="o">=</span> 10; <span class="nv">b</span> <span class="o">=</span> 5; <span class="nv">c</span> <span class="o">=</span> 4+3&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;O console sempre retorna  o valor <span class="k">do</span> último processamento&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+y=ode(1.e-8*[1;1;1],0,0:0.005:50,'loren');</p>
+
+<h1>O console permite várias instruções na mesma linha</h1>
+
+<h1>separadas por ponto e vírgula.</h1>
+
+<p>a = 10; b = 5; c = 4+3</p>
+
+<h1>O console sempre retorna  o valor do último processamento</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>
 O uso de <code> ; </code> (ponto e vírgura) no final de cada instrução é opcional, a diferença é que se usarmos a saída será omitida.
@@ -416,7 +391,7 @@ informações, isso ocorre devido que o retorno de algumas funções ultrapassam
 </p>
 
 
-<p><img src="/images/scilab-conceitos/interacao.png" width="789" title="&#34;Janela do console esperando uma interação para continuar a exibir as informações&#34;" alt="&#34;Janela do console esperando uma interação para continuar a exibir as informações&#34;"></p>
+<p>{% img /images/scilab-conceitos/interacao.png 789  "Janela do console esperando uma interação para continuar a exibir as informações" %}</p>
 
 <p>
 então é sempre bom fazer uso do <code> ; </code> (ponto e virgula) no final de cada instrução.<br />
@@ -425,7 +400,7 @@ Caso não lembre o nome do comando, você pode utilizar <code> Ctrl+Espaço </co
 </p>
 
 
-<p><img src="/images/scilab-conceitos/auto-complete.jpg" width="789" title="&#34;Pesquisando nome de funções pela funcionalidade do auto-complete&#34;" alt="&#34;Pesquisando nome de funções pela funcionalidade do auto-complete&#34;"></p>
+<p>{% img /images/scilab-conceitos/auto-complete.jpg 789 "Pesquisando nome de funções pela funcionalidade do auto-complete" %}</p>
 
 <h2>Conhecendo erros</h2>
 
@@ -435,22 +410,19 @@ Para os comandos não executados corretamente uma mensagem de erro será exibida
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>!--error 4
-</span><span class='line'>Undefined variable: e
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+!--error 4
+Undefined variable: e
+{% endcodeblock %}</p>
 
 <p>
 Podemos exibir a lista de todos os erros gerados pelo Scilab
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">help </span>error_table
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+help error_table
+{% endcodeblock %}</p>
 
 <h2>Considerações sobre variáveis</h2>
 
@@ -490,28 +462,18 @@ Constantes especiais começam com %
 <h2>Comandos básicos</h2>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">pwd</span>         <span class="c">#exibe o diretorio atual ,</span>
-</span><span class='line'>home        <span class="c">#exibe o diretorio atual</span>
-</span><span class='line'>chdir       <span class="c">#muda o diretorio de corrent</span>
-</span><span class='line'>mkdir       <span class="c">#cria diretórios</span>
-</span><span class='line'>dir         <span class="c">#exibe o nome dos arquivos no diretório corrent</span>
-</span><span class='line'>clc         <span class="c">#limpa toda area de trabalho e coloca o cursor no inicio</span>
-</span><span class='line'>clc<span class="o">(</span>n<span class="o">)</span>      <span class="c">#limpa n linhas acima da linha atual</span>
-</span><span class='line'>clear       <span class="c">#limpa as variáveis da memória</span>
-</span><span class='line'>who         <span class="c">#exibe  as constantes especias e as variaveis atuais na memória</span>
-</span><span class='line'>whos        <span class="c">#exibe os nomes, os tamanhos e os tipos de dados de todas as variáveis na memória</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock bash lang:bash %}
+pwd         #exibe o diretorio atual ,
+home        #exibe o diretorio atual
+chdir       #muda o diretorio de corrent
+mkdir       #cria diretórios
+dir         #exibe o nome dos arquivos no diretório corrent
+clc         #limpa toda area de trabalho e coloca o cursor no inicio
+clc(n)      #limpa n linhas acima da linha atual
+clear       #limpa as variáveis da memória
+who         #exibe  as constantes especias e as variaveis atuais na memória
+whos        #exibe os nomes, os tamanhos e os tipos de dados de todas as variáveis na memória
+{% endcodeblock %}</p>
 
 <h2>É isso ai</h2>
 

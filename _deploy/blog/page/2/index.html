@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Leandro Nunes</title>
+  <meta name="author" content="Leandro Nunes">
+
+   
+  <meta name="description" content="Blog mantido por Leandro Nunes com assuntos relacionados a desenvolvimento web, matematica e robotica">
+  
+  <meta name="keywords" content="rails, css, javascript, desenvolvimento web, php, mysql, sqlite, java, arduino, debian, linux, mac, nginx, apache, html5, html, design pattern, assemble, matemática, robótica">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://LeandroSNunes.github.com/blog/page/2">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Leandro Nunes" type="application/atom+xml">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/modernizr-2.0.js"></script>
+  <script src="/js/octopress.js" type="text/javascript"></script>
+  <script src="/js/application.js"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33903906-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="navbar-inner">
+  	  <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="fui-menu-24"></span>
+        </a>
+  	  	<div class="nav-collapse collapse navbar-responsive-collapse" style="height:0;">
+  	      <ul class="nav">
+    
+        <li ><a href="/index.html">Home</a></li>
+    
+        <li ><a href="/blog/archives/index.html">Arquivos</a></li>
+    
+</ul>
+
+<ul class="nav pull-right">
+    
+    <li><a href="http://github.com/LeandroSNunes" title="Github Profile"><i class="icon-github-sign social-navbar"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/leandrosnunes" title="Linkedin Profile"><i class="icon-linkedin-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://twitter.com/LeandroSNunes" title="Twitter Profile"><i class="icon-twitter-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://plus.google.com/100479053205966074229" title="Google+ Profile"><i class="icon-google-plus-sign social-navbar"></i></a></li>
+    
+    
+    
+
+    
+    <li><a href="mailto:leandronunes.dev@gmail.com" title="Email"><i class="icon-envelope social-navbar"></i></a></li>
+    
+</ul>
+
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  <div class="container" id="main">
+      <div class="row-fluid">
+        <div id="content">
+          <div class="jumbotron">
+  <div class="container">
+    
+      Leandro Nunes
+    
+    <h3 class="tagline">
+      
+        Bit a Bit disseminando conhecimento.
+      
+    </h3>
+  </div>
+</div>
+
+
+<div class="blog-index">
+  
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-04-06T17:37:00+00:00" pubdate data-updated="true">06 - Apr - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/rails/"><span class="badge">Rails</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/">Implementando aplicações Rails com Capistrano</a></h1>
+      <p>
+Chegou a hora de implantar a aplicação para os primeiros testes do cliente?<br />
+Vamos ver como a dupla sertaneja <a href="http://rubyonrails.org/" title="Framework em Ruby para desenvolvimento de aplicações web">Rails</a> & <a href="http://capistranorb.com/">Capistrano</a> soam bem nesta tarefa.
+</p>
+
+
+
+      
+       <a href="/blog/2012/04/06/Implementando-aplicacoes-rails-com-capistrano/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-02-22T20:40:00+00:00" pubdate data-updated="true">22 - Feb - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-windows/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/matemática/"><span class="badge">Matemática</span></a>
+          
+          <a href="/blog/categories/softwares/"><span class="badge">Softwares</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/02/22/instalando-o-scilab-no-windows/">Instalando o Scilab no Windows</a></h1>
+      <p>
+Instalar o Scilab no Windows é super simple, acesse o site oficial <a href="http://www.scilab.org" title="Site oficial do Scilab para download da ferramenta e tutoriais">www.scilab.org</a> para baixar a última versão.
+</p>
+
+
+
+
+
+      
+       <a href="/blog/2012/02/22/instalando-o-scilab-no-windows/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-02-22T20:01:00+00:00" pubdate data-updated="true">22 - Feb - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/02/22/instalando-o-scilab-no-linux/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/matemática/"><span class="badge">Matemática</span></a>
+          
+          <a href="/blog/categories/softwares/"><span class="badge">Softwares</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/02/22/instalando-o-scilab-no-linux/">Instalando o Scilab no Linux</a></h1>
+      <p>Para instalar o Scilab no Linux vamos fazer uso do nosso terminal, assim fica bem simples. <br />
+A minha instalação foi efetuada no Debian 6 squeeze 64bits.</p>
+
+
+      
+       <a href="/blog/2012/02/22/instalando-o-scilab-no-linux/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-02-21T23:57:00+00:00" pubdate data-updated="true">21 - Feb - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/02/21/scilab-conceitos-basicos/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/matemática/"><span class="badge">Matemática</span></a>
+          
+          <a href="/blog/categories/softwares/"><span class="badge">Softwares</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/02/21/scilab-conceitos-basicos/">Scilab, conceitos básicos</a></h1>
+      <p>
+A melhor maneira de se aprender algo é colocando a mão na massa. <br />
+Vamos conhecer neste post o Console do <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais" >Scilab</a> que é o pontapé inicial para entender
+ o software. Nele encontra-se o pronpt <code> –> </code> onde podemos executar comandos, instruções, carregar arquivos, configurar o path, iniciar outras janelas, etc…
+</p>
+
+
+
+
+
+      
+       <a href="/blog/2012/02/21/scilab-conceitos-basicos/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-02-20T22:27:00+00:00" pubdate data-updated="true">20 - Feb - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/02/20/scilab-help/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/matemática/"><span class="badge">Matemática</span></a>
+          
+          <a href="/blog/categories/softwares/"><span class="badge">Softwares</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/02/20/scilab-help/">Scilab Help, torne-se amigo dele!</a></h1>
+      <p>
+O <a href="http://www.scilab.org/" title="Site oficial do Scilab para download da ferramenta e tutoriais">Scilab</a> possui um componente de help (ajuda) que pode ser utilizado como um contato inicial e sempre que houver dúvidas de sintaxe 
+de comandos, nomes de funções, etc… Quem está começando a manipular o Scilab, é válido dar uma navegada no help para conhecer seu conteúdo e 
+ter uma ideia de onde procurar o que necessitar.
+</p>
+
+
+
+
+
+      
+       <a href="/blog/2012/02/20/scilab-help/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+  
+  <div class="pagination">
+    
+
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+
+        </div>
+      </div>
+      <div class="row-fluid">
+        <footer class="footer-page" role="contentinfo">
+          <p>
+  Copyright &copy; 2015 - Leandro Nunes -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> - Theme by <a href="http://alexgaribay.com">Alex Garibay</a>
+</p>
+
+
+        </footer>
+      </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'leandronunes';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

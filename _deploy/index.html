@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Leandro Nunes</title>
+  <meta name="author" content="Leandro Nunes">
+
+   
+  <meta name="description" content="Blog mantido por Leandro Nunes com assuntos relacionados a desenvolvimento web, matematica e robotica">
+  
+  <meta name="keywords" content="rails, css, javascript, desenvolvimento web, php, mysql, sqlite, java, arduino, debian, linux, mac, nginx, apache, html5, html, design pattern, assemble, matemática, robótica">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://LeandroSNunes.github.com">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Leandro Nunes" type="application/atom+xml">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/modernizr-2.0.js"></script>
+  <script src="/js/octopress.js" type="text/javascript"></script>
+  <script src="/js/application.js"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33903906-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="navbar-inner">
+  	  <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="fui-menu-24"></span>
+        </a>
+  	  	<div class="nav-collapse collapse navbar-responsive-collapse" style="height:0;">
+  	      <ul class="nav">
+    
+        <li class="active"><a href="/index.html">Home</a></li>
+    
+        <li ><a href="/blog/archives/index.html">Arquivos</a></li>
+    
+</ul>
+
+<ul class="nav pull-right">
+    
+    <li><a href="http://github.com/LeandroSNunes" title="Github Profile"><i class="icon-github-sign social-navbar"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/leandrosnunes" title="Linkedin Profile"><i class="icon-linkedin-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://twitter.com/LeandroSNunes" title="Twitter Profile"><i class="icon-twitter-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://plus.google.com/100479053205966074229" title="Google+ Profile"><i class="icon-google-plus-sign social-navbar"></i></a></li>
+    
+    
+    
+
+    
+    <li><a href="mailto:leandronunes.dev@gmail.com" title="Email"><i class="icon-envelope social-navbar"></i></a></li>
+    
+</ul>
+
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  <div class="container" id="main">
+      <div class="row-fluid">
+        <div id="content">
+          <div class="jumbotron">
+  <div class="container">
+    
+      Leandro Nunes
+    
+    <h3 class="tagline">
+      
+        Bit a Bit disseminando conhecimento.
+      
+    </h3>
+  </div>
+</div>
+
+
+<div class="blog-index">
+  
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2013-02-11T18:31:00+00:00" pubdate data-updated="true">11 - Feb - 2013</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2013/02/11/padroes-para-desenvolvimento-com-rails/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/rails/"><span class="badge">Rails</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2013/02/11/padroes-para-desenvolvimento-com-rails/">Padrões para desenvolvimento com Rails</a></h1>
+      <p>Todos nós gostamos (ou não) de codar com clareza e organização, dessa forma podemos dar possibilidades à terceiros e a nós mesmos
+de efetuar manutenções no programa que desenvolvemos. Quando se trata de equipe de desenvolvimento, algumas regras
+deveriam ser explícita e revisadas cotidianamente, pois a curva de entendimento para um novo dev no projeto pode ser
+alta e em alguns casos, ficar com um a menos no time resulta na entrega de software mais rápido que ambientar um novo dev.</p>
+
+
+      
+       <a href="/blog/2013/02/11/padroes-para-desenvolvimento-com-rails/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2013-01-20T00:24:00+00:00" pubdate data-updated="true">20 - Jan - 2013</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/apache/"><span class="badge">Apache</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/">Habilitando Apache com Virtual Host no Mac OS X 10.8</a></h1>
+      <p>Na versão do Mac OS X 10.8 (Mountain Lion) foi <a href="http://support.apple.com/kb/HT5230?viewlocale=pt_BR">removido</a> a opção &#8220;Web Sharing&#8221; do painel de controle &#8220;Sharing&#8221; em System Preferences, dessa forma a configuração se dá
+de outra forma, basicamente usando o terminal com <code>sudo</code> ou usuário <code>root</code> e um editor de texto que pode ser o <a href="http://www.vim.org">Vim</a>. Vamos as configurações.</p>
+
+
+      
+       <a href="/blog/2013/01/20/habilitando-apache-com-virtual-host-no-mac-os-x-10-dot-8/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-10-27T10:12:00+00:00" pubdate data-updated="true">27 - Oct - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/rails/"><span class="badge">Rails</span></a>
+          
+          <a href="/blog/categories/ruby/"><span class="badge">Ruby</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/">Corrigindo bugs do ambiente de teste de uma Rails Engine Mountable</a></h1>
+      <p>Ao tentar executar a suite de testes em uma <a href="http://edgeapi.rubyonrails.org/classes/Rails/Engine.html">Rails Engine</a> fui surpreendido com alguns erros, então partir para campo afim de
+descobrir o porquê das coisas não funcionarem convencionalmente como se esperava. Na página <a href="https://github.com/rails/rails/issues?labels=engines&amp;state=open">Issues</a>
+ do Rails no <a href="https://github.com/">GitHub</a> vi que se tratava de bugs do Rails mesmo, no meu caso a versão 3.2.8.</p>
+
+<p>Como não era somente um bug para corrigir e não achei um post relacionando todos, depois da garimpada na net, resolvi juntar
+tudo e postar aqui.</p>
+
+<p>Vou fazer um exemplo de execução de testes em uma Engine para exemplificar melhor. Nossa mega Engine vai se chamar
+Blog (nesse momento estou inspirado), vamos lá então.</p>
+
+
+      
+       <a href="/blog/2012/10/27/corrigindo-erros-do-ambiente-de-teste-de-uma-rails-engine-mountable/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-09-22T14:55:00+00:00" pubdate data-updated="true">22 - Sep - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/rails/"><span class="badge">Rails</span></a>
+          
+          <a href="/blog/categories/ruby/"><span class="badge">Ruby</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/">Organizando as Expressões Regulares no Rails</a></h1>
+      <p>No dia a dia sempre necessitamos dos super poderes das Expressões Regulares para validações de formulários, replaces em
+textos e tantas outras coisas mais, alguns patterns raramente mudam de um projeto para outro, o pattern para validar e-mails
+é um exemplo.</p>
+
+
+      
+       <a href="/blog/2012/09/22/organizando-as-expressoes-regulares-no-rails/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-08-26T01:08:00+00:00" pubdate data-updated="true">26 - Aug - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/08/26/simulando-circuitos-com-o-digital-works/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/softwares/"><span class="badge">Softwares</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/08/26/simulando-circuitos-com-o-digital-works/">Simulando Circuitos com o Digital Works</a></h1>
+      <p>Digital Works é uma ferramenta que permite construir circuitos lógicos digitais, Flip-Flops, memórias e analisar o seu comportamento através de simulação em tempo real.
+As entradas podem ser implementadas usando chaves, clocks, sequenciadores e dispositivos de entrada iterativos, possui uma interface intuitiva, fácil de usar que o
+torna a escolha ideal para aprender ou ensinar eletrônica digital.</p>
+
+
+      
+       <a href="/blog/2012/08/26/simulando-circuitos-com-o-digital-works/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-08-12T16:15:00+00:00" pubdate data-updated="true">12 - Aug - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/08/12/seminario-computacao-em-nuvem/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/linux/"><span class="badge">Linux</span></a>
+          
+          <a href="/blog/categories/softwares/"><span class="badge">Softwares</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/08/12/seminario-computacao-em-nuvem/">Seminário Computação em Nuvem</a></h1>
+      <p>
+Quando cursei a disciplina de Introdução a Computação, desenvolvi uma pequena pesquisa sobre Computação em Nuvem <em>(Cloud Computind)</em>
+para o trabalho de conclusão de período, assim, pude conhecer um pouco mais sobre um conceito que pretende levar às últimas 
+consequências à transferência de processamento, a ideia de que uma hora ou outra não será mais necessário investir em máquinas 
+com HD alto para suportar aplicativos pesados, já que a Computação em Nuvem abre de vez os caminhos para um processo de migração 
+maciça de softwares alojados em PCs para servidores mais potentes.
+</p>
+
+
+
+
+
+      
+       <a href="/blog/2012/08/12/seminario-computacao-em-nuvem/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-06-05T21:54:00+00:00" pubdate data-updated="true">05 - Jun - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/arduino/"><span class="badge">Arduino</span></a>
+          
+          <a href="/blog/categories/debian/"><span class="badge">Debian</span></a>
+          
+          <a href="/blog/categories/linux/"><span class="badge">Linux</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/">Conectando módulo Bluetooth JY-MCU V1.02 + Arduino + Debian</a></h1>
+      <p>
+Tempo curtissímo neste final de período de faculdade, mais hoje, não pude deixar de compartilhar algumas informações com os que estão junto comigo, descobrindo 
+o Arduino. Vamos desenrrolar o assunto&#8230;
+</p>
+
+
+<p>
+Recentemente comprei um módulo de Bluetooth para Arduino, o módulo adquirido foi o &#8220;JY-MCU V1.02&#8221; 
+<a href="http://dx.com/p/jy-mcu-arduino-bluetooth-wireless-serial-port-module-104299?item=1">Confira aqui!!!</a>, então, fui à luta 
+para fazer funfar no Debian (lembrando que sou novato no Debian e Arduino também) ;) , a briga foi boa!!! <br />
+Gostaria de agradecer nosso
+amigo/professor Marcelo Brunoro por ter mostrado que a placa realmente funciona (utilizando outro OS), antes que eu desistisse heheheh.
+</p>
+
+
+
+      
+       <a href="/blog/2012/06/05/conectando-modulo-bluetooth-jy-mcu-v1-dot-02-plus-arduino-plus-debian/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-05-09T21:39:00+00:00" pubdate data-updated="true">09 - May - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/05/09/instalando-arduino-no-debian-squeeze/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/arduino/"><span class="badge">Arduino</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/05/09/instalando-arduino-no-debian-squeeze/">Instalando Arduino no Debian squeeze</a></h1>
+      <p>
+Ta nóis aqui em pleno carnaval 2012 atrás do bloco dos aficionados por tecnologia com uma boa xícara de café e estudando Arduino. Como usuário do Debian, percebi que instruções sobre instalação em livros não diz muita coisa mais garimpando na web, concluir minha instalação.
+</p>
+
+
+
+      
+       <a href="/blog/2012/05/09/instalando-arduino-no-debian-squeeze/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-05-05T21:07:00+00:00" pubdate data-updated="true">05 - May - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/05/05/adicionar-programa-no-menu-do-debian/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/debian/"><span class="badge">Debian</span></a>
+          
+          <a href="/blog/categories/linux/"><span class="badge">Linux</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/05/05/adicionar-programa-no-menu-do-debian/">adicionar programa no menu do debian</a></h1>
+      <p>
+Hoje instalando um software via terminal do Debian senti a necessidade de adicioná-lo ao menu de aplicativos para facilitar a utilização e não  ficar passando path para starta via shell.
+</p>
+
+
+
+
+<p>
+Nesse tutorial vamos instalar o <a href="http://www.scilab.org/">Scilab</a>. Para outros aplicativos somente precisamos trocar o path do executável e do ícone.
+</p>
+
+
+
+      
+       <a href="/blog/2012/05/05/adicionar-programa-no-menu-do-debian/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+    <hr>
+    
+  
+  
+    <article>
+      
+
+  <div class="row-fluid">
+    <div class="span2 post-meta">
+	  <h5 class="date-time">
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-04-17T22:30:00+00:00" pubdate data-updated="true">17 - Apr - 2012</time></h5>
+          <div class="row-fluid">
+          
+          <a href="http://LeandroSNunes.github.com/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/#disqus_thread">Comentários </a> <span class="fui-bubble-16"></span>
+          
+          </div>
+          
+          <div class="row-fluid">
+          
+          <a href="/blog/categories/debian/"><span class="badge">Debian</span></a>
+          
+          <a href="/blog/categories/linux/"><span class="badge">Linux</span></a>
+          
+          </div>
+          
+    </div>
+    <div class="span10 post-container">
+      <h1 class="link"><a href="/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/">Tornando ninja o arquivo sources.list do Debian</a></h1>
+      <p>
+Para que o uso do computador faça sentido, precisamos instalar softwares que satisfaçam nossas necessidades. Para lidar com esse problema, o Debian possui ferramentas para instalar e atualizar pacotes e suas dependências de maneira rápida e prática. Nossos amigos são o APT e o APTITUDE.
+</p>
+
+
+
+      
+       <a href="/blog/2012/04/17/tornando-ninja-o-arquivo-sources-dot-list-do-debian/">Leia mais</a> 
+    </div>
+  </div>
+
+
+
+    </article>
+    
+  
+  <div class="pagination">
+    
+    <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+
+    
+  </div>
+</div>
+
+
+        </div>
+      </div>
+      <div class="row-fluid">
+        <footer class="footer-page" role="contentinfo">
+          <p>
+  Copyright &copy; 2015 - Leandro Nunes -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> - Theme by <a href="http://alexgaribay.com">Alex Garibay</a>
+</p>
+
+
+        </footer>
+      </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'leandronunes';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

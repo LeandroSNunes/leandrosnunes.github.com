@@ -3,7 +3,7 @@ layout: post
 title: "Automatização no Processo de Entrega de Software"
 date: 2015-02-07 12:48
 comments: true
-categories: "Entrega Contínua"
+categories: [Entrega Contínua]
 tags: [Pipeline de Entrega, Provisionamento, Integração Contínua, XP, Scrum, Kanban]
 description: "Como permitir aumentar a capacidade de liberar versões do software sob demanda, de gerar releases bem-sucedidos e implantar o sistema em qualquer ambiente simplesmente apertando um botão"
 keywords: "Implantar o pipeline de entrega, Automatização dos processo de entrega de software, Aplicação de metodologias ágeis de desenvolvimento, Automação da entrega de software"

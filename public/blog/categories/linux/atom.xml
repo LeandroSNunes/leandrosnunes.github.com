@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-01-12T01:56:04+00:00</updated>
+  <updated>2015-02-07T18:29:18+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -100,16 +100,17 @@ dispositivo, e a comunição com o Arduino se dá via porta serial que, neste ca
 </p>
 
 
-<p>{% codeblock bash lang:bash %}
-sudo apt-get install blueman
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install blueman
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>
 Depois da instalação o programa se encontra em <em>System -> Preferences -> Bluetooth Manager</em>
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/blueman.png 789 "Janela inicial do Blueman" %}</p>
+<p><img src="/images/arduino_bluetooth/blueman.png" width="789" title="&#34;Janela inicial do Blueman&#34;" alt="&#34;Janela inicial do Blueman&#34;"></p>
 
 <p>
 Antes de plugar o módulo, é preciso instalar mais um software, o <a href="http://packages.debian.org/unstable/comm/cutecom">"CuteCom"</a>, para monitoramento da porta serial, ele será útil para enviar e receber dados da porta destinada ao
@@ -117,9 +118,10 @@ módulo de Bluetooth.
 </p>
 
 
-<p>{% codeblock bash lang:bash %}
-sudo apt-get install cutecom
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install cutecom
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>
 Para finalizar, é preciso que sua IDE do Arduino seja a 1.0.1 ou superior, caso contrário a biblioteca SoftwareSerial irá bugar, para fazer esse trabalho de atualização 
@@ -138,7 +140,7 @@ O módulo JY-MCU V1.02 possui 4 pinos (RX, TX, GND E VCC) e já vem com um cabo.
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/modulo.jpg 789 "módulo JY-MCU V1.02 por Leandro Nunes" %}</p>
+<p><img src="/images/arduino_bluetooth/modulo.jpg" width="789" title="&#34;módulo JY-MCU V1.02 por Leandro Nunes&#34;" alt="&#34;módulo JY-MCU V1.02 por Leandro Nunes&#34;"></p>
 
 <p>
 A ligação no Arduino se dá da seguinte forma:
@@ -166,7 +168,7 @@ Agora é só plugar o cabo USB no Arduino e no PC, pronto, tudo conectado
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/arduino.jpg 789 "módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes"%}</p>
+<p><img src="/images/arduino_bluetooth/arduino.jpg" width="789" title="&#34;módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes&#34;" alt="&#34;módulo JY-MCU V1.02 plugado no Arduino, por Leandro Nunes&#34;"></p>
 
 <h2>Codando nosso exemplo</h2>
 
@@ -176,51 +178,89 @@ Na IDE do Arduino existe vário exemplos de códigos para iniciar projetos, vamo
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/exemplos_arduino.jpg 789 %}</p>
+<p><img src="/images/arduino_bluetooth/exemplos_arduino.jpg" width="789"></p>
 
 <p>
 Com algumas modificações o código ficou assim:
 </p>
 
 
-<p>{% codeblock Processing lang:c %}</p>
-
-<h1>include &lt;SoftwareSerial.h></h1>
-
-<p>SoftwareSerial mySerial(2, 3); // RX, TX</p>
-
-<p>void setup()<br/>
-{
- // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-   while (!Serial) {</p>
-
-<pre><code>; // wait for serial port to connect. Needed for Leonardo only
-</code></pre>
-
-<p>  }</p>
-
-<p>  Serial.println("Goodnight moon!");</p>
-
-<p>  // set the data rate for the SoftwareSerial port
-  mySerial.begin(9600);
-  mySerial.println("Hello, world?");
-}</p>
-
-<p>void loop() // run over and over
-{
-  if (mySerial.available())</p>
-
-<pre><code>Serial.write(mySerial.read());
-</code></pre>
-
-<p>  if (Serial.available())</p>
-
-<pre><code>mySerial.write(Serial.read());
-</code></pre>
-
-<p>}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Processing  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">SoftwareSerial</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">SoftwareSerial</span> <span class="n">mySerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// RX, TX&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">setup</span><span class="p">()</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="c1">// Open serial communications and wait for port to open:</span>
+</span><span class='line'>  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class='line'>   <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// wait for serial port to connect. Needed for Leonardo only</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Goodnight moon!&quot;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// set the data rate for the SoftwareSerial port</span>
+</span><span class='line'>  <span class="n">mySerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">mySerial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello, world?&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">loop</span><span class="p">()</span> <span class="c1">// run over and over</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">mySerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">mySerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>O que foi mudado</h3>
 
@@ -251,7 +291,7 @@ Agora abra o Bluetooth Manager, clique em Search e o módulo será listado como 
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/add_device.png 789 %}</p>
+<p><img src="/images/arduino_bluetooth/add_device.png" width="789"></p>
 
 <p>
 Novamente como botão direito clique em "Pair", será pedido o PIN, no nosso caso digite "1234". <br />
@@ -259,7 +299,7 @@ Novamente como botão direito clique em "Dev B", ufa! chega de botão direito, j
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/conected.png 789 %}</p>
+<p><img src="/images/arduino_bluetooth/conected.png" width="789"></p>
 
 <p><em>
 Em baixo na tarja amarela, visualizamos a porta que está sendo utilizada "/dev/rfcomm0"
@@ -273,28 +313,28 @@ Abra o CuteCom e no campo "Device:", clique e digite o caminho da porta, depois 
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/cutecom.png 789 %}</p>
+<p><img src="/images/arduino_bluetooth/cutecom.png" width="789"></p>
 
 <p>
 Voltamos na IDE do Arduino e abrimos o Serial Monitor, a mensagem "Goodnight moon!" será exibida
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/serial_monitor.png 789 %}</p>
+<p><img src="/images/arduino_bluetooth/serial_monitor.png" width="789"></p>
 
 <p>
 No CuteCom será exibido "Hello, world?"
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/cutecom_mensagem.png 789 %}</p>
+<p><img src="/images/arduino_bluetooth/cutecom_mensagem.png" width="789"></p>
 
 <p>
 Pronto, agora o que voce digitar no campo "input" do CuteCom será exibido no Serial Monitor e vice-versa, neste caso os dispositivos estão pareados.
 </p>
 
 
-<p>{% img /images/arduino_bluetooth/mensagem_ok.png 789 %}</p>
+<p><img src="/images/arduino_bluetooth/mensagem_ok.png" width="789"></p>
 
 <h2>Então...</h2>
 
@@ -339,14 +379,14 @@ Nesse tutorial vamos instalar o <a href="http://www.scilab.org/">Scilab</a>. Par
 </p>
 
 
-<p>{% img /images/menu-debian/step1.jpg 789 %}</p>
+<p><img src="/images/menu-debian/step1.jpg" width="789"></p>
 
 <p>
 <b>2)</b> Na tela que se abre, ecolha na aba Menus no lado esquerdo onde irá inserir o programa e depois clique em <em>New Item</em>.
 </p>
 
 
-<p>{% img /images/menu-debian/step2.jpg 789 %}</p>
+<p><img src="/images/menu-debian/step2.jpg" width="789"></p>
 
 <p>
 <b>3)</b> Agora vamos inserir as informações necessárias
@@ -361,17 +401,15 @@ Nesse tutorial vamos instalar o <a href="http://www.scilab.org/">Scilab</a>. Par
 </ul>
 
 
-<p>{% img /images/menu-debian/step3.jpg 789 %}</p>
+<p><img src="/images/menu-debian/step3.jpg" width="789"></p>
 
 <p>
 <b>4)</b> Para trocar o ícone, clique nele e selecione uma imagem em  /opt/scilab-5.3.3/share/scilab/icons
-{% blockquote %}
-Por default o Debian abre na paste de ícones padrão.
-{% endblockquote %}
+<blockquote><p>Por default o Debian abre na paste de ícones padrão.</p></blockquote>
 </p>
 
 
-<p>{% img /images/menu-debian/step4.jpg 789 %}</p>
+<p><img src="/images/menu-debian/step4.jpg" width="789"></p>
 
 <p>
 <b>5)</b> Pronto! está lá nosso atalho para o Scilab inserido no menu. Acesse e confira pois o Debian não deixou eu dar um print screen com o menu aberto. :P
@@ -429,7 +467,7 @@ O Jonhnatha Trigueiro mantem o site <a href="http://goo.gl/L0H76" title="Ir para
 <h3>1 – Select your country</h3>
 
 
-<p>{% img /images/source-list/step1.png 789 %}</p>
+<p><img src="/images/source-list/step1.png" width="789"></p>
 
 <p>
 Escolhemos de qual país serão nossos repositórios.
@@ -441,7 +479,7 @@ Escolhemos de qual país serão nossos repositórios.
 <h3>2 – Select your release</h3>
 
 
-<p>{% img /images/source-list/step2.png 789 %}</p>
+<p><img src="/images/source-list/step2.png" width="789"></p>
 
 <p>
 Para qual versão do Debian.
@@ -453,7 +491,7 @@ Para qual versão do Debian.
 <h3>3 – Debian Branches</h3>
 
 
-<p>{% img /images/source-list/step3.png 789 %}</p>
+<p><img src="/images/source-list/step3.png" width="789"></p>
 
 <p>
 Repositórios disponíveis. Temos duas opções para cada um sendo que a que possui Sources Repository armazena código fonte para desenvolvedores.
@@ -465,7 +503,7 @@ Repositórios disponíveis. Temos duas opções para cada um sendo que a que pos
 <h3>4 – Debian Updates</h3>
 
 
-<p>{% img /images/source-list/step4.png 789 %}</p>
+<p><img src="/images/source-list/step4.png" width="789"></p>
 
 <p>
 O títudo é bem intuitivo!
@@ -477,7 +515,7 @@ O títudo é bem intuitivo!
 <h3>5 – 3rd Parties Repos</h3>
 
 
-<p>{% img /images/source-list/step5.png 789 %}</p>
+<p><img src="/images/source-list/step5.png" width="789"></p>
 
 <p>
 Repositórios adicionados por terceiros. Esta lista é bem maior e varia de acordo com o release escolhido.
@@ -495,16 +533,17 @@ Uma lista com todos os repositórios escolhidos é gerada, então abra o arquivo
 </p>
 
 
-<p>{% codeblock bash lang:bash %}
-sudo vim /etc/apt/sources.list
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vim /etc/apt/sources.list
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>
 Para os repositórios de terceiro é necessário adicionar a chave publica ssh para que seja efetuada a busca, observe a lista que o comando para esta tarefa já está incluído.
 </p>
 
 
-<p>{% img /images/source-list/step6.png 789 %}</p>
+<p><img src="/images/source-list/step6.png" width="789"></p>
 
 <p>
 É só copiar e executar no terminal!
@@ -516,11 +555,14 @@ Para os repositórios de terceiro é necessário adicionar a chave publica ssh p
 <h2>Atualizando a distro!</h2>
 
 
-<p>{% codeblock bash lang:bash %}
-sudo apt-get update
-sudo apt-get upgrade
-sudo aptitude update
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get upgrade
+</span><span class='line'>sudo aptitude update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>
 Espero que estas informações sejam úteis, principalmente para os que como eu, estão começando.

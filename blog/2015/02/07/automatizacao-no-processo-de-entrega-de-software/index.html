@@ -1,0 +1,439 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Automatização no Processo de Entrega de Software - Leandro Nunes</title>
+  <meta name="author" content="Leandro Nunes">
+
+   
+  <meta name="description" content="Como permitir aumentar a capacidade de liberar versões do software sob demanda, de gerar releases bem-sucedidos e implantar o sistema em qualquer ambiente simplesmente apertando um botão">
+  
+  <meta name="keywords" content="Implantar o pipeline de entrega, Automatização dos processo de entrega de software, Aplicação de metodologias ágeis de desenvolvimento, Automação da entrega de software">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://LeandroSNunes.github.com/leandrosnunes/blog/2015/02/07/automatizacao-no-processo-de-entrega-de-software">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Leandro Nunes" type="application/atom+xml">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/modernizr-2.0.js"></script>
+  <script src="/js/octopress.js" type="text/javascript"></script>
+  <script src="/js/application.js"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33903906-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="navbar-inner">
+  	  <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="fui-menu-24"></span>
+        </a>
+  	  	<div class="nav-collapse collapse navbar-responsive-collapse" style="height:0;">
+  	      <ul class="nav">
+    
+        <li ><a href="/index.html">Home</a></li>
+    
+        <li ><a href="/blog/archives/index.html">Arquivos</a></li>
+    
+</ul>
+
+<ul class="nav pull-right">
+    
+    <li><a href="http://github.com/LeandroSNunes" title="Github Profile"><i class="icon-github-sign social-navbar"></i></a></li>
+    
+    
+    
+    <li><a href="http://linkedin.com/in/leandrosnunes" title="Linkedin Profile"><i class="icon-linkedin-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://twitter.com/LeandroSNunes" title="Twitter Profile"><i class="icon-twitter-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://plus.google.com/100479053205966074229" title="Google+ Profile"><i class="icon-google-plus-sign social-navbar"></i></a></li>
+    
+    
+    
+
+    
+    <li><a href="mailto:leandronunes.dev@gmail.com" title="Email"><i class="icon-envelope social-navbar"></i></a></li>
+    
+</ul>
+
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  <div class="container" id="main">
+      <div class="row-fluid">
+        <div id="content">
+          <div>
+<article class="hentry" role="article">
+  
+
+  <header>
+  <div class="jumbotron">
+    Automatização No Processo De Entrega De Software
+	<h5>
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2015-02-07T12:48:00+00:00" pubdate data-updated="true">07 - Feb - 2015</time></h5>
+  </div>
+</header>
+  <div class="row-fluid">
+    <div class="span12">
+      <p>Um grande problema que afeta a qualidade do desenvolvimento é a realização de tarefas importante para a entrega de software que são executadas
+manualmente. Este artigo tem o objetivo de mostrar boas práticas de desenvolvimento que vem sendo estudadas ha várias décadas para fornecer ao mundo
+uma alternativa às metodologias pesadas e altamente dirigidas por documentação, permitindo aumentar a capacidade de liberar versões do sistema sob
+demanda, de gerar releases bem-sucedidos e implantar o sistema em qualquer ambiente simplesmente apertando um botão, sem precisar se preocupar se
+funcionará ou não.</p>
+
+<!-- more -->
+
+
+<blockquote><p>Este artigo foi escrito como requisito da matéria Seminário de Computação e Informática do curso de Ciência da Computação. <a href="https://www.scribd.com/doc/255008188/Automatizac-a-o-no-Processo-de-Entrega-de-Software">Clique aqui para ver o
+original</a></p></blockquote>
+
+<h2>1. Introdução</h2>
+
+<p>Com a globalização e o aumento ao acesso a banda larga, o mundo vive uma interação em tempo real. Ideias, tendências, necessidades, informações,
+dentre outros, navegam de continente à continente em uma velocidade jamais imaginada, tendo o software como parte fundamental desse processo.
+Desenvolver software nesse cenário requer um processo onde uma ideia na mente do cliente vire código funcional e esteja disponível para o usuário
+final de maneira rápida e confiável. O tempo para efetuar esse processo, denominado  como tempo de ciclo, pode determinar o rumo dos negócios junto a
+concorrência.</p>
+
+<p>Desde 1980, autores como Kent Beck, Martin Fowler, Paul Duvall, Ron Jeffries e Dave Thomas, estudam melhores práticas de desenvolvimento com o
+objetivo de poder fornecer ao mundo uma alternativa às metodologias pesadas e altamente dirigidas por documentação que estão em uso até hoje
+<a href="#livro5">[5]</a>. Conforme os dos 12 princípios do Manifesto Ágil <a href="#livro6">[6]</a>, o software em funcionamento tem maior valor do que uma
+documentação abrangente e software funcional é a medida primária do progresso. Software não gera lucro ou valor até que esteja nas mão de seus
+usuários <a href="#livro4">[4]</a>.</p>
+
+<p>Este artigo demonstra boas práticas das metodologias ágil de desenvolvimento para efetuar entrega contínua de software de valor ao cliente, descreve
+os passos de como detectar erros mais cedo através da prática da integração contínua, permitindo que se desenvolva software coeso mais rapidamente
+<a href="#livro2">[2]</a>. Demonstra o padrão pipeline de entrega, capaz de permitir automatização desde o desenvolvimento do software até sua entrega final.
+Conforme Duval <a href="#livro1">[1]</a>, o pipeline de entrega é um processo no qual diversos tipos de tarefas são executadas com base no sucesso da tarefa anterior.</p>
+
+<p>Com a automatização dos processos, a entrega de software se torna confiável, previsível, com riscos quantificáveis e bem entendidos, garantindo que
+quando for preciso fazer alguma modificação, o tempo para realizá-las, colocá-las em produção e em uso, seja o menor possível e, que problemas sejam
+encontrados cedo o bastante para que sejam fáceis de corrigir.</p>
+
+<p>O pipeline envolve atividades de todos os interessados pela entrega de software, amplia as taxas de implantação e fomenta práticas do movimento
+DevOps, criando um relacionamento colaborativo entre as equipes de desenvolvimento, qualidade e de operações. Automatizar os processos de forma que
+todos os envolvidos possam executar tarefas (que até então são manuais) de forma assíncrona, melhora produtividade e a quantidade de entregas de valor
+dentro de tempo de ciclo, permitindo implantar o sistema para qualquer ambiente instantaneamente, refletindo as mudanças de uma forma eficiente e com
+baixo custo.</p>
+
+<h2>2. Metodologias Ágeis de Desenvolvimento</h2>
+
+<p>Os processos das metodologias tradicionais não acompanharam a evolução do tráfico de informações. Conforme <a href="#livro4">[4]</a>, o principal problema
+enfrentado pelos profissionais da área de desenvolvimento de software é como fazer para transformar uma boa ideia em um sistema e entregá-lo aos
+usuários o quanto antes.</p>
+
+<p>Em busca de valorizar a importância da interação entre os envolvidos e a entrega de software de valor ao cliente a curto prazo, em 2001, 17 pensadores
+de desenvolvimento de software se reuniram e concordaram que, em suas experiências prévias, um pequeno conjunto de princípios sempre parecia ter sido
+respeitado quando os projetos davam certo. Esses princípios foram reunidos no Manifesto Ágil <a href="#livro6">[6]</a>.</p>
+
+<p>Kent Beck definiu um conjunto de valores, princípios e práticas que resultou em um trabalho denominado Extreme Programming (XP). Segundo Sato
+<a href="#livro9">[9]</a>, a XP foi uma das primeiras metodologias ágeis que revolucionou a forma como os softwares eram desenvolvidos e, além de se basear em
+valores para guiar o desenvolvimento, tais como a comunicação clara entre os envolvidos, a simplicidade em fazer o suficiente para atender as
+necessidades, o feedback para direcionar o produto e a coragem de efetuar mudanças, trazem uma serie de práticas, como a integração contínua (IC), o
+desenvolvimento guiado por testes e a refatoração. Práticas que quando aplicadas, contribuem para uma entrega de qualidade e eficiente de software.</p>
+
+<p>Ken Schwaber definiu o Scrum, um conjunto de práticas como o objetivo de manter o gerenciamento do projeto visível aos usuários. Uma metodologia ágil
+para gestão e planejamento de projetos de software, onde o desenvolvimento é dividido em iterações com período de duas a seis semanas, chamadas de Sprints.</p>
+
+<p>Outra metodologia ágil que vem sendo utilizada para dar apoio ao Scrum é o Kanban. Kanban é um termo de origem japonesa e significa literalmente “cartão”,
+criado por Taiichi Ohno para indicar o andamento do fluxo de produção em empresas de fabricação em série. Tipicamente usa-se um quadro em branco com
+post-its (Quadro Kanban) para mapear o fluxo de valor das atividades relacionadas ao desenvolvimento de software.</p>
+
+<p>A implementação de metodologias ágil proporciona o desenvolvimento cooperativo, onde baseiam-se mais nas pessoas e suas iterações
+em vez de grandes esforços de planejamento e processos rígidos. Segundo Pressman <a href="#livro7">[7]</a>, em essência, os métodos ágeis
+foram desenvolvidos em um esforço para vencer as fraquezas percebidas e reais da engenharia de software convencional.</p>
+
+<h2>3. Pippeline de Implantação</h2>
+
+<p>O processo de levar a funcionalidade da mente do cliente até o usuário final envolve várias etapas, dentre elas, a etapa de desenvolvimento. O
+desenvolvimento é composto de vários processo além da codificação e podem ser mapeados através da modelagem do mapa de fluxo de valor. O mapa de fluxo
+de valor possibilita uma visão mais holística, de ponta a ponta do processo de entrega. O objetivo do fluxo de valor é mapear uma solicitação do
+cliente, do momento em que ela chega até que ela esteja disponível em produção <a href="#livro8">[8]</a>.</p>
+
+<p>No desenvolvimento, é necessário juntar o código produzido ao código principal, testar esse código para certificar que não foram adicionados defeitos
+ao projeto, configurar ambientes para instalação do software e efetuar a implantação nesses ambientes, proporcionando demonstrações, testes
+exploratório e a disponibilização para o usuário final. O pipeline de implantação modela esse processo, e sua inversão em uma ferramenta de integração
+contínua, de gerência de versões e a utilização da prática de desenvolvimento guiado por teste como o TDD1, é o que permite que uma equipe veja e
+controle o processo de cada mudança à medida que ela se move em direção a entrega.</p>
+
+<p>Para Humble e Farley <a href="#livro4">[4]</a> o pipeline de implantação é uma manifestação automatizada do processo de levar o software do controle de versão até os
+usuários. Cada mudança passa de forma consistente no percurso de entrega através da automatização. A automatização torna passos complexos e
+suscetíveis a erros em passos repetíveis e confiáveis. Fowler <a href="#livro3">[3]</a> acrescenta que o pipeline é para detectar quaisquer mudanças que levem os
+problemas para produção e para permitir a colaboração entre os envolvidos, possibilitando a visibilidade de todo o fluxo de mudanças juntamente com
+uma trilha para uma auditoria completa.</p>
+
+<h2>4. Entrega de software automatizada</h2>
+
+<p>Metodologia ágeis valorizam a entrega de software de valor a curto prazo. Com elas, tem-se um conjunto de boas práticas para o desenvolvimento de
+software incremental (ou iterativo), onde o sistema começa a ser implantado logo no início do projeto e vai ganhando novas funcionalidades ao longo do
+tempo. Isso exige que os processos de entrega sejam executados diversas vezes no decorrer de uma Sprint.</p>
+
+<p>Para a definição de um pipeline de entrega, é necessário ter uma visão de todos os processos. O quadro Kanban auxilia nessa tarefa. A Figura 01
+demonstra um exemplo do fluxo de entrega. Modelar um pipeline de implantação exige entender seus processos de entrega e balancear o nível de feedback
+que você quer receber <a href="#livro9">[9]</a>. Projetos anteriores podem servir como base para um novo projeto.</p>
+
+<p>Após a definição das funcionalidades, elas são adicionadas na coluna “Solicitações” e ficam aguardando o planejamento para a próxima Sprint. No
+planejamento, as solicitações que irão ser desenvolvidas na Sprint, são movidas para a coluna “A Fazer”. Ao iniciar a codificação da funcionalidade, o
+desenvolvedor atualiza o status da funcionalidade movendo-a para a coluna “Fazendo”, até que seja concluída. Até esse momento, o processo se deu de
+forma manual.</p>
+
+<p><img src="/images/Quadro-Kanban.png" alt="Movimentação das funcionalidades no quandro Kanban" /></p>
+
+<p><em>Figure 01. Movimentação das funcionalidades no quandro Kanban.</em></p>
+
+<p>A entrada do pipeline inicia-se com o check-in no sistema de controle de versão. Um dos sistemas de controle de versão mais utilizado é o
+<a href="http://git-scm.com">Git</a>. Nessa etapa do processo, uma ferramenta de IC como o <a href="http://jenkis-ci.org">Jenkis</a>, o <a href="http://go.thoughworks.com">Go</a>, ou
+até um serviço de integração contínua nas nuvens como o <a href="http://travis-ci.org">TravisCI</a>, pode ser configurada para monitorar o repositório a cada
+alteração e mover a funcionalidade nas três etapas seguintes.</p>
+
+<p>De acordo com a tecnologia utilizada pela aplicação, é possível fazer uso de ferramentas como o <a href="http://rspec.info">RSpec</a> e o <a href="http://junit.org">JUnit</a>
+para escrever os testes automatizados. A alteração que tenha sido validada com sucesso vira uma nova versão do software (uma versão candidata a ir
+para produção). Cada estágio de teste avalia a versão candidata de uma perspectiva diferente e a cada teste que ela passa, aumenta a confiança em sua
+implementação. O objetivo desse processo é eliminar as versões candidatas que não estejam prontas para produção o quanto antes e obter feedback sobre
+a falha o mais rápido possível <a href="#livro4">[4]</a>.</p>
+
+<p>Quando a versão candidata passa pelo estágio de teste de aceitação automatizados, ela se torna algo útil e interessante, não sendo mais prioridade da
+equipe de desenvolvimento. É preferível que os estágios de implantação para os ambientes de aceitação e produção não executem automaticamente. Os
+testadores devem ser capazes de ver quais versões candidatas passaram com sucesso e implantar o sistema em um ambientes configurado com um simples
+apertar de botão. Para a automatização do processo de implantação, ferramentas como a <a href="http://capistranorb.com">Capistrano</a> e a
+<a href="http://nadarei.co/mina">Mina</a>, podem ser utilizadas.</p>
+
+<p>Com a adoção dessa abordagem, não é permitido efetuar implantação do sistema em produção sem que a versão seja apropriadamente testada. Regressões são
+evitadas ao se fazer correções, elas passam pelo mesmo processo que quaisquer mudança. Um aumento da automação de processos leva a uma maior
+eficiência e amplia as taxas de implementação com relação as metodologias tradicionais, conforme a Figura 02.</p>
+
+<p>Para a criação dos ambientes de aceitação e de produção, existem uma série de ferramentas de provisionamento no mercado, delas destacam-se:
+<a href="http://www.ansibleworks.com/tech/">Ansible</a>, <a href="http://www.opscode.com/chef">Chef</a>, <a href="http://puppetlabs.com/puppet">Puppet</a> e
+<a href="http://saltstack.com/">Salt</a>. O processo de provisionamento é um conjunto de passos executáveis que podem ser aplicados em uma imagem inicial do
+sistema operacional para ter tudo configurado corretamente <a href="#livro10">[10]</a>.</p>
+
+<p><img src="/images/cascataxagil.png" alt="Movimentação das funcionalidades no quandro Kanban" /></p>
+
+<p><em>Figure 02. Ciclo de entregas de software</em></p>
+
+<h2>5. Conclusão</h2>
+
+<p>Este trabalho teve como foco demonstrar conjunto de boas práticas de desenvolvimento de software, testadas e validadas por diversos autores. O
+objetivo está em permitir efetuar a entrega de software com maior qualidade em um curto período e promover a comunicação com um ciclo de feedback
+constante entre todos os interessados.</p>
+
+<p>Com isso, muda-se o conceito de “pronto”, fazendo com que uma funcionalidade só esteja pronta quando ela está em produção, fazendo o que tem que fazer
+e entregando valor aos seus usuários. Em Startups, esse ciclo de entrega contínua é constantemente utilizado, geralmente se tem pouco recurso e é
+necessário pensar em automatização desde o início. É preciso entregar valor ao usuário para continuar vivo e, esperar a próxima madrugada para subir a
+nova funcionalidade pode causar um grande impacto nos negócios.</p>
+
+<p>A qualidade da aplicação está relacionada também com o ambiente onde ela está implantada. Deve-se tratar as configurações da mesma forma que o código
+fonte. Ao seguir a política de que nada é modificado em um ambiente a menos que esteja em um script com versão, automatizado e faça parte de um
+caminho único para a produção (o pipeline de entrega), é possível determinar melhor a causa raiz dos erros mais rapidamente, acelerando a correção e
+diminuindo a probabilidade de que pequenos erros se transformem em grandes dores de cabeça no futuro.</p>
+
+<h2>6. Referências</h2>
+
+<p><a id="livro1">[1]</a> <a href="http://www.ibm.com/developerworks/br/library/a-devops1/">DUVAL, Paul. (2012) &#8220;Agile DevOps: O Achatamento do Processo de Reliase de Software&#8221;</a></p>
+
+<p><a id="livro2">[2]</a> <a href="http://martinfowler.com/articles/continuousIntegration.html">FOWLER, Martin. (2006) “Continuous Integration”</a></p>
+
+<p><a id="livro3">[3]</a> <a href="http://martinfowler.com/bliki/DeploymentPipeline.html">FOWLER, Martin. (2013) “Deployment Pipeline”</a></p>
+
+<p><a id="livro4">[4]</a> <a href="http://www.grupoa.com.br/livros/engenharia-de-software-e-metodos-ageis/entrega-continua/9788582601037">HUMBLE, J.; FARLEY, D. (2014) “Entrega Contínua: Como Entregar Software de Forma Rápida e Confiável”. Porto Alegre: Bookman</a></p>
+
+<p><a id="livro5">[5]</a> <a href="http://www.lcm.com.br/site/#/livros/detalhesLivro/tdd---test-driven-development-na-pratica.html">LOPES, Camilo. (2012) “TDD na Prática. Rio de Janeiro: Ciência Moderna</a></p>
+
+<p><a id="livro6">[6]</a> <a href="http://manifestoagil.com.br/">MANIFESTO ÁGIL. (2001) &#8220;Manifesto Para o Desenvolvimento Ágil de Software&#8221;</a></p>
+
+<p><a id="livro7">[7]</a> <a href="http://www.grupoa.com.br/livros/engenharia-de-software-e-metodos-ageis/engenharia-de-software/9788563308337">PRESSMAN, R. S. (2006) “Engenharia de Software”. São Paulo: McGraw-Hill</a></p>
+
+<p><a id="livro8">[8]</a> <a href="http://www.grupoa.com.br/livros/engenharia-de-software-e-metodos-ageis/implementando-o-desenvolvimento-lean-de-software/9788577807567">POPPENDIECK, Mary; POPPENDIECK, Tom. (2011) “Implementando o Desenvolvimento Lean de Software: Do Conceito ao Dinheiro”. Porto Alegre: Bookman</a></p>
+
+<p><a id="livro9">[9]</a> <a href="http://www.casadocodigo.com.br/products/livro-devops">SATO, Danilo. (2013) “DevOps na Prática: Entrega de Software Confiável e Automatizada”. São Paulo: Casa do Código</a></p>
+
+<p><a id="livro10">[10]</a> <a href="http://www.thoughtworks.com/pt/insights/blog/puppet-and-vagrant-how-provision-machines-your-project">TAVARES, B. (2013)” Puppet e Vagrant: Como provisionar máquinas para seu projeto</a></p>
+
+<p><a id="livro11">[11]</a> <a href="http://novatec.com.br/livros/extreme/">TELES, Vinícius M. (2004) “Extreme Programming. São Paulo: Novatec Editora Ltda</a></p>
+
+    </div>
+  </div>
+
+
+
+  <footer>
+    <hr>
+    
+    <div class="row-fluid">
+      
+      <div class="span6">
+        <p class="meta">
+        
+        
+
+
+
+  <a href="/blog/categories/contínua/"><span class="badge">Contínua</span></a>
+
+  <a href="/blog/categories/entrega/"><span class="badge">Entrega</span></a>
+
+
+
+
+        </p>
+      </div>
+      
+      <div class="span6 social-sharing">
+        <div class="sharing">
+  <div class="addthis_toolbox addthis_default_style ">
+  
+  <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+  
+  
+  <a class="addthis_button_tweet"></a>
+  
+  
+  <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+  
+  <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+      </div>
+      
+      
+    </div>
+    
+    <div class="row-fluid">
+      <div class="span12">
+        <p class="meta">
+          
+            <a class="basic-alignment left" href="/blog/2013/02/11/padroes-para-desenvolvimento-com-rails/" title="Previous Post: Padrões para desenvolvimento com Rails">&laquo; Padrões para desenvolvimento com Rails</a>
+          
+          
+        </p>
+      </div>
+    </div>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+
+        </div>
+      </div>
+      <div class="row-fluid">
+        <footer class="footer-page" role="contentinfo">
+          <p>
+  Copyright &copy; 2015 - Leandro Nunes -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> - Theme by <a href="http://alexgaribay.com">Alex Garibay</a>
+</p>
+
+
+        </footer>
+      </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'leandronunes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://LeandroSNunes.github.com/leandrosnunes/blog/2015/02/07/automatizacao-no-processo-de-entrega-de-software/';
+        var disqus_url = 'http://LeandroSNunes.github.com/leandrosnunes/blog/2015/02/07/automatizacao-no-processo-de-entrega-de-software/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

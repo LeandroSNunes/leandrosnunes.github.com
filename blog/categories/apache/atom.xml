@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Apache | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/apache/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-01-12T01:56:04+00:00</updated>
+  <updated>2015-02-07T18:29:18+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -28,28 +28,32 @@ de outra forma, basicamente usando o terminal com <code>sudo</code> ou usuário 
 
 <p>Para iniciar:</p>
 
-<p>{% codeblock bash lang:bash %}
-sudo apachectl start
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apachectl start
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Para parar:</p>
 
-<p>{% codeblock bash lang:bash %}
-sudo apachectl stop
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apachectl stop
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Para reiniciar:</p>
 
-<p>{% codeblock bash lang:bash %}
-sudo apachectl restart
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apachectl restart
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Adicionando seu domínio</h2>
 
 <p>É necessário adicionar seu domínio no arquivo <code>/etc/hosts</code>, inclua a seguinte linha:
-{% codeblock bash lang:bash %}
-127.0.0.1 leandronunes.com
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1 leandronunes.com
+</span></code></pre></td></tr></table></div></figure></notextile></div>
  O domínio leandronunes.com é só como exemplo, no lugar pode ser o seu ;-P</p>
 
 <h2>Arquivo httpd.com</h2>
@@ -57,62 +61,88 @@ sudo apachectl restart
 <p>Agora temos de fazer algumas configurações no próprio Apache.</p>
 
 <p>Para habilitar o PHP, descomente a linha 117
-{% codeblock bash lang:bash %}
-LoadModule php5_module libexec/apache2/libphp5.so
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>LoadModule php5_module libexec/apache2/libphp5.so
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Configure seu document root na linha 169
-{% codeblock bash lang:bash %}
-DocumentRoot "myPath"
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>DocumentRoot <span class="s2">&quot;myPath&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>e na linha 196
-{% codeblock bash lang:bash %}
-<Directory "myPath">
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;Directory <span class="s2">&quot;myPath&quot;</span>&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Informe os arquivos default que o Apache irá ler na linha 231
-{% codeblock bash lang:bash %}
-DirectoryIndex index.html index.php
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>DirectoryIndex index.html index.php
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Agora, descomente a linha 477 para incluir o arquivo de hosts virtuais
-{% codeblock bash lang:bash %}
-Include /private/etc/apache2/extra/httpd-vhosts.conf
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Include /private/etc/apache2/extra/httpd-vhosts.conf
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Criando um host virtual</h2>
 
 <p>Vamos adicionar nosso host no arquivo <code>/private/etc/apache2/extra/httpd-vhosts.conf</code>, ficando dessa seguinte forma:</p>
 
-<p>{% codeblock bash lang:bash %}
-NameVirtualHost *:80</p>
-
-<p><VirtualHost *:80>
-  ServerAdmin seuemail@email.com
-  DocumentRoot "/Users/leandronunes/"
-  ErrorLog "/private/var/log/apache2/error_log"
-  CustomLog "/private/var/log/apache2/access_log" common
-</VirtualHost></p>
-
-<p><VirtualHost *:80>
-  ServerAdmin seuemail@email.com
-  DocumentRoot "/Users/leandronunes/blog"
-  ServerName leandronunes.com
-  ServerAlias www.leandronunes.com
-  ErrorLog "/Users/leandronunes/blog/log/error_log"
-  CustomLog "/Users/leandronunes/blog/log/access_log" common
-</VirtualHost></p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>NameVirtualHost *:80&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;VirtualHost *:80&gt;
+</span><span class='line'>  ServerAdmin seuemail@email.com
+</span><span class='line'>  DocumentRoot <span class="s2">&quot;/Users/leandronunes/&quot;</span>
+</span><span class='line'>  ErrorLog <span class="s2">&quot;/private/var/log/apache2/error_log&quot;</span>
+</span><span class='line'>  CustomLog <span class="s2">&quot;/private/var/log/apache2/access_log&quot;</span> common
+</span><span class='line'>&lt;/VirtualHost&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;VirtualHost *:80&gt;
+</span><span class='line'>  ServerAdmin seuemail@email.com
+</span><span class='line'>  DocumentRoot <span class="s2">&quot;/Users/leandronunes/blog&quot;</span>
+</span><span class='line'>  ServerName leandronunes.com
+</span><span class='line'>  ServerAlias www.leandronunes.com
+</span><span class='line'>  ErrorLog <span class="s2">&quot;/Users/leandronunes/blog/log/error_log&quot;</span>
+</span><span class='line'>  CustomLog <span class="s2">&quot;/Users/leandronunes/blog/log/access_log&quot;</span> common
+</span><span class='line'>&lt;/VirtualHost&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Testando</h2>
 
 <p>Primeiro, dê um restart no Apache, isso já foi mostrado mais acima.
 Adicione um arquivo <code>index.php</code> na raíz de seu projeto com o conteúdo.
-{% codeblock bash lang:php %}
-&lt;?php phpinfo(); ?>
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bash  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">&amp;lt;?php phpinfo(); ?&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>e acesse pelo browser <code>http://leandronunes.com</code></p>
 

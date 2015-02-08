@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Entrega Contínua | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/entrega-contínua/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-02-08T09:32:26+00:00</updated>
+  <updated>2015-02-08T09:50:31+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -61,7 +61,7 @@ baixo custo.</p>
 
 <h2>2. Metodologias Ágeis de Desenvolvimento</h2>
 
-<p>Os processos das metodologias tradicionais não acompanharam a evolução do tráfico de informações. Conforme <a href="#livro4">[4]</a>, o principal problema
+<p>Os processos das metodologias tradicionais não acompanharam a evolução do tráfico de informações. Conforme Humble e Farley <a href="#livro4">[4]</a>, o principal problema
 enfrentado pelos profissionais da área de desenvolvimento de software é como fazer para transformar uma boa ideia em um sistema e entregá-lo aos
 usuários o quanto antes.</p>
 

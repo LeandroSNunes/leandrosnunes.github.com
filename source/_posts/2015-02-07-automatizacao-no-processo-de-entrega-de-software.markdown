@@ -50,7 +50,7 @@ dentro de tempo de ciclo, permitindo implantar o sistema para qualquer ambiente 
 baixo custo.
 
 ## 2. Metodologias Ágeis de Desenvolvimento 
-Os processos das metodologias tradicionais não acompanharam a evolução do tráfico de informações. Conforme [\[4\]](#livro4), o principal problema
+Os processos das metodologias tradicionais não acompanharam a evolução do tráfico de informações. Conforme Humble e Farley [\[4\]](#livro4), o principal problema
 enfrentado pelos profissionais da área de desenvolvimento de software é como fazer para transformar uma boa ideia em um sistema e entregá-lo aos
 usuários o quanto antes.
 

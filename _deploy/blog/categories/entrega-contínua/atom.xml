@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Entrega Contínua | Leandro Nunes]]></title>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/blog/categories/entrega-contínua/atom.xml" rel="self"/>
   <link href="http://LeandroSNunes.github.com/leandrosnunes/"/>
-  <updated>2015-02-08T09:50:31+00:00</updated>
+  <updated>2015-02-10T22:17:55+00:00</updated>
   <id>http://LeandroSNunes.github.com/leandrosnunes/</id>
   <author>
     <name><![CDATA[Leandro Nunes]]></name>
@@ -96,7 +96,7 @@ cliente, do momento em que ela chega até que ela esteja disponível em produc
 <p>No desenvolvimento, é necessário juntar o código produzido ao código principal, testar esse código para certificar que não foram adicionados defeitos
 ao projeto, configurar ambientes para instalação do software e efetuar a implantação nesses ambientes, proporcionando demonstrações, testes
 exploratório e a disponibilização para o usuário final. O pipeline de implantação modela esse processo, e sua inversão em uma ferramenta de integração
-contínua, de gerência de versões e a utilização da prática de desenvolvimento guiado por teste como o TDD1, é o que permite que uma equipe veja e
+contínua, de gerência de versões e a utilização da prática de desenvolvimento guiado por teste como o TDD, é o que permite que uma equipe veja e
 controle o processo de cada mudança à medida que ela se move em direção a entrega.</p>
 
 <p>Para Humble e Farley <a href="#livro4">[4]</a> o pipeline de implantação é uma manifestação automatizada do processo de levar o software do controle de versão até os

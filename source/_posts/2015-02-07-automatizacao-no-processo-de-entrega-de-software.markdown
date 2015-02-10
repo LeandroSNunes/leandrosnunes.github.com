@@ -84,7 +84,7 @@ cliente, do momento em que ela chega até que ela esteja disponível em produc
 No desenvolvimento, é necessário juntar o código produzido ao código principal, testar esse código para certificar que não foram adicionados defeitos
 ao projeto, configurar ambientes para instalação do software e efetuar a implantação nesses ambientes, proporcionando demonstrações, testes
 exploratório e a disponibilização para o usuário final. O pipeline de implantação modela esse processo, e sua inversão em uma ferramenta de integração
-contínua, de gerência de versões e a utilização da prática de desenvolvimento guiado por teste como o TDD1, é o que permite que uma equipe veja e
+contínua, de gerência de versões e a utilização da prática de desenvolvimento guiado por teste como o TDD, é o que permite que uma equipe veja e
 controle o processo de cada mudança à medida que ela se move em direção a entrega.
 
 Para Humble e Farley [\[4\]](#livro4) o pipeline de implantação é uma manifestação automatizada do processo de levar o software do controle de versão até os
@@ -181,20 +181,4 @@ diminuindo a probabilidade de que pequenos erros se transformem em grandes dores
 [\[10\]](id:livro10) [TAVARES, B. (2013)” Puppet e Vagrant: Como provisionar máquinas para seu projeto](http://www.thoughtworks.com/pt/insights/blog/puppet-and-vagrant-how-provision-machines-your-project)
 
 [\[11\]](id:livro11) [TELES, Vinícius M. (2004) “Extreme Programming. São Paulo: Novatec Editora Ltda](http://novatec.com.br/livros/extreme/)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
